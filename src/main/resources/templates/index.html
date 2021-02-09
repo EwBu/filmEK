@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwwthymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie application</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">filmEK</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{'/'}">Strona główna <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/register}">Utwórz konto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Zaloguj się</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/list_users}">Lista użytkowników</a>
+            </li>
+            <!--<li class="nav-item dropdown">-->
+                <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <!--Dropdown-->
+                <!--</a>-->
+                <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                    <!--<a class="dropdown-item" href="#">Action</a>-->
+                    <!--<a class="dropdown-item" href="#">Another action</a>-->
+                    <!--<div class="dropdown-divider"></div>-->
+                    <!--<a class="dropdown-item" href="#">Something else here</a>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link disabled" href="#">Disabled</a>-->
+            <!--</li>th:field="*{title}"-->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" >
+            <button class="btn btn-light" type="submit">Szukaj filmu</button>
+        </form>
+    </div>
+</nav>
+
+        <div class="card-group">
+            <div class="card" th:each="movie: ${listMovieEntities}">
+                <img th:src="${movie.posterPath}" class="card-img-top">
+                <div class="card-body">
+                    <h5 th:text="${movie.title}" class="card-title">Title</h5>
+                    <a href="#" class="btn btn-light">O Filmie</a>
+                </div>
+            </div>
+        </div>
+            <!--<form th:action="@{/search_movie}" method="post"-->
+                  <!--style="max-width: 600px; margin: 0 auto;">-->
+                <!--<div>-->
+                    <!--<input type="text" class="form-control" th:field="*{title}" required-->
+                           <!--minlength="3" maxlength="40"/>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<button type="submit" class="btn btn-primary" >Szukaj filmu</button>-->
+                <!--</div>-->
+
+            <!--</form>-->
+</body>
+</html>
