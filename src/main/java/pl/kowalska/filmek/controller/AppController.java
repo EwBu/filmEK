@@ -121,14 +121,19 @@ public class AppController {
     @GetMapping("/Movies")
     public void loadMoviesToDb(){
         RestTemplate restTemplate = new RestTemplate();
-        MoviesList moviesList= restTemplate.getForObject(SearchMovies.POPULAR_MOVIES, MoviesList.class);
+        MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/top_rated?api_key=e529d754811a8187c547ac59aa92495d&language=pl", MoviesList.class);
         List<Result> results = moviesList.getResults();
 
 
+//                                                        (Integer id, String posterPath, String polishTitle, String originalTitle, String originalLanguage, String overview, double popularity, String releaseDate, long runtime, double voteAverage, long voteCount, Set<GenreEntity> genres)
+        results.forEach(movie -> {
+            MovieEntity movieEntity = new MovieEntity(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getOverview(), movie.getPopularity(), movie.getReleaseDate(), movie.getVoteAverage(), movie.getVoteCount());// Trzeba przerobić tabele movies zeby przyjmowała to co potrzebujemy, trzeba tez przerobic encje
+            if(movieEntity.getOverview() != "") {
+                movieRepo.save(movieEntity);
 
-        results.forEach(genre -> {
-            MovieEntity movie = new MovieEntity();// Trzeba przerobić tabele movies zeby przyjmowała to co potrzebujemy, trzeba tez przerobic encje
-            movieRepo.save(movie);
+            }
+
+            
         } );
         System.out.println("DONE");
     }

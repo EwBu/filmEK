@@ -2,13 +2,12 @@ package pl.kowalska.filmek.model;
 
 import javax.persistence.*;
 
-@Table(name = "genres")
 @Entity
+@Table(name = "genres")
 public class GenreEntity {
 
     @Id
     private Long genreId;
-
 
     private String name;
 

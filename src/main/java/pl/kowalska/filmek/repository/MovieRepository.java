@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository;
 import pl.kowalska.filmek.model.MovieEntity;
 
 @Repository
-public interface MovieRepository extends JpaRepository<MovieEntity, String> {
+public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 
-    MovieEntity findByImdbId(String imdbId);
+//    MovieEntity findById(Long Id);
 
 }

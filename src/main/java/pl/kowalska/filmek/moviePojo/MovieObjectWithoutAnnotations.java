@@ -37,7 +37,7 @@ import java.util.Map;
 })
 public class MovieObjectWithoutAnnotations {
 
-//    @JsonIgnore
+
     @JsonProperty("adult")
     private Boolean adult;
     @JsonProperty("backdrop_path")

@@ -19,7 +19,7 @@ public class SearchMovies {
 //        System.out.println(jsonResponse2);
 //        showMovie();
 //        showMoviesByPopular();
-        showGenres();
+//        showGenres();
     }
     public static void showMovie(){
         RestTemplate restTemplate = new RestTemplate();
