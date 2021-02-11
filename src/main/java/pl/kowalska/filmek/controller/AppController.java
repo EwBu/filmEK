@@ -19,6 +19,7 @@ import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 import pl.kowalska.filmek.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -124,10 +125,11 @@ public class AppController {
         MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/top_rated?api_key=e529d754811a8187c547ac59aa92495d&language=pl", MoviesList.class);
         List<Result> results = moviesList.getResults();
 
-
 //                                                        (Integer id, String posterPath, String polishTitle, String originalTitle, String originalLanguage, String overview, double popularity, String releaseDate, long runtime, double voteAverage, long voteCount, Set<GenreEntity> genres)
         results.forEach(movie -> {
-            MovieEntity movieEntity = new MovieEntity(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getOverview(), movie.getPopularity(), movie.getReleaseDate(), movie.getVoteAverage(), movie.getVoteCount());// Trzeba przerobić tabele movies zeby przyjmowała to co potrzebujemy, trzeba tez przerobic encje
+            List<GenreEntity> genresForCurrentMovie = new ArrayList<>();
+            movie.getGenreIds().forEach(genre ->genresForCurrentMovie.add(genreRepository.getOne(Long.valueOf(genre))));
+            MovieEntity movieEntity = new MovieEntity(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getOverview(), movie.getPopularity(), movie.getReleaseDate(), movie.getVoteAverage(), movie.getVoteCount(), genresForCurrentMovie);// Trzeba przerobić tabele movies zeby przyjmowała to co potrzebujemy, trzeba tez przerobic encje
             if(movieEntity.getOverview() != "") {
                 movieRepo.save(movieEntity);
             }

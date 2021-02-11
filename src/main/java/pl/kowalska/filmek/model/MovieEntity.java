@@ -30,26 +30,20 @@ public class MovieEntity {
     @Column(nullable = false)
     private String originalLanguage;
 
-    @Column()
     private String overview;
 
-    @Column()
     private double popularity;
 
-    @Column()
     private String releaseDate;
 
 //    @Column(nullable = false)
 //    private long runtime;
 
-    @Column()
     private double voteAverage;
 
-    @Column()
     private long voteCount;
 
-    @ManyToMany(cascade = { CascadeType.MERGE,
-                            CascadeType.PERSIST })
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "movies_genres",
             joinColumns = { @JoinColumn(name = "id") },
             inverseJoinColumns = { @JoinColumn(name = "genreId") }
@@ -67,7 +61,17 @@ public class MovieEntity {
     public MovieEntity() {
     }
 
-    public MovieEntity(Integer id, String posterPath, String title, String originalTitle, String originalLanguage, String overview, double popularity, String releaseDate, double voteAverage, long voteCount) {
+    public MovieEntity(Integer id,
+                       String posterPath,
+                       String title,
+                       String originalTitle,
+                       String originalLanguage,
+                       String overview,
+                       double popularity,
+                       String releaseDate,
+                       double voteAverage,
+                       long voteCount,
+                       List<GenreEntity> genres) {
         this.id = id;
         this.posterPath = posterPath;
         this.title = title;
@@ -79,7 +83,7 @@ public class MovieEntity {
 //        this.runtime = runtime;
         this.voteAverage = voteAverage;
         this.voteCount = voteCount;
-
+        this.genres = genres;
     }
 
     public Integer getId() {
@@ -168,5 +172,9 @@ public class MovieEntity {
 
     public void setVoteCount(long voteCount) {
         this.voteCount = voteCount;
+    }
+
+    public List<GenreEntity> getGenres() {
+        return genres;
     }
 }
