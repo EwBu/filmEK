@@ -8,16 +8,16 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">filmEK</a>
+    <a class="navbar-brand" th:href="@{'/'}">filmEK</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{'/'}">Strona główna <span class="sr-only">(current)</span></a>
-            </li>
+            <!--<li class="nav-item active">-->
+                <!--<a class="nav-link" th:href="@{'/'}">Strona główna <span class="sr-only">(current)</span></a>-->
+            <!--</li>-->
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/register}">Utwórz konto</a>
             </li>
@@ -43,21 +43,35 @@
             <!--</li>th:field="*{title}"-->
         </ul>
         <form class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Popularne filmy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Najwyżej oceniane</a>
+                </li>
+            </ul>
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" >
             <button class="btn btn-light" type="submit">Szukaj filmu</button>
         </form>
     </div>
 </nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="card-group col-2" th:each="movie: ${listMovies}">
+            <div class="card">
+                <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top">
+                <div class="card-body">
+                    <h5 th:text="${movie.title}" class="card-title">Title</h5>
+                    <a href="#" class="btn btn-light">O Filmie</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
 
-        <!--<div class="card-group">-->
-            <!--<div class="card" th:each="movie: ${listMovieEntities}">-->
-                <!--<img th:src="${movie.posterPath}" class="card-img-top">-->
-                <!--<div class="card-body">-->
-                    <!--<h5 th:text="${movie.title}" class="card-title">Title</h5>-->
-                    <!--<a href="#" class="btn btn-light">O Filmie</a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+</div>
             <!--<form th:action="@{/search_movie}" method="post"-->
                   <!--style="max-width: 600px; margin: 0 auto;">-->
                 <!--<div>-->

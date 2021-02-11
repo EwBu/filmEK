@@ -130,15 +130,9 @@ public class AppController {
             MovieEntity movieEntity = new MovieEntity(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getOverview(), movie.getPopularity(), movie.getReleaseDate(), movie.getVoteAverage(), movie.getVoteCount());// Trzeba przerobić tabele movies zeby przyjmowała to co potrzebujemy, trzeba tez przerobic encje
             if(movieEntity.getOverview() != "") {
                 movieRepo.save(movieEntity);
-
             }
 
-            
         } );
         System.out.println("DONE");
     }
-
-    /**
-     * Możesz dostać błąd z thymeleafa. Tak jak wczoraj
-     */
 }

@@ -3,43 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="da0b177f-c386-4fac-a8e7-1f3693daa57d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmek.iml" beforeDir="false" afterPath="$PROJECT_DIR$/filmek.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/SearchMovies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/SearchMovies.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/GenreEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/GenreEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/MovieEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/MovieEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/MovieObjectWithoutAnnotations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/MovieObjectWithoutAnnotations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/repository/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/repository/MovieRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/searching_movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/searching_movies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/CustomUserDetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/CustomUserDetail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/FilmEkApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/FilmEkApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/OmdbWebServiceClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/OmdbWebServiceClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/PasswordEncoder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/PasswordEncoder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/SearchMovies.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/SearchMovies.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/WebSequrityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/WebSequrityConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/controller/AppController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/controller/AppController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/controller/MovieController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/controller/MovieController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/model/GenreEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/model/GenreEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/model/Movie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/Genre.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/Genre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/ListOfGenres.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/ListOfGenres.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/MovieObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/MovieObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/MovieObjectList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/MovieObjectList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/MovieObjectWithoutAnnotations.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/MovieObjectWithoutAnnotations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/MovieWithLessData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/MovieWithLessData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/ProductionCompany.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/ProductionCompany.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/ProductionCountry.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/ProductionCountry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/Result.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/SpokenLanguage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/moviePojo/SpokenLanguage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/repository/MovieRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/repository/MovieRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/service/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/service/CustomUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/model/MovieEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/kowalska/filmek/model/MovieEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/searching_movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/searching_movies.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +23,8 @@
     <session id="277057098">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="4" />
-          <entry key="java" value="28" />
+          <entry key="html" value="6" />
+          <entry key="java" value="29" />
           <entry key="properties" value="3" />
           <entry key="sql" value="2" />
           <entry key="xml" value="1" />
@@ -64,8 +32,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="4" />
-          <entry key="JAVA" value="28" />
+          <entry key="HTML" value="6" />
+          <entry key="JAVA" value="29" />
           <entry key="Properties" value="3" />
           <entry key="SQL" value="2" />
           <entry key="XML" value="1" />
@@ -73,52 +41,51 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="5" />
+          <entry key="html" value="158" />
           <entry key="java" value="531" />
           <entry key="properties" value="199" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="5" />
+          <entry key="HTML" value="158" />
           <entry key="JAVA" value="531" />
           <entry key="Properties" value="199" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/controller/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+            <state relative-caret-position="1309">
+              <caret line="131" column="44" selection-start-line="131" selection-start-column="44" selection-end-line="131" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="19" column="21" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="19" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/SearchMovies.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/users.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="139" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="139" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/Genre.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
-              <folding>
-                <element signature="e#666#667#0" expanded="true" />
-                <element signature="e#693#694#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="55">
+              <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -126,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/Result.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="52" column="26" lean-forward="true" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+            <state relative-caret-position="748">
+              <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
               <folding>
                 <element signature="e#4101#4102#0" expanded="true" />
                 <element signature="e#4129#4130#0" expanded="true" />
@@ -148,50 +115,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/MovieEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
+            <state relative-caret-position="867">
               <caret line="56" column="49" selection-start-line="56" selection-start-column="49" selection-end-line="56" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1417#1418#0" expanded="true" />
-                <element signature="e#1442#1443#0" expanded="true" />
-                <element signature="e#1479#1480#0" expanded="true" />
-                <element signature="e#1507#1508#0" expanded="true" />
-                <element signature="e#1544#1545#0" expanded="true" />
-                <element signature="e#1577#1578#0" expanded="true" />
-                <element signature="e#1629#1630#0" expanded="true" />
-                <element signature="e#1673#1674#0" expanded="true" />
-                <element signature="e#1711#1712#0" expanded="true" />
-                <element signature="e#1745#1746#0" expanded="true" />
-                <element signature="e#1799#1800#0" expanded="true" />
-                <element signature="e#1845#1846#0" expanded="true" />
-                <element signature="e#1885#1886#0" expanded="true" />
-                <element signature="e#1921#1922#0" expanded="true" />
-                <element signature="e#1979#1980#0" expanded="true" />
-                <element signature="e#2029#2030#0" expanded="true" />
-                <element signature="e#2072#2073#0" expanded="true" />
-                <element signature="e#2111#2112#0" expanded="true" />
-                <element signature="e#2175#2176#0" expanded="true" />
-                <element signature="e#2231#2232#0" expanded="true" />
-                <element signature="e#2266#2267#0" expanded="true" />
-                <element signature="e#2297#2298#0" expanded="true" />
-                <element signature="e#2345#2346#0" expanded="true" />
-                <element signature="e#2385#2386#0" expanded="true" />
-                <element signature="e#2422#2423#0" expanded="true" />
-                <element signature="e#2455#2456#0" expanded="true" />
-                <element signature="e#2507#2508#0" expanded="true" />
-                <element signature="e#2551#2552#0" expanded="true" />
-                <element signature="e#2589#2590#0" expanded="true" />
-                <element signature="e#2623#2624#0" expanded="true" />
-                <element signature="e#2677#2678#0" expanded="true" />
-                <element signature="e#2723#2724#0" expanded="true" />
-                <element signature="e#2905#2906#0" expanded="true" />
-                <element signature="e#2939#2940#0" expanded="true" />
-                <element signature="e#2993#2994#0" expanded="true" />
-                <element signature="e#3039#3040#0" expanded="true" />
-                <element signature="e#3073#3074#0" expanded="true" />
-                <element signature="e#3105#3106#0" expanded="true" />
-                <element signature="e#3153#3154#0" expanded="true" />
-                <element signature="e#3195#3196#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -209,7 +136,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/MovieObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-187">
+            <state relative-caret-position="595">
               <caret line="39" selection-start-line="39" selection-end-line="39" selection-end-column="17" />
             </state>
           </provider>
@@ -218,7 +145,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/ListOfGenres.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="170">
               <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -230,7 +157,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/MovieObjectList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
+            <state relative-caret-position="102">
               <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -285,7 +212,6 @@
         <option value="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/MoviesList.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/SearchMovies.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/repository/MovieRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/searching_movies.html" />
         <option value="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/GenreEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/MovieObjectWithoutAnnotations.java" />
@@ -294,6 +220,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/MovieEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/controller/AppController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
       </list>
     </option>
   </component>
@@ -310,11 +237,11 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="320" />
-    <option name="y" value="56" />
-    <option name="width" value="1307" />
-    <option name="height" value="894" />
+    <option name="y" value="55" />
+    <option name="width" value="1308" />
+    <option name="height" value="895" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -325,7 +252,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -414,8 +341,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -426,7 +353,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1612986010373" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1613064533841" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/MovieObjectList.java" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -511,17 +438,17 @@
       <workItem from="1612714042572" duration="2040000" />
       <workItem from="1612806439124" duration="8440000" />
       <workItem from="1612851715313" duration="516000" />
+      <workItem from="1613041241493" duration="7041000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29807000" />
+    <option name="totallyTimeSpent" value="37473000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="848" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23020135" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23355705" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -532,13 +459,13 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.44420367" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4986577" visible="true" weight="0.3216783" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4986577" visible="true" weight="0.36643356" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.21398601" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.32867134" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4987745" weight="0.379021" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4987745" weight="0.26153848" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50067115" side_tool="true" weight="0.32867134" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49932885" weight="0.32867134" />
       <window_info anchor="bottom" id="Atlassian " order="11" />
@@ -597,6 +524,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -716,70 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1811#1827#0" expanded="true" />
-            <element signature="e#1889#1890#0" expanded="true" />
-            <element signature="e#1917#1918#0" expanded="true" />
-            <element signature="e#1987#1988#0" expanded="true" />
-            <element signature="e#2021#2022#0" expanded="true" />
-            <element signature="e#2095#2096#0" expanded="true" />
-            <element signature="e#2130#2131#0" expanded="true" />
-            <element signature="e#2221#2222#0" expanded="true" />
-            <element signature="e#2269#2270#0" expanded="true" />
-            <element signature="e#2342#2343#0" expanded="true" />
-            <element signature="e#2373#2374#0" expanded="true" />
-            <element signature="e#2459#2460#0" expanded="true" />
-            <element signature="e#2499#2500#0" expanded="true" />
-            <element signature="e#2553#2554#0" expanded="true" />
-            <element signature="e#2578#2579#0" expanded="true" />
-            <element signature="e#2639#2640#0" expanded="true" />
-            <element signature="e#2667#2668#0" expanded="true" />
-            <element signature="e#2749#2750#0" expanded="true" />
-            <element signature="e#2788#2789#0" expanded="true" />
-            <element signature="e#2891#2892#0" expanded="true" />
-            <element signature="e#2947#2948#0" expanded="true" />
-            <element signature="e#3023#3024#0" expanded="true" />
-            <element signature="e#3059#3060#0" expanded="true" />
-            <element signature="e#3153#3154#0" expanded="true" />
-            <element signature="e#3203#3204#0" expanded="true" />
-            <element signature="e#3268#3269#0" expanded="true" />
-            <element signature="e#3299#3300#0" expanded="true" />
-            <element signature="e#3377#3378#0" expanded="true" />
-            <element signature="e#3417#3418#0" expanded="true" />
-            <element signature="e#3486#3487#0" expanded="true" />
-            <element signature="e#3519#3520#0" expanded="true" />
-            <element signature="e#3603#3604#0" expanded="true" />
-            <element signature="e#3647#3648#0" expanded="true" />
-            <element signature="e#3717#3718#0" expanded="true" />
-            <element signature="e#3750#3751#0" expanded="true" />
-            <element signature="e#3835#3836#0" expanded="true" />
-            <element signature="e#3879#3880#0" expanded="true" />
-            <element signature="e#3951#3952#0" expanded="true" />
-            <element signature="e#3985#3986#0" expanded="true" />
-            <element signature="e#4073#4074#0" expanded="true" />
-            <element signature="e#4119#4120#0" expanded="true" />
-            <element signature="e#4178#4179#0" expanded="true" />
-            <element signature="e#4206#4207#0" expanded="true" />
-            <element signature="e#4275#4276#0" expanded="true" />
-            <element signature="e#4309#4310#0" expanded="true" />
-            <element signature="e#4369#4370#0" expanded="true" />
-            <element signature="e#4397#4398#0" expanded="true" />
-            <element signature="e#4467#4468#0" expanded="true" />
-            <element signature="e#4501#4502#0" expanded="true" />
-            <element signature="e#4574#4575#0" expanded="true" />
-            <element signature="e#4608#4609#0" expanded="true" />
-            <element signature="e#4697#4698#0" expanded="true" />
-            <element signature="e#4743#4744#0" expanded="true" />
-            <element signature="e#4812#4813#0" expanded="true" />
-            <element signature="e#4844#4845#0" expanded="true" />
-            <element signature="e#4927#4928#0" expanded="true" />
-            <element signature="e#4969#4970#0" expanded="true" />
-            <element signature="e#5048#5049#0" expanded="true" />
-            <element signature="e#5096#5097#0" expanded="true" />
-            <element signature="e#5183#5184#0" expanded="true" />
-            <element signature="e#5241#5242#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -858,9 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="36" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -878,33 +741,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="59" column="18" lean-forward="true" selection-start-line="51" selection-start-column="12" selection-end-line="59" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/schema.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/data.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/users.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="25" lean-forward="true" selection-start-line="23" selection-start-column="20" selection-end-line="28" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/searching_movies.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding>
-            <element signature="n#style#0;n#form#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -922,30 +768,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/ListOfGenres.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/SearchMovies.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        <state relative-caret-position="119">
+          <caret line="10" column="139" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="139" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/Result.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="52" column="26" lean-forward="true" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
-          <folding>
-            <element signature="e#4101#4102#0" expanded="true" />
-            <element signature="e#4129#4130#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/Genre.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
+        <state relative-caret-position="425">
           <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
           <folding>
             <element signature="e#666#667#0" expanded="true" />
@@ -954,10 +789,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/SearchMovies.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+          <folding>
+            <element signature="e#4101#4102#0" expanded="true" />
+            <element signature="e#4129#4130#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/GenreEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/MovieEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="56" column="49" selection-start-line="56" selection-start-column="49" selection-end-line="56" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="240" selection-start-column="240" selection-end-column="240" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/MovieObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="39" selection-start-line="39" selection-end-line="39" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/ListOfGenres.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="139" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="139" />
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -966,7 +843,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/MovieObjectList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
+        <state relative-caret-position="102">
           <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -982,81 +859,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/GenreEntity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/users.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/moviePojo/MovieObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="39" selection-start-line="39" selection-end-line="39" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="240" selection-start-column="240" selection-end-column="240" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/model/MovieEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="56" column="49" selection-start-line="56" selection-start-column="49" selection-end-line="56" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1417#1418#0" expanded="true" />
-            <element signature="e#1442#1443#0" expanded="true" />
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#1507#1508#0" expanded="true" />
-            <element signature="e#1544#1545#0" expanded="true" />
-            <element signature="e#1577#1578#0" expanded="true" />
-            <element signature="e#1629#1630#0" expanded="true" />
-            <element signature="e#1673#1674#0" expanded="true" />
-            <element signature="e#1711#1712#0" expanded="true" />
-            <element signature="e#1745#1746#0" expanded="true" />
-            <element signature="e#1799#1800#0" expanded="true" />
-            <element signature="e#1845#1846#0" expanded="true" />
-            <element signature="e#1885#1886#0" expanded="true" />
-            <element signature="e#1921#1922#0" expanded="true" />
-            <element signature="e#1979#1980#0" expanded="true" />
-            <element signature="e#2029#2030#0" expanded="true" />
-            <element signature="e#2072#2073#0" expanded="true" />
-            <element signature="e#2111#2112#0" expanded="true" />
-            <element signature="e#2175#2176#0" expanded="true" />
-            <element signature="e#2231#2232#0" expanded="true" />
-            <element signature="e#2266#2267#0" expanded="true" />
-            <element signature="e#2297#2298#0" expanded="true" />
-            <element signature="e#2345#2346#0" expanded="true" />
-            <element signature="e#2385#2386#0" expanded="true" />
-            <element signature="e#2422#2423#0" expanded="true" />
-            <element signature="e#2455#2456#0" expanded="true" />
-            <element signature="e#2507#2508#0" expanded="true" />
-            <element signature="e#2551#2552#0" expanded="true" />
-            <element signature="e#2589#2590#0" expanded="true" />
-            <element signature="e#2623#2624#0" expanded="true" />
-            <element signature="e#2677#2678#0" expanded="true" />
-            <element signature="e#2723#2724#0" expanded="true" />
-            <element signature="e#2905#2906#0" expanded="true" />
-            <element signature="e#2939#2940#0" expanded="true" />
-            <element signature="e#2993#2994#0" expanded="true" />
-            <element signature="e#3039#3040#0" expanded="true" />
-            <element signature="e#3073#3074#0" expanded="true" />
-            <element signature="e#3105#3106#0" expanded="true" />
-            <element signature="e#3153#3154#0" expanded="true" />
-            <element signature="e#3195#3196#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="55">
+          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/kowalska/filmek/controller/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+        <state relative-caret-position="1309">
+          <caret line="131" column="44" selection-start-line="131" selection-start-column="44" selection-end-line="131" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="19" column="21" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="19" selection-end-column="21" />
         </state>
       </provider>
     </entry>
