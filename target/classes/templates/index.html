@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://wwwthymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Movie application</title>
@@ -51,8 +51,10 @@
                     <a class="nav-link" href="#">Najwyżej oceniane</a>
                 </li>
             </ul>
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" >
-            <button class="btn btn-light" type="submit">Szukaj filmu</button>
+            <input class="form-control mr-sm-2" type="text" th:field="${searchText}"  placeholder="Search" aria-label="Search" >
+            <a th:href="@{/show/{movieName} (movieName=${searchText})}"><button class="btn btn-light" type="submit">Szukaj filmu</button></a>
+
+
         </form>
     </div>
 </nav>
@@ -63,7 +65,7 @@
                 <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top">
                 <div class="card-body">
                     <h5 th:text="${movie.title}" class="card-title">Title</h5>
-                    <a href="#" class="btn btn-light">O Filmie</a>
+                    <a th:href="@{/show/{movieName} (movieName=${movie.id})}" class="btn btn-light">O Filmie</a>
                 </div>
             </div>
         </div>
