@@ -116,13 +116,17 @@ public class AppController {
 //        model.addAttribute("title", movieTitle);
 //        return "index";
 //    }
-//    @GetMapping("/show/{movieId}")
-//    public String viewMovieDetail(Model model, @PathVariable Long movieId){
-//        MovieEntity movieEntity = movieRepo.findById(movieId);
-//        model.addAttribute("movieById", movieEntity);
-//
-//        return "movie_detail";
-//    }
+    @GetMapping("/show/{movieId}")
+    public String viewMovieDetail(Model model, @PathVariable Long movieId){
+        Optional<MovieEntity> optionalMovieFromEntity = movieRepo.findById(movieId);
+        if (optionalMovieFromEntity.isPresent()){
+            model.addAttribute("movieById", optionalMovieFromEntity.get());
+            return "movie_detail";
+        }
+
+        return "redirect:/";
+
+    }
         @GetMapping("/show_movie_details")
         public String showMovieDetails(Model model){
             RestTemplate restTemplate = new RestTemplate();
