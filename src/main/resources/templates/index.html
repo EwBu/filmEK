@@ -65,7 +65,7 @@
                 <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top">
                 <div class="card-body">
                     <h5 th:text="${movie.title}" class="card-title">Title</h5>
-                    <a th:href="@{/show/{movieName} (movieName=${movie.id})}" class="btn btn-light">O Filmie</a>
+                    <a th:href="@{/show/{movieId} (movieId=${movie.id})}" class="btn btn-light">O Filmie</a>
                 </div>
             </div>
         </div>
