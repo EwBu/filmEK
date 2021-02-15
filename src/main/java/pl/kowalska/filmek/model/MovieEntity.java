@@ -16,7 +16,7 @@ public class MovieEntity {
 
     @Id
     @Column(unique = true, nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false)
     private String posterPath;
@@ -55,7 +55,7 @@ public class MovieEntity {
     public MovieEntity() {
     }
 
-    public MovieEntity(Integer id,
+    public MovieEntity(Long id,
                        String posterPath,
                        String title,
                        String originalTitle,
@@ -80,11 +80,11 @@ public class MovieEntity {
         this.genres = genres;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

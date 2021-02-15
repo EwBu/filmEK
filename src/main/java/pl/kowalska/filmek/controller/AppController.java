@@ -116,11 +116,11 @@ public class AppController {
 //        model.addAttribute("title", movieTitle);
 //        return "index";
 //    }
-    @GetMapping("/show/{movieId}")
+    @GetMapping("/showMovie/{movieId}")
     public String viewMovieDetail(Model model, @PathVariable Long movieId){
         Optional<MovieEntity> optionalMovieFromEntity = movieRepo.findById(movieId);
         if (optionalMovieFromEntity.isPresent()){
-            model.addAttribute("movieById", optionalMovieFromEntity.get());
+            model.addAttribute("film", optionalMovieFromEntity.get());
             return "movie_detail";
         }
 

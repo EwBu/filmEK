@@ -37,7 +37,7 @@ public class Result {
     @JsonProperty("genre_ids")
     private List<Integer> genreIds = null;
     @JsonProperty("id")
-    private Integer id;
+    private Long id;
     @JsonProperty("original_language")
     private String originalLanguage;
     @JsonProperty("original_title")
@@ -92,12 +92,12 @@ public class Result {
     }
 
     @JsonProperty("id")
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @JsonProperty("id")
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
