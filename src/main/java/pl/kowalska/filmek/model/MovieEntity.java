@@ -30,6 +30,7 @@ public class MovieEntity {
     @Column(nullable = false)
     private String originalLanguage;
 
+    @Lob
     private String overview;
 
     private double popularity;
@@ -50,13 +51,6 @@ public class MovieEntity {
     )
     List<GenreEntity> genres = new ArrayList<>();
 
-    public void addGenre(GenreEntity genreEntity) {
-        this.genres.add(genreEntity);
-    }
-
-    public void removeGenre(GenreEntity genreEntity) {
-        this.genres.remove(genreEntity);
-    }
 
     public MovieEntity() {
     }

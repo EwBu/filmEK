@@ -51,39 +51,12 @@
                     <a class="nav-link" href="#">Najwyżej oceniane</a>
                 </li>
             </ul>
-            <input class="form-control mr-sm-2" type="text" th:field="${searchText}"  placeholder="Search" aria-label="Search" >
-            <a th:href="@{/show/{movieName} (movieName=${searchText})}"><button class="btn btn-light" type="submit">Szukaj filmu</button></a>
+            <!--<input class="form-control mr-sm-2" type="text" th:field="${searchText}"  placeholder="Search" aria-label="Search" >-->
+            <!--<a th:href="@{/show/{movieName} (movieName=${searchText})}"><button class="btn btn-light" type="submit">Szukaj filmu</button></a>-->
 
 
         </form>
     </div>
 </nav>
-<div class="container-fluid">
-    <div class="row">
-        <div class="card-group col-2" th:each="movie: ${listMovies}">
-            <div class="card">
-                <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top">
-                <div class="card-body">
-                    <h5 th:text="${movie.title}" class="card-title">Title</h5>
-                    <a th:href="@{/show/{movieId} (movieId=${movie.id})}" class="btn btn-light">O Filmie</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
-
-</div>
-            <!--<form th:action="@{/search_movie}" method="post"-->
-                  <!--style="max-width: 600px; margin: 0 auto;">-->
-                <!--<div>-->
-                    <!--<input type="text" class="form-control" th:field="*{title}" required-->
-                           <!--minlength="3" maxlength="40"/>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<button type="submit" class="btn btn-primary" >Szukaj filmu</button>-->
-                <!--</div>-->
-
-            <!--</form>-->
 </body>
 </html>

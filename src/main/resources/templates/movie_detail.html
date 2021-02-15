@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie application</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{'/'}">filmEK</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <!--<li class="nav-item active">-->
+                <!--<a class="nav-link" th:href="@{'/'}">Strona główna <span class="sr-only">(current)</span></a>-->
+            <!--</li>-->
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/register}">Utwórz konto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Zaloguj się</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/list_users}">Lista użytkowników</a>
+            </li>
+            <!--<li class="nav-item dropdown">-->
+                <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <!--Dropdown-->
+                <!--</a>-->
+                <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                    <!--<a class="dropdown-item" href="#">Action</a>-->
+                    <!--<a class="dropdown-item" href="#">Another action</a>-->
+                    <!--<div class="dropdown-divider"></div>-->
+                    <!--<a class="dropdown-item" href="#">Something else here</a>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link disabled" href="#">Disabled</a>-->
+            <!--</li>th:field="*{title}"-->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Popularne filmy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Najwyżej oceniane</a>
+                </li>
+            </ul>
+            <!--<input class="form-control mr-sm-2" type="text" th:field="${searchText}"  placeholder="Search" aria-label="Search" >-->
+            <!--<a th:href="@{/show/{movieName} (movieName=${searchText})}"><button class="btn btn-light" type="submit">Szukaj filmu</button></a>-->
+
+
+        </form>
+    </div>
+</nav>
+<section class="sec1"></section>
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-1">
+                <br>
+                    <img th:src="${'https://image.tmdb.org/t/p/w500' + film.posterPath}" width="230" height="300"/>
+
+            </div>
+            <div class="col-md-4">
+                <h2>
+                        <td th:text="${film.title}"></td>
+                        <br>
+                </h2>
+                <h7>
+                    <td th:text="${film.originalTitle}"></td>
+                </h7>
+                <br><br><br>
+
+                <h4>
+                    Data premiery:
+                    <td th:text="${film.releaseDate}"></td>
+
+                    <br><br>
+                    <!--Gatunek:-->
+                    <!--<td th:text="${film.genre}"></td>-->
+
+                </h4>
+            </div>
+
+
+            <div class="col-md-4 xxx">
+                <h3 class="text-center"><label>Średnia ocena</label></h3>
+                <div class="row">
+                    <h7>&emsp;</h7>
+                    <h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>
+                        <td th:text="${film.voteAverage}"></td>
+                    </label></h3>
+                    <h7>&emsp;</h7>
+                    <h2><img
+                            src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                            width="30" height="30"></h2>
+                </div>
+                </tr>
+
+                <h3 class="text-center"><label>Twoja ocena</label>
+                </h3>
+                <!--<form class="form" th:action="@{'/submitRating{id}'}"  th:object="${data-rating}"  method="post">-->
+
+                <!--<tr th:each="movie : ${movie}">-->
+
+                    <!--<form class="form" th:object="${movie}" th:action="@{'/movie/edit/' + ${movie.movieId}}"-->
+                          <!--method="post">-->
+                        <!--<br>-->
+                        <!--<div class="star-rating text-center">-->
+                            <!--<button class="fa fa-star-o" data-rating="1" type="submit" title="1 gwiazdka" value="1"-->
+                                    <!--id="userRating" name="userRating"></button>-->
+                            <!--<button class="fa fa-star-o" data-rating="2" type="submit" title="2 gwiazdki" value="2"-->
+                                    <!--id="userRating" name="userRating"></button>-->
+                            <!--<button class="fa fa-star-o" data-rating="3" type="submit" title="3 gwiazdki" value="3"-->
+                                    <!--id="userRating" name="userRating"></button>-->
+                            <!--<button class="fa fa-star-o" data-rating="4" type="submit" title="4 gwiazdki" value="4"-->
+                                    <!--id="userRating" name="userRating"></button>-->
+                            <!--<button class="fa fa-star-o" data-rating="5" type="submit" title="5 gwiazdek" value="5"-->
+                                    <!--id="userRating" name="userRating"></button>-->
+                            <!--<button class="fa fa-star-o" data-rating="6" type="submit" title="6 gwiazdek" value="6"-->
+                                    <!--id="userRating" name="userRating"></button>-->
+                            <!--<button class="fa fa-star-o" data-rating="7" type="submit" title="7 gwiazdek" value="7"-->
+                                    <!--id="userRating" name="userRating"></button>-->
+                            <!--<button class="fa fa-star-o" data-rating="8" type="submit" title="8 gwiazdek" value="8"-->
+                                    <!--id="userRating" name="userRating"></button>-->
+                            <!--<button class="fa fa-star-o" data-rating="9" type="submit" title="9 gwiazdek" value="9"-->
+                                    <!--id="userRating" name="userRating"></button>-->
+                            <!--<button class="fa fa-star-o" data-rating="10" type="submit" title="10 gwiazdek" value="10"-->
+                                    <!--id="userRating" name="userRating"></button>-->
+
+
+                            <!--<input type="hidden" th:value="${rating}" class="rating-value"/>-->
+                            <!--<h7><br><br></h7>-->
+
+
+                        <!--</div>-->
+                    <!--</form>-->
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-11 col-md-offset-1">
+                    <br><br>
+                    <h4>Opis filmu: <br><br></h4>
+                    <!--<tr th:each="movie : ${movie}">-->
+
+                        <td th:text="${film.overview}"></td>
+                    </tr>
+                    <!--<h1 th:text="${name}"></h1>-->
+
+                </div>
+            </div>
+        </div>
+
+</section>
+</body>
+</html>
