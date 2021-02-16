@@ -7,8 +7,4 @@ import pl.kowalska.filmek.model.GenreEntity;
 @Repository
 public interface GenreRepository extends JpaRepository<GenreEntity, Long> {
 
-
-
-
-
 }

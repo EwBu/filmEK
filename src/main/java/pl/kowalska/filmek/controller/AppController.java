@@ -120,19 +120,23 @@ public class AppController {
     public String viewMovieDetail(Model model, @PathVariable Long movieId){
         Optional<MovieEntity> optionalMovieFromEntity = movieRepo.findById(movieId);
         if (optionalMovieFromEntity.isPresent()){
+            List<GenreEntity> genres = movieRepo.findById(movieId).get().getGenres();
             model.addAttribute("film", optionalMovieFromEntity.get());
+            model.addAttribute("genres", genres);
             return "movie_detail";
         }
 
         return "redirect:/";
 
     }
-        @GetMapping("/show_movie_details")
+            @GetMapping("/show_movie_details")
         public String showMovieDetails(Model model){
             RestTemplate restTemplate = new RestTemplate();
             MovieObject searchMovie = restTemplate.getForObject(SearchMovies.SEARCH_URL, MovieObject.class);
+            List<Genre> genres = new ArrayList<>();
+            searchMovie.getGenres().forEach(genres::add);
             model.addAttribute("film", searchMovie);
-
+            model.addAttribute("genres", genres);
             return "movie_detail";
         }
 
@@ -152,7 +156,7 @@ public class AppController {
         @GetMapping("/Movies")
         public void loadMoviesToDb(){
             RestTemplate restTemplate = new RestTemplate();
-            MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/top_rated?api_key=e529d754811a8187c547ac59aa92495d&language=pl", MoviesList.class);
+            MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key=e529d754811a8187c547ac59aa92495d&language=pl&page=3", MoviesList.class);
             List<Result> results = moviesList.getResults();
 
 //                                                        (Integer id, String posterPath, String polishTitle, String originalTitle, String originalLanguage, String overview, double popularity, String releaseDate, long runtime, double voteAverage, long voteCount, Set<GenreEntity> genres)
