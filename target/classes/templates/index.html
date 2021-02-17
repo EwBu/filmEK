@@ -60,12 +60,19 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <div class="card-group col-2" th:each="movie: ${listMovies}">
+        <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">
             <div class="card">
-                <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top">
+                <div >
+                <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top" style="position: relative">
+                <div style="position: absolute; right: 0;">
+                    <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                         style="position: absolute; z-index: 1" width="40" height="40"></h2>
+                    <td th:text="${movie.voteAverage}" style=" position: relative; z-index:10" ></td>
+                </div>
+                </div>
                 <div class="card-body">
                     <h5 th:text="${movie.title}" class="card-title">Title</h5>
-                    <a th:href="@{/showMovie/{movieId} (movieId=${movie.id})}" class="btn btn-light">O Filmie</a>
+                    <a th:href="@{/movie/{movieId} (movieId=${movie.id})}" class="btn btn-light">O Filmie</a>
                 </div>
             </div>
         </div>

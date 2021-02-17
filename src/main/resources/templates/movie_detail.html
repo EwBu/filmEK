@@ -110,7 +110,45 @@
                 </tr>
 
                 <h3 class="text-center"><label>Twoja ocena</label>
+                    <label>
+                        <!--<form class="form" th:object="${movie}" th:action="@{'/movie/edit/' + ${movie.movieId}}"-->
+                              <!--method="post">-->
+                            <!--<br>-->
+                            <!--<div class="star-rating text-center">-->
+                                <!--<button class="fa fa-star-o" data-rating="1" type="submit" title="1 gwiazdka" value="1"-->
+                                        <!--id="userRating" name="userRating"></button>-->
+                                <!--<button class="fa fa-star-o" data-rating="2" type="submit" title="2 gwiazdki" value="2"-->
+                                        <!--id="userRating" name="userRating"></button>-->
+                                <!--<button class="fa fa-star-o" data-rating="3" type="submit" title="3 gwiazdki" value="3"-->
+                                        <!--id="userRating" name="userRating"></button>-->
+                                <!--<button class="fa fa-star-o" data-rating="4" type="submit" title="4 gwiazdki" value="4"-->
+                                        <!--id="userRating" name="userRating"></button>-->
+                                <!--<button class="fa fa-star-o" data-rating="5" type="submit" title="5 gwiazdek" value="5"-->
+                                        <!--id="userRating" name="userRating"></button>-->
+                                <!--<button class="fa fa-star-o" data-rating="6" type="submit" title="6 gwiazdek" value="6"-->
+                                        <!--id="userRating" name="userRating"></button>-->
+                                <!--<button class="fa fa-star-o" data-rating="7" type="submit" title="7 gwiazdek" value="7"-->
+                                        <!--id="userRating" name="userRating"></button>-->
+                                <!--<button class="fa fa-star-o" data-rating="8" type="submit" title="8 gwiazdek" value="8"-->
+                                        <!--id="userRating" name="userRating"></button>-->
+                                <!--<button class="fa fa-star-o" data-rating="9" type="submit" title="9 gwiazdek" value="9"-->
+                                        <!--id="userRating" name="userRating"></button>-->
+                                <!--<button class="fa fa-star-o" data-rating="10" type="submit" title="10 gwiazdek" value="10"-->
+                                        <!--id="userRating" name="userRating"></button>-->
+
+
+                                <!--<input type="hidden" th:value="${rating}" class="rating-value"/>-->
+                                <!--<h7><br><br></h7>-->
+
+
+                            <!--</div>-->
+                        <!--</form>-->
+                        <!--<div class="rating">-->
+                            <!--<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>-->
+                        <!--</div>-->
+                    </label>
                 </h3>
+
                 <!--<form class="form" th:action="@{'/submitRating{id}'}"  th:object="${data-rating}"  method="post">-->
 
                 <!--<tr th:each="movie : ${movie}">-->

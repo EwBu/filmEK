@@ -2,6 +2,7 @@ package pl.kowalska.filmek.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -9,7 +10,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @Column(nullable = false, unique = true, length = 20)
     private String userName;
@@ -23,15 +24,19 @@ public class User {
     @Column(nullable = false, length = 1)
     private char gender;
 
+    @OneToMany(mappedBy = "user")
+    private List<MovieRaiting> raitingList;
+
 //    private boolean isEnabled;
 
 
-    public Long getId() {
-        return id;
+
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUserName() { return userName; }
@@ -64,7 +69,15 @@ public class User {
         this.gender = gender;
     }
 
-//    public boolean isEnabled() {
+    public List<MovieRaiting> getRaitingList() {
+        return raitingList;
+    }
+
+    public void setRaitingList(List<MovieRaiting> raitingList) {
+        this.raitingList = raitingList;
+    }
+
+    //    public boolean isEnabled() {
 //        return isEnabled;
 //    }
 //

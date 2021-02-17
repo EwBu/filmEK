@@ -45,7 +45,7 @@ public class AppController {
         return "index";
     }
 
-    @GetMapping("/show/{movieName}")
+    @GetMapping("/search/{movieName}")
     public String viewHomePage(String movieName, Model model){
 //        List<MovieEntity> listMovieEntities = movieRepo.findAll();
         System.out.println(movieName);
@@ -116,29 +116,8 @@ public class AppController {
 //        model.addAttribute("title", movieTitle);
 //        return "index";
 //    }
-    @GetMapping("/showMovie/{movieId}")
-    public String viewMovieDetail(Model model, @PathVariable Long movieId){
-        Optional<MovieEntity> optionalMovieFromEntity = movieRepo.findById(movieId);
-        if (optionalMovieFromEntity.isPresent()){
-            List<GenreEntity> genres = movieRepo.findById(movieId).get().getGenres();
-            model.addAttribute("film", optionalMovieFromEntity.get());
-            model.addAttribute("genres", genres);
-            return "movie_detail";
-        }
 
-        return "redirect:/";
 
-    }
-            @GetMapping("/show_movie_details")
-        public String showMovieDetails(Model model){
-            RestTemplate restTemplate = new RestTemplate();
-            MovieObject searchMovie = restTemplate.getForObject(SearchMovies.SEARCH_URL, MovieObject.class);
-            List<Genre> genres = new ArrayList<>();
-            searchMovie.getGenres().forEach(genres::add);
-            model.addAttribute("film", searchMovie);
-            model.addAttribute("genres", genres);
-            return "movie_detail";
-        }
 
     @GetMapping("/loadGenres")
         public void loadGenresToDb(){
