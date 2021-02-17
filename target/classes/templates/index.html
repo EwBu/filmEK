@@ -52,7 +52,7 @@
                 </li>
             </ul>
             <input class="form-control mr-sm-2" type="text" th:field="${searchText}"  placeholder="Search" aria-label="Search" >
-            <a th:href="@{/show/{movieName} (movieName=${searchText})}"><button class="btn btn-light" type="submit">Szukaj filmu</button></a>
+            <a th:href="@{/movie/search/{movieName} (movieName=${searchText})}"><button class="btn btn-light" type="submit">Szukaj filmu</button></a>
 
 
         </form>

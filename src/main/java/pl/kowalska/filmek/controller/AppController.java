@@ -32,10 +32,6 @@ public class AppController {
     @Autowired
     private GenreRepository genreRepository;
 
-
-//    @Autowired
-//    private EmailSenderService emailSenderService;
-
     @GetMapping("")
     public String viewHomePage(Model model){
         List<MovieEntity> listMovieEntities = movieRepo.findAll();
