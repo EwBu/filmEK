@@ -5,7 +5,7 @@
     <title>Movie application</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
 </head>
-<body>
+<body onload="connect()" >
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" th:href="@{'/'}">filmEK</a>
@@ -81,6 +81,18 @@
 <div class="container-fluid">
 
 </div>
+<div>
+    <label>User:</label>
+    <input id="user" type="text"/><br>
+
+    <label>You message:</label>
+    <input id="messageToSend" type="text"/><br>
+
+    <button onclick="sendMessage()">Send</button>
+    <p id="reponse"></p>
+</div>
+<script src="controller.js"></script>
+<script src="stomp.js"></script>
             <!--<form th:action="@{/search_movie}" method="post"-->
                   <!--style="max-width: 600px; margin: 0 auto;">-->
                 <!--<div>-->

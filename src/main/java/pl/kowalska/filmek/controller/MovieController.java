@@ -6,20 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
-import pl.kowalska.filmek.SearchMovies;
-import pl.kowalska.filmek.model.GenreEntity;
 import pl.kowalska.filmek.model.MovieEntity;
-import pl.kowalska.filmek.moviePojo.Genre;
 import pl.kowalska.filmek.moviePojo.MovieObject;
-import pl.kowalska.filmek.repository.GenreRepository;
-import pl.kowalska.filmek.repository.MovieRepository;
-import pl.kowalska.filmek.repository.UserRepository;
 import pl.kowalska.filmek.services.MovieService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/movie")
