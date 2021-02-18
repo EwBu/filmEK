@@ -8,7 +8,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" th:href="@{'/'}">filmEK</a>
+    <a class="navbar-brand" th:href="@{'/main'}">filmEK</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -51,31 +51,65 @@
                     <a class="nav-link" href="#">Najwyżej oceniane</a>
                 </li>
             </ul>
-            <input class="form-control mr-sm-2" type="text" th:field="${searchText}"  placeholder="Search" aria-label="Search" >
-            <a th:href="@{/show/{movieName} (movieName=${searchText})}"><button class="btn btn-light" type="submit">Szukaj filmu</button></a>
-
+             <!--&gt;input class="form-control mr-sm-2" type="text"-->
+            <form action="#" th:action="@{/}" th:object="${search}"  placeholder="Search" aria-label="Search" >
+                <input name="search" id="search" type="text" class="search-query form-control"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-light" type="submit">Szukaj filmu</button>
+                </span>
+            </form>
 
         </form>
     </div>
 </nav>
 <div class="container-fluid">
-    <div class="row">
-        <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">
-            <div class="card">
-                <div >
-                <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top" style="position: relative">
-                <div style="position: absolute; right: 0;">
-                    <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
-                         style="position: absolute; z-index: 1" width="40" height="40"></h2>
-                    <td th:text="${movie.voteAverage}" style=" position: relative; z-index:10" ></td>
-                </div>
-                </div>
-                <div class="card-body">
-                    <h5 th:text="${movie.title}" class="card-title">Title</h5>
-                    <a th:href="@{/movie/{movieId} (movieId=${movie.id})}" class="btn btn-light">O Filmie</a>
+    <div class="row" >
+
+        <div th:if="${not #lists.isEmpty(search)}">
+            <div class="table-responsive" >
+                <table class="table">
+                    <tr>
+                        <th></th> <th>Tytuł filmu</th>	<th colspan="2">Średnia ocena</th>
+                    </tr>
+                    <tbody>
+                    <tr th:each="search : ${search}">
+                        <!--<td><a th:href="@{'/movie/' + ${search.movieId}}" th:text="${search.movieId}"></a></td>-->
+                        <td><img th:src="${'https://image.tmdb.org/t/p/w500' + search.posterPath}"
+                                 height="160" width="110"/></td>
+                        <td width="80%"><h3><a th:href="@{'/movie/' + ${search.id}}"
+                                               th:text="${search.title + ' (' + search.releaseDate + ')'}"> </a>
+                        </h3>
+                            <h5><label th:text="${search.originalTitle}"></label></h5>
+                        </td>
+
+                        <td width="7%"><br><h2><label th:text="${search.voteAverage}"></label></h2></td>
+                        <td><br>
+                            <h3><img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                                     width="30" height="30"></h3></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        <!--<div th:unless="${#lists.isEmpty(search)}">-->
+            <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">
+                <div class="card">
+                    <div >
+                    <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top" style="position: relative">
+                    <div style="position: absolute; right: 0;">
+                        <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                             style="position: absolute; z-index: 1" width="40" height="40"></h2>
+                        <td th:text="${movie.voteAverage}" style=" position: relative; z-index:10" ></td>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 th:text="${movie.title}" class="card-title">Title</h5>
+                        <a th:href="@{/movie/{movieId} (movieId=${movie.id})}" class="btn btn-light">O Filmie</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        <!--</div>-->
     </div>
 </div>
 <div class="container-fluid">

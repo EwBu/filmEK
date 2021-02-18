@@ -36,26 +36,47 @@ public class AppController {
 //    @Autowired
 //    private EmailSenderService emailSenderService;
 
-    @GetMapping("")
+    @GetMapping("/main")
     public String viewHomePage(Model model){
         List<MovieEntity> listMovieEntities = movieRepo.findAll();
         model.addAttribute("listMovies", listMovieEntities);
-        String searchText="";
-        model.addAttribute("searchText", searchText);
-        return "index";
-    }
-
-    @GetMapping("/search/{movieName}")
-    public String viewHomePage(String movieName, Model model){
-//        List<MovieEntity> listMovieEntities = movieRepo.findAll();
-        System.out.println(movieName);
-
-
-//        model.addAttribute("listMovies", listMovieEntities);
 //        String searchText="";
 //        model.addAttribute("searchText", searchText);
         return "index";
     }
+
+    @GetMapping("/")
+    public String search(@RequestParam(value = "search", required = false) String q, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        MoviesList moviesList = restTemplate.getForObject("https://api.themoviedb.org/3/search/movie?api_key=e529d754811a8187c547ac59aa92495d&language=pl&query=" + q, MoviesList.class);
+        List<Result> searchResults = moviesList.getResults();
+
+        System.out.println(searchResults.toString());
+
+
+//        try {
+//            searchResults = movieRepo.;
+//
+//        } catch (Exception ex) {
+//        }
+        model.addAttribute("search", searchResults);
+        return "index";
+
+    }
+
+
+//    @GetMapping("/search/{movieName}")
+//    public String viewHomePage(String movieName, Model model){
+////        List<MovieEntity> listMovieEntities = movieRepo.findAll();
+//        System.out.println(movieName);
+//
+//
+////        model.addAttribute("listMovies", listMovieEntities);
+////        String searchText="";
+////        model.addAttribute("searchText", searchText);
+//        return "index";
+//    }
 
     @GetMapping("/register")
     public String viewRegisterForm(Model model){
