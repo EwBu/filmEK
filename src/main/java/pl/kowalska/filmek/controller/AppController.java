@@ -16,9 +16,7 @@ import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 import pl.kowalska.filmek.repository.UserRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class AppController {
@@ -36,13 +34,17 @@ public class AppController {
 //    @Autowired
 //    private EmailSenderService emailSenderService;
 
-    @GetMapping("")
+    @GetMapping("/main")
 
-    public String viewHomePage(Model model){
+    public String viewHomePage(@RequestParam(value = "search", required = false) String q,Model model){
         List<MovieEntity> listMovieEntities = movieRepo.findAll();
         model.addAttribute("listMovies", listMovieEntities);
 //        String searchText="";
 //        model.addAttribute("searchText", searchText);
+
+        if (q!=null){
+            return String.format("redirect:/?search=%s",q);
+        }
         return "index";
     }
 
@@ -51,19 +53,12 @@ public class AppController {
 
         RestTemplate restTemplate = new RestTemplate();
         MoviesList moviesList = restTemplate.getForObject("https://api.themoviedb.org/3/search/movie?api_key=e529d754811a8187c547ac59aa92495d&language=pl&query=" + q, MoviesList.class);
-        List<Result> searchResults = moviesList.getResults();
-
-        System.out.println(searchResults.toString());
-
-
-//        try {
-//            searchResults = movieRepo.;
-//
-//        } catch (Exception ex) {
-//        }
-        model.addAttribute("search", searchResults);
-        return "index";
-
+        if (q!=null) {
+            List<Result> searchResults = moviesList.getResults();
+            model.addAttribute("search", searchResults);
+            return "index";
+        }
+       return "redirect:/main";
     }
 
 

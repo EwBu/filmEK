@@ -35,7 +35,7 @@ public class MovieController {
             model.addAttribute("film", selectedMovie);
             return "movie_detail";
         }
-        return "redirect:/";
+        return "redirect:/main";
     }
 
     @GetMapping("/show_movie_details")
@@ -45,7 +45,7 @@ public class MovieController {
             model.addAttribute("film", movieWithDetails);
             return "movie_detail";
         }
-        return "redirect:/";
+        return "redirect:/main";
     }
 
 }
