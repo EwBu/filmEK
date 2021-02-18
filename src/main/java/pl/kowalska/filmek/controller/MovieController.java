@@ -15,6 +15,7 @@ import pl.kowalska.filmek.moviePojo.MovieObject;
 import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 import pl.kowalska.filmek.repository.UserRepository;
+import pl.kowalska.filmek.services.MovieService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,39 +26,26 @@ import java.util.Optional;
 public class MovieController {
 
     @Autowired
-    private UserRepository userRepo;
-
-    @Autowired
-    private MovieRepository movieRepo;
-
-    @Autowired
-    private GenreRepository genreRepository;
-
+    private MovieService movieService;
 
     @GetMapping("/{movieId}")
     public String viewMovieDetail(Model model, @PathVariable Long movieId){
-        Optional<MovieEntity> optionalMovieFromEntity = movieRepo.findById(movieId);
-        if (optionalMovieFromEntity.isPresent()){
-            List<GenreEntity> genres = movieRepo.findById(movieId).get().getGenres();
-            model.addAttribute("film", optionalMovieFromEntity.get());
-            model.addAttribute("genres", genres);
-            model.addAttribute("raiting", optionalMovieFromEntity.get().getRaitings());
+        MovieEntity selectedMovie = movieService.findSingleMovieInDatabase(movieId);
+        if (selectedMovie!=null){
+            model.addAttribute("film", selectedMovie);
             return "movie_detail";
         }
-
         return "redirect:/";
-
     }
 
     @GetMapping("/show_movie_details")
     public String showMovieDetails(Model model){
-        RestTemplate restTemplate = new RestTemplate();
-        MovieObject searchMovie = restTemplate.getForObject(SearchMovies.SEARCH_URL, MovieObject.class);
-        List<Genre> genres = new ArrayList<>();
-        searchMovie.getGenres().forEach(genres::add);
-        model.addAttribute("film", searchMovie);
-        model.addAttribute("genres", genres);
-        return "movie_detail";
+        MovieObject movieWithDetails = movieService.findSingleMovieInTmdb("775996");
+        if (movieWithDetails!=null){
+            model.addAttribute("film", movieWithDetails);
+            return "movie_detail";
+        }
+        return "redirect:/";
     }
 
 }

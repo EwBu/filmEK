@@ -37,6 +37,7 @@ public class AppController {
 //    private EmailSenderService emailSenderService;
 
     @GetMapping("/main")
+
     public String viewHomePage(Model model){
         List<MovieEntity> listMovieEntities = movieRepo.findAll();
         model.addAttribute("listMovies", listMovieEntities);

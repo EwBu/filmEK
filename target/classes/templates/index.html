@@ -51,6 +51,7 @@
                     <a class="nav-link" href="#">Najwyżej oceniane</a>
                 </li>
             </ul>
+<<<<<<< HEAD
              <!--&gt;input class="form-control mr-sm-2" type="text"-->
             <form action="#" th:action="@{/}" th:object="${search}"  placeholder="Search" aria-label="Search" >
                 <input name="search" id="search" type="text" class="search-query form-control"/>
@@ -58,6 +59,11 @@
                     <button class="btn btn-light" type="submit">Szukaj filmu</button>
                 </span>
             </form>
+=======
+            <input class="form-control mr-sm-2" type="text" th:field="${searchText}"  placeholder="Search" aria-label="Search" >
+            <a th:href="@{/movie/search/{movieName} (movieName=${searchText})}"><button class="btn btn-light" type="submit">Szukaj filmu</button></a>
+
+>>>>>>> b5725cc6f100d2ec47ac0ca33e55fd5b6d6e35a6
 
         </form>
     </div>
