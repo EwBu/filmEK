@@ -8,7 +8,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" th:href="@{'/main'}">filmEK</a>
+    <a class="navbar-brand" th:href="@{''}">filmEK</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -51,7 +51,6 @@
                     <a class="nav-link" href="#">Najwyżej oceniane</a>
                 </li>
             </ul>
-<<<<<<< HEAD
              <!--&gt;input class="form-control mr-sm-2" type="text"-->
             <form action="#" th:action="@{/}" th:object="${search}"  placeholder="Search" aria-label="Search" >
                 <input name="search" id="search" type="text" class="search-query form-control"/>
@@ -59,11 +58,6 @@
                     <button class="btn btn-light" type="submit">Szukaj filmu</button>
                 </span>
             </form>
-=======
-            <input class="form-control mr-sm-2" type="text" th:field="${searchText}"  placeholder="Search" aria-label="Search" >
-            <a th:href="@{/movie/search/{movieName} (movieName=${searchText})}"><button class="btn btn-light" type="submit">Szukaj filmu</button></a>
-
->>>>>>> b5725cc6f100d2ec47ac0ca33e55fd5b6d6e35a6
 
         </form>
     </div>
@@ -96,7 +90,7 @@
                     </tbody>
                 </table>
             </div>
-        
+
         </div>
         <!--<div th:unless="${#lists.isEmpty(search)}">-->
             <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">

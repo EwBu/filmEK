@@ -36,7 +36,7 @@ public class AppController {
 //    @Autowired
 //    private EmailSenderService emailSenderService;
 
-    @GetMapping("/main")
+    @GetMapping("")
 
     public String viewHomePage(Model model){
         List<MovieEntity> listMovieEntities = movieRepo.findAll();
