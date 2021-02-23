@@ -9,6 +9,8 @@ import pl.kowalska.filmek.model.MovieEntity;
 import pl.kowalska.filmek.moviePojo.MovieObject;
 import pl.kowalska.filmek.repository.MovieRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,7 +31,13 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public MovieObject findSingleMovieInTmdb(String id) {
-        String movieDetailsUrl = String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s", id, key);
+        String movieDetailsUrl = String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s&language=pl", id, key);
         return restTemplate.getForObject(movieDetailsUrl, MovieObject.class);
+    }
+
+    @Override
+    public List<MovieEntity> selectMoviesByRaiting(Double min, Double max) {
+        List<MovieEntity> selectedMovies = movieRepo.findMoviesBasedOnRating(min,max);
+        return selectedMovies;
     }
 }

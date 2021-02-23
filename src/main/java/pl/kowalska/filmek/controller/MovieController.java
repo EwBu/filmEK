@@ -38,14 +38,16 @@ public class MovieController {
         return "redirect:/main";
     }
 
-    @GetMapping("/show_movie_details")
-    public String showMovieDetails(Model model){
-        MovieObject movieWithDetails = movieService.findSingleMovieInTmdb("775996");
+    @GetMapping("/movie_details/{id}")
+    public String showMovieDetails(Model model, @PathVariable Long id){
+        MovieObject movieWithDetails = movieService.findSingleMovieInTmdb(id.toString());
         if (movieWithDetails!=null){
             model.addAttribute("film", movieWithDetails);
             return "movie_detail";
         }
         return "redirect:/main";
     }
+
+
 
 }

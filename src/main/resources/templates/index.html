@@ -77,8 +77,8 @@
                         <!--<td><a th:href="@{'/movie/' + ${search.movieId}}" th:text="${search.movieId}"></a></td>-->
                         <td><img th:src="${'https://image.tmdb.org/t/p/w500' + search.posterPath}"
                                  height="160" width="110"/></td>
-                        <td width="80%"><h3><a th:href="@{'/movie/' + ${search.id}}"
-                                               th:text="${search.title + ' (' + search.releaseDate + ')'}"> </a>
+                        <td width="80%"><h3><a th:href="@{'/movie/movie_details/' + ${search.id}}"
+                                               th:text="${search.title + ' (' + search.releaseDate + ')'}" style="color: black"> </a>
                         </h3>
                             <h5><label th:text="${search.originalTitle}"></label></h5>
                         </td>
