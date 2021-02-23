@@ -13,6 +13,9 @@ public class MovieRaitingKey implements Serializable {
     @Column(name = "id")
     Long id;
 
+    public MovieRaitingKey() {
+    }
+
     public MovieRaitingKey(Long userId, Long id) {
         this.userId = userId;
         this.id = id;

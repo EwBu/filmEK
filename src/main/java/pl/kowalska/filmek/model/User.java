@@ -24,10 +24,12 @@ public class User {
     @Column(nullable = false, length = 1)
     private char gender;
 
-    @OneToMany(mappedBy = "user")
-    private List<MovieRaiting> raitingList;
+
+//    @OneToMany(mappedBy = "user")
+//    private List<MovieRaiting> raitingList;
 
 //    private boolean isEnabled;
+
 
 
 
@@ -69,19 +71,6 @@ public class User {
         this.gender = gender;
     }
 
-    public List<MovieRaiting> getRaitingList() {
-        return raitingList;
-    }
 
-    public void setRaitingList(List<MovieRaiting> raitingList) {
-        this.raitingList = raitingList;
-    }
-
-    //    public boolean isEnabled() {
-//        return isEnabled;
-//    }
-//
-//    public void setEnabled(boolean enabled) {
-//        isEnabled = enabled;}
 
 }

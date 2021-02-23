@@ -50,9 +50,9 @@ public class MovieEntity {
             inverseJoinColumns = { @JoinColumn(name = "genreId") }
     )
     private List<GenreEntity> genres = new ArrayList<>();
-
-    @OneToMany(mappedBy = "movieEntity")
-    private List<MovieRaiting> raitings;
+//
+//    @OneToMany(mappedBy = "movieEntity")
+//    private List<MovieRaiting> raitings;
 
 
     public MovieEntity() {
@@ -179,11 +179,4 @@ public class MovieEntity {
         this.genres = genres;
     }
 
-    public List<MovieRaiting> getRaitings() {
-        return raitings;
-    }
-
-    public void setRaitings(List<MovieRaiting> raitings) {
-        this.raitings = raitings;
-    }
 }

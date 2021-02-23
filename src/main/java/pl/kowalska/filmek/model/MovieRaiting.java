@@ -8,24 +8,25 @@ public class MovieRaiting {
     @EmbeddedId
     MovieRaitingKey raitingId;
 
-    @ManyToOne
-    @MapsId("userId")
-    @JoinColumn(name = "user_id")
-    User user;
-
-    @ManyToOne
-    @MapsId("id")
-    @JoinColumn(name = "id")
-    MovieEntity movieEntity;
+//    @ManyToOne
+//    @MapsId("userId")
+//    @JoinColumn(name = "user_id")
+//    User user;
+//
+//    @ManyToOne
+//    @MapsId("id")
+//    @JoinColumn(name = "id")
+//    MovieEntity movieEntity;
 
     private int rating;
 
     private boolean toWach;
 
-    public MovieRaiting(MovieRaitingKey raitingId, User user, MovieEntity movieEntity, int rating, boolean toWach) {
+    public MovieRaiting() {
+    }
+
+    public MovieRaiting(MovieRaitingKey raitingId, int rating, boolean toWach) {
         this.raitingId = raitingId;
-        this.user = user;
-        this.movieEntity = movieEntity;
         this.rating = rating;
         this.toWach = toWach;
     }
@@ -38,21 +39,6 @@ public class MovieRaiting {
         this.raitingId = raitingId;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public MovieEntity getMovieEntity() {
-        return movieEntity;
-    }
-
-    public void setMovieEntity(MovieEntity movieEntity) {
-        this.movieEntity = movieEntity;
-    }
 
     public int getRating() {
         return rating;
