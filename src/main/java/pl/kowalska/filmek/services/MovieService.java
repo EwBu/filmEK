@@ -12,4 +12,6 @@ public interface MovieService {
     MovieObject findSingleMovieInTmdb(String id);
 
     List<MovieEntity> selectMoviesByRaiting(Double min, Double max);
+
+    List<MovieEntity> findMoviesByQuery(String genre);
 }

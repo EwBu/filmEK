@@ -1,7 +1,11 @@
 package pl.kowalska.filmek;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
+import pl.kowalska.filmek.model.MovieEntity;
 import pl.kowalska.filmek.moviePojo.*;
+import pl.kowalska.filmek.repository.MovieRepository;
+import pl.kowalska.filmek.services.MovieService;
 
 import java.util.List;
 
@@ -10,16 +14,11 @@ public class SearchMovies {
     public static String SEARCH_URL = "https://api.themoviedb.org/3/movie/775996?api_key=e529d754811a8187c547ac59aa92495d";
     public static String POPULAR_MOVIES = "https://api.themoviedb.org/3/movie/popular?api_key=e529d754811a8187c547ac59aa92495d&language=pl";
 
+    @Autowired
+    static MovieService movieService;
 
     public static void main(String[] args) {
-
-//        String jsonResponse = OmdbWebServiceClient.searchMovieByTitle("batman");
-//        System.out.println(jsonResponse);
-//        String jsonResponse2 = OmdbWebServiceClient.searchMovieByIMDB("tt0372784");
-//        System.out.println(jsonResponse2);
-//        showMovie();
-//        showMoviesByPopular();
-//        showGenres();
+        showComedy();
     }
     public static void showMovie(){
         RestTemplate restTemplate = new RestTemplate();
@@ -39,6 +38,11 @@ public class SearchMovies {
         ListOfGenres genresList= restTemplate.getForObject("https://api.themoviedb.org/3/genre/movie/list?api_key=e529d754811a8187c547ac59aa92495d&language=pl", ListOfGenres.class);
         List<Genre> genres = genresList.getGenres();
 
+    }
+
+    public static  void showComedy(){
+        List<MovieEntity> result = movieService.findMoviesByQuery("Komedia");
+        System.out.println(result.toString());
     }
 
 }

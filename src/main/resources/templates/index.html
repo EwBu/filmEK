@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Movie application</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/movies.css" type="text/css">
 </head>
 <body>
 
@@ -96,17 +97,17 @@
         <!--<div th:unless="${#lists.isEmpty(search)}">-->
             <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">
                 <div class="card">
-                    <div >
-                    <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top" style="position: relative">
-                    <div style="position: absolute; right: 0;">
-                        <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
-                             style="position: absolute; z-index: 1" width="40" height="40"></h2>
-                        <td th:text="${movie.voteAverage}" style=" position: relative; z-index:10" ></td>
+                    <div class="box-poster">
+                         <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top img-poster">
+
+                         <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                                 class="star-poster"></h2>
+                         <span th:text="${movie.voteAverage}" class="vote-poster" ></span>
                     </div>
-                    </div>
+
                     <div class="card-body">
-                        <h5 th:text="${movie.title}" class="card-title">Title</h5>
-                        <a th:href="@{/movie/{movieId} (movieId=${movie.id})}" class="btn btn-light">O Filmie</a>
+                        <h6 th:text="${movie.title}" class="card-title">Title</h6>
+                        <a th:href="@{/movie/{movieId} (movieId=${movie.id})}" class="btn btn-light button-poster">O Filmie</a>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwwthymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie application</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div class="container text-center">
+        <div>
+            <h1>Lista uzytkowników</h1>
+        </div>
+        <div>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>E-mail</th>
+                        <th>Nazwa użytkownika</th>
+                        <th>Płeć</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user: ${listUsers}">
+                        <td th:text="${user.userId}">ID</td>
+                        <td th:text="${user.email}">Email</td>
+                        <td th:text="${user.userName}">Nazwa użytkownika</td>
+                        <td th:text="${user.gender}">Płeć</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

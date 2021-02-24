@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie application</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/movies.css" type="text/css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{'/main'}">filmEK</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <!--<li class="nav-item active">-->
+                <!--<a class="nav-link" th:href="@{'/'}">Strona główna <span class="sr-only">(current)</span></a>-->
+            <!--</li>-->
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/register}">Utwórz konto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Zaloguj się</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/list_users}">Lista użytkowników</a>
+            </li>
+            <!--<li class="nav-item dropdown">-->
+                <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <!--Dropdown-->
+                <!--</a>-->
+                <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                    <!--<a class="dropdown-item" href="#">Action</a>-->
+                    <!--<a class="dropdown-item" href="#">Another action</a>-->
+                    <!--<div class="dropdown-divider"></div>-->
+                    <!--<a class="dropdown-item" href="#">Something else here</a>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link disabled" href="#">Disabled</a>-->
+            <!--</li>th:field="*{title}"-->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Popularne filmy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Najwyżej oceniane</a>
+                </li>
+            </ul>
+             <!--&gt;input class="form-control mr-sm-2" type="text"-->
+            <form action="#" th:action="@{/}" th:object="${search}"  placeholder="Search" aria-label="Search" >
+                <input name="search" id="search" type="text" class="search-query form-control"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-light" type="submit">Szukaj filmu</button>
+                </span>
+            </form>
+
+        </form>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row" >
+
+<!--        <div th:if="${not #lists.isEmpty(search)}">-->
+        <div th:if="${search!=null}">
+            <div class="table-responsive" >
+                <table class="table">
+                    <tr>
+                        <th></th> <th>Tytuł filmu</th>	<th colspan="2">Średnia ocena</th>
+                    </tr>
+                    <tbody>
+                    <tr th:each="search : ${search}">
+                        <!--<td><a th:href="@{'/movie/' + ${search.movieId}}" th:text="${search.movieId}"></a></td>-->
+                        <td><img th:src="${'https://image.tmdb.org/t/p/w500' + search.posterPath}"
+                                 height="160" width="110"/></td>
+                        <td width="80%"><h3><a th:href="@{'/movie/movie_details/' + ${search.id}}"
+                                               th:text="${search.title + ' (' + search.releaseDate + ')'}" style="color: black"> </a>
+                        </h3>
+                            <h5><label th:text="${search.originalTitle}"></label></h5>
+                        </td>
+
+                        <td width="7%"><br><h2><label th:text="${search.voteAverage}"></label></h2></td>
+                        <td><br>
+                            <h3><img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                                     width="30" height="30"></h3></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <!--<div th:unless="${#lists.isEmpty(search)}">-->
+            <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">
+                <div class="card">
+                    <div class="box-poster">
+                         <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top img-poster">
+
+                         <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                                 class="star-poster"></h2>
+                         <span th:text="${movie.voteAverage}" class="vote-poster" ></span>
+                    </div>
+
+                    <div class="card-body">
+                        <h6 th:text="${movie.title}" class="card-title">Title</h6>
+                        <a th:href="@{/movie/{movieId} (movieId=${movie.id})}" class="btn btn-light button-poster">O Filmie</a>
+                    </div>
+                </div>
+            </div>
+        <!--</div>-->
+    </div>
+</div>
+<div class="container-fluid">
+
+</div>
+            <!--<form th:action="@{/search_movie}" method="post"-->
+                  <!--style="max-width: 600px; margin: 0 auto;">-->
+                <!--<div>-->
+                    <!--<input type="text" class="form-control" th:field="*{title}" required-->
+                           <!--minlength="3" maxlength="40"/>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<button type="submit" class="btn btn-primary" >Szukaj filmu</button>-->
+                <!--</div>-->
+
+            <!--</form>-->
+</body>
+</html>

@@ -48,6 +48,13 @@ public class MovieController {
         return "redirect:/main";
     }
 
+    @GetMapping("/Komedia")
+    public String showComedy(Model model){
+        List<MovieEntity> result = movieService.findMoviesByQuery("Komedia");
+        model.addAttribute("movie", result);
+        return "index2";
+    }
+
 
 
 }

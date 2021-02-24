@@ -31,25 +31,25 @@ public class RatingLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User user = new User();
-        user.setUserName("Admin");
-        user.setEmail("admin@wp.pl");
-        user.setPassword("admin");
-        user.setGender('M');
-        userRepository.save(user);
-
-        User userFromDb = userRepository.findByEmail("admin@wp.pl");
-
-        MovieEntity movieEntity = movieRepository.findById((long) 458220).get();
-
-        MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(userFromDb.getUserId(), movieEntity.getId()), 5, true);
-
-        movieRatingRepository.save(movieRaiting);
-
-        System.out.println("done");
-
-        List<MovieRaiting> allRatingByFollowingUser = movieRatingRepository.findAllRatingByFollowingUser(userFromDb.getUserId());
-
-
+//        User user = new User();
+//        user.setUserName("Admin");
+//        user.setEmail("admin@wp.pl");
+//        user.setPassword("admin");
+//        user.setGender('M');
+//        userRepository.save(user);
+//
+//        User userFromDb = userRepository.findByEmail("admin@wp.pl");
+//
+//        MovieEntity movieEntity = movieRepository.findById((long) 458220).get();
+//
+//        MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(userFromDb.getUserId(), movieEntity.getId()), 5, true);
+//
+//        movieRatingRepository.save(movieRaiting);
+//
+//        System.out.println("done");
+//
+//        List<MovieRaiting> allRatingByFollowingUser = movieRatingRepository.findAllRatingByFollowingUser(userFromDb.getUserId());
+//
+//
     }
 }

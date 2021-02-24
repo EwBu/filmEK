@@ -179,4 +179,20 @@ public class MovieEntity {
         this.genres = genres;
     }
 
+    @Override
+    public String toString() {
+        return "MovieEntity{" +
+                "id=" + id +
+                ", posterPath='" + posterPath + '\'' +
+                ", title='" + title + '\'' +
+                ", originalTitle='" + originalTitle + '\'' +
+                ", originalLanguage='" + originalLanguage + '\'' +
+                ", overview='" + overview + '\'' +
+                ", popularity=" + popularity +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", voteAverage=" + voteAverage +
+                ", voteCount=" + voteCount +
+                ", genres=" + genres +
+                '}';
+    }
 }

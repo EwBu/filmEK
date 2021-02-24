@@ -36,7 +36,7 @@ public class AppController {
 
     @GetMapping("/main")
 
-    public String viewHomePage(@RequestParam(value = "search", required = false) String q,Model model){
+    public String viewHomePage(@RequestParam(value = "search", required = false) String q,  Model model){
         List<MovieEntity> listMovieEntities = movieRepo.findAll();
         model.addAttribute("listMovies", listMovieEntities);
 //        String searchText="";

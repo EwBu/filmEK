@@ -40,4 +40,12 @@ public class MovieServiceImpl implements MovieService{
         List<MovieEntity> selectedMovies = movieRepo.findMoviesBasedOnRating(min,max);
         return selectedMovies;
     }
+
+    @Override
+    public List<MovieEntity> findMoviesByQuery(String genre) {
+//        List<MovieEntity> queryMovies = movieRepo.findMoviesByQuery(genre);
+//        return queryMovies;
+        return null;
+    }
+
 }

@@ -1,0 +1,18 @@
+.box-poster{
+    position: relative;
+}
+.star-poster{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: -16px;
+    right: -20px;
+}
+.vote-poster{
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+}
+.img-poster{
+    height: 45vh;
+}
