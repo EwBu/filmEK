@@ -17,7 +17,7 @@ import java.util.Optional;
 public class MovieServiceImpl implements MovieService{
 
     @Autowired
-    MovieRepository movieRepo;
+    private MovieRepository movieRepo;
 
     final RestTemplate restTemplate = new RestTemplate();
     @Value("${api.key}")
@@ -43,8 +43,6 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public List<MovieEntity> findMoviesByQuery(String genre) {
-//        List<MovieEntity> queryMovies = movieRepo.findMoviesByQuery(genre);
-//        return queryMovies;
         return null;
     }
 

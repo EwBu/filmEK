@@ -27,13 +27,6 @@ public class AppController {
     @Autowired
     private MovieRepository movieRepo;
 
-    @Autowired
-    private GenreRepository genreRepository;
-
-
-//    @Autowired
-//    private EmailSenderService emailSenderService;
-
     @GetMapping("/main")
 
     public String viewHomePage(@RequestParam(value = "search", required = false) String q,  Model model){
@@ -133,41 +126,5 @@ public class AppController {
 //        model.addAttribute("title", movieTitle);
 //        return "index";
 //    }
-
-
-
-    @GetMapping("/loadGenres")
-        public void loadGenresToDb(){
-            RestTemplate restTemplate = new RestTemplate();
-            ListOfGenres genresList= restTemplate.getForObject("https://api.themoviedb.org/3/genre/movie/list?api_key=e529d754811a8187c547ac59aa92495d&language=pl", ListOfGenres.class);
-            List<Genre> genres = genresList.getGenres();
-
-            genres.forEach(genre -> {
-                GenreEntity genreEntity = new GenreEntity(Long.valueOf(genre.getId()),genre.getName());
-                genreRepository.save(genreEntity);
-            } );
-            System.out.println("DONE");
-        }
-
-        @GetMapping("/Movies")
-        public void loadMoviesToDb(){
-            RestTemplate restTemplate = new RestTemplate();
-            MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key=e529d754811a8187c547ac59aa92495d&language=pl&page=3", MoviesList.class);
-            List<Result> results = moviesList.getResults();
-
-//                                                        (Integer id, String posterPath, String polishTitle, String originalTitle, String originalLanguage, String overview, double popularity, String releaseDate, long runtime, double voteAverage, long voteCount, Set<GenreEntity> genres)
-            results.forEach(movie -> {
-                List<GenreEntity> genresForCurrentMovie = new ArrayList<>();
-                movie.getGenreIds().forEach(genre ->genresForCurrentMovie.add(genreRepository.getOne(Long.valueOf(genre))));
-                MovieEntity movieEntity = new MovieEntity(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getOverview(), movie.getPopularity(), movie.getReleaseDate(), movie.getVoteAverage(), movie.getVoteCount(), genresForCurrentMovie);// Trzeba przerobić tabele movies zeby przyjmowała to co potrzebujemy, trzeba tez przerobic encje
-                if(movieEntity.getOverview() != "") {
-                    movieRepo.save(movieEntity);
-                }
-
-            } );
-            System.out.println("DONE");
-        }
-
-
 
 }

@@ -18,7 +18,7 @@ public class SearchMovies {
     static MovieService movieService;
 
     public static void main(String[] args) {
-        showComedy();
+//        showComedy();
     }
     public static void showMovie(){
         RestTemplate restTemplate = new RestTemplate();
@@ -40,9 +40,9 @@ public class SearchMovies {
 
     }
 
-    public static  void showComedy(){
-        List<MovieEntity> result = movieService.findMoviesByQuery("Komedia");
-        System.out.println(result.toString());
-    }
+//    public static  void showComedy(){
+//        List<MovieEntity> result = movieService.findMoviesByQuery("Komedia");
+//        System.out.println(result.toString());
+//    }
 
 }

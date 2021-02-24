@@ -28,32 +28,32 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/{movieId}")
-    public String viewMovieDetail(Model model, @PathVariable Long movieId){
-        MovieEntity selectedMovie = movieService.findSingleMovieInDatabase(movieId);
-        if (selectedMovie!=null){
-            model.addAttribute("film", selectedMovie);
-            return "movie_detail";
-        }
-        return "redirect:/main";
-    }
+//    @GetMapping("/{movieId}")
+//    public String viewMovieDetail(Model model, @PathVariable Long movieId){
+//        MovieEntity selectedMovie = movieService.findSingleMovieInDatabase(movieId);
+//        if (selectedMovie!=null){
+//            model.addAttribute("film", selectedMovie);
+//            return "movie_detail";
+//        }
+//        return "redirect:/main";
+//    }
+//
+//    @GetMapping("/movie_details/{id}")
+//    public String showMovieDetails(Model model, @PathVariable Long id){
+//        MovieObject movieWithDetails = movieService.findSingleMovieInTmdb(id.toString());
+//        if (movieWithDetails!=null){
+//            model.addAttribute("film", movieWithDetails);
+//            return "movie_detail";
+//        }
+//        return "redirect:/main";
+//    }
 
-    @GetMapping("/movie_details/{id}")
-    public String showMovieDetails(Model model, @PathVariable Long id){
-        MovieObject movieWithDetails = movieService.findSingleMovieInTmdb(id.toString());
-        if (movieWithDetails!=null){
-            model.addAttribute("film", movieWithDetails);
-            return "movie_detail";
-        }
-        return "redirect:/main";
-    }
-
-    @GetMapping("/Komedia")
-    public String showComedy(Model model){
-        List<MovieEntity> result = movieService.findMoviesByQuery("Komedia");
-        model.addAttribute("movie", result);
-        return "index2";
-    }
+//    @GetMapping("/Komedia")
+//    public String showComedy(Model model){
+//        List<MovieEntity> result = movieService.findMoviesByQuery("Komedia");
+//        model.addAttribute("movie", result);
+//        return "index2";
+//    }
 
 
 
