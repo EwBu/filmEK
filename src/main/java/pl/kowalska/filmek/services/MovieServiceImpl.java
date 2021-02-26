@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.kowalska.filmek.SearchMovies;
+import pl.kowalska.filmek.model.GenreEntity;
 import pl.kowalska.filmek.model.MovieEntity;
 import pl.kowalska.filmek.moviePojo.MovieObject;
+import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 
 import java.util.ArrayList;
@@ -18,6 +20,10 @@ public class MovieServiceImpl implements MovieService{
 
     @Autowired
     private MovieRepository movieRepo;
+
+    @Autowired
+    private GenreRepository genreRepo;
+
 
     final RestTemplate restTemplate = new RestTemplate();
     @Value("${api.key}")
@@ -43,7 +49,8 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public List<MovieEntity> findMoviesByQuery(String genre) {
-        return null;
+        GenreEntity genreEntity = genreRepo.findByName(genre);
+        List<MovieEntity> moviesByQuery = movieRepo.findMoviesByGenre(genreEntity);
+        return moviesByQuery;
     }
-
 }

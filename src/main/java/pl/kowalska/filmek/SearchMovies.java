@@ -40,9 +40,4 @@ public class SearchMovies {
 
     }
 
-//    public static  void showComedy(){
-//        List<MovieEntity> result = movieService.findMoviesByQuery("Komedia");
-//        System.out.println(result.toString());
-//    }
-
 }

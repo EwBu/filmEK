@@ -28,11 +28,6 @@ public class User {
 //    @OneToMany(mappedBy = "user")
 //    private List<MovieRaiting> raitingList;
 
-//    private boolean isEnabled;
-
-
-
-
     public Long getUserId() {
         return userId;
     }

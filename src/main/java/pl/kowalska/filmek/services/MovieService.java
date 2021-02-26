@@ -7,6 +7,7 @@ import javax.xml.crypto.Data;
 import java.util.List;
 
 public interface MovieService {
+
     MovieEntity findSingleMovieInDatabase(Long id);
     
     MovieObject findSingleMovieInTmdb(String id);

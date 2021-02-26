@@ -15,6 +15,7 @@ import pl.kowalska.filmek.moviePojo.MovieObject;
 import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 import pl.kowalska.filmek.repository.UserRepository;
+import pl.kowalska.filmek.services.GenreService;
 import pl.kowalska.filmek.services.MovieService;
 
 import java.util.ArrayList;
@@ -28,33 +29,25 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-//    @GetMapping("/{movieId}")
-//    public String viewMovieDetail(Model model, @PathVariable Long movieId){
-//        MovieEntity selectedMovie = movieService.findSingleMovieInDatabase(movieId);
-//        if (selectedMovie!=null){
-//            model.addAttribute("film", selectedMovie);
-//            return "movie_detail";
-//        }
-//        return "redirect:/main";
-//    }
-//
-//    @GetMapping("/movie_details/{id}")
-//    public String showMovieDetails(Model model, @PathVariable Long id){
-//        MovieObject movieWithDetails = movieService.findSingleMovieInTmdb(id.toString());
-//        if (movieWithDetails!=null){
-//            model.addAttribute("film", movieWithDetails);
-//            return "movie_detail";
-//        }
-//        return "redirect:/main";
-//    }
 
-//    @GetMapping("/Komedia")
-//    public String showComedy(Model model){
-//        List<MovieEntity> result = movieService.findMoviesByQuery("Komedia");
-//        model.addAttribute("movie", result);
-//        return "index2";
-//    }
+    @GetMapping("/{movieId}")
+    public String viewMovieDetail(Model model, @PathVariable Long movieId){
+        MovieEntity selectedMovie = movieService.findSingleMovieInDatabase(movieId);
+        if (selectedMovie!=null){
+            model.addAttribute("film", selectedMovie);
+            return "movie_detail";
+        }
+        return "redirect:/main";
+    }
 
-
+    @GetMapping("/movie_details/{id}")
+    public String showMovieDetails(Model model, @PathVariable Long id){
+        MovieObject movieWithDetails = movieService.findSingleMovieInTmdb(id.toString());
+        if (movieWithDetails!=null){
+            model.addAttribute("film", movieWithDetails);
+            return "movie_detail";
+        }
+        return "redirect:/main";
+    }
 
 }

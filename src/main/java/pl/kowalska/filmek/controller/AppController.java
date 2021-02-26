@@ -1,5 +1,6 @@
 package pl.kowalska.filmek.controller;
 
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import pl.kowalska.filmek.moviePojo.*;
 import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 import pl.kowalska.filmek.repository.UserRepository;
+import pl.kowalska.filmek.services.GenreService;
+import pl.kowalska.filmek.services.MovieService;
 
 import java.util.*;
 
@@ -27,13 +30,14 @@ public class AppController {
     @Autowired
     private MovieRepository movieRepo;
 
+    @Autowired
+    private MovieService movieService;
+
     @GetMapping("/main")
 
     public String viewHomePage(@RequestParam(value = "search", required = false) String q,  Model model){
         List<MovieEntity> listMovieEntities = movieRepo.findAll();
         model.addAttribute("listMovies", listMovieEntities);
-//        String searchText="";
-//        model.addAttribute("searchText", searchText);
 
         if (q!=null){
             return String.format("redirect:/?search=%s",q);
@@ -54,18 +58,14 @@ public class AppController {
        return "redirect:/main";
     }
 
+    @RequestMapping(value="/filter_movies", method = {RequestMethod.POST, RequestMethod.GET} )
+    public String filterMovies(String genre, Model model){
+        System.out.println(genre);
+        List<MovieEntity> moviesByQuery= movieService.findMoviesByQuery(genre);
+        model.addAttribute("listMovies", moviesByQuery);
 
-//    @GetMapping("/search/{movieName}")
-//    public String viewHomePage(String movieName, Model model){
-////        List<MovieEntity> listMovieEntities = movieRepo.findAll();
-//        System.out.println(movieName);
-//
-//
-////        model.addAttribute("listMovies", listMovieEntities);
-////        String searchText="";
-////        model.addAttribute("searchText", searchText);
-//        return "index";
-//    }
+        return "redirect:/main";
+    }
 
     @GetMapping("/register")
     public String viewRegisterForm(Model model){
@@ -79,38 +79,8 @@ public class AppController {
         String encodedPass = encoder.encode(user.getPassword());
         user.setPassword(encodedPass);
         userRepo.save(user);
-//        ConfirmationToken confirmationToken = new ConfirmationToken(user);
-//        tokenRepo.save(confirmationToken);
-//
-//        SimpleMailMessage mailMessage = new SimpleMailMessage();
-//        mailMessage.setTo(user.getEmail());
-//        mailMessage.setSubject("Ukończ rejestrację");
-//        mailMessage.setFrom("YOUR EMAIL ADDRESS");
-//        mailMessage.setText("Aby potwierdzić tworzenie konta kliknij w link aktywacyjny: : "
-//                +"http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
-//        emailSenderService.sendEmail(mailMessage);
         return "register_success";
     }
-
-//    @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
-//    public String confirmUserAccount(Model model, @RequestParam("token")String confirmationToken)
-//    {
-//
-//
-//        if(token != null)
-//        {
-//            User user = userRepo.findByEmail(token.getUser().getEmail());
-//            user.setEnabled(true);
-//            userRepo.save(user);
-//            return "accountVerified";
-//        }
-//        else
-//        {
-//            model.addAttribute("message","The link is invalid or broken!");
-//            return "error";
-//        }
-//
-//    }
 
     @GetMapping("/list_users")
     public String viewUsersList(Model model){
