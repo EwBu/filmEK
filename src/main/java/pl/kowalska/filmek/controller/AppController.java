@@ -64,7 +64,7 @@ public class AppController {
         List<MovieEntity> moviesByQuery= movieService.findMoviesByQuery(genre);
         model.addAttribute("listMovies", moviesByQuery);
 
-        return "redirect:/main";
+        return "filtered_movies";
     }
 
     @GetMapping("/register")
