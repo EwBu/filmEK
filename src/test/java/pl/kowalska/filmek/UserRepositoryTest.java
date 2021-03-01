@@ -22,7 +22,7 @@ public class UserRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
-    @Test
+    /*@Test
     public void testCreateUser(){
         User user = new User();
         user.setUserName("Admin");
@@ -35,7 +35,7 @@ public class UserRepositoryTest {
 
         assertThat(existUser.getEmail()).isEqualTo(user.getEmail());
 
-    }
+    }*/
 
     @Test
     public void testFindUserByEmail(){

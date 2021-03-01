@@ -36,7 +36,7 @@ class RatingLoaderTest {
     @Autowired
     private MovieRepository movieRepository;
 
-    @Test
+  /*  @Test
     public void addRatingRelatedWithUser(){
         User user = new User();
         user.setUserName("Admin");
@@ -57,6 +57,6 @@ class RatingLoaderTest {
 
         List<MovieRaiting> allRatingByFollowingUser = movieRatingRepository.findAllRatingByFollowingUser(userFromDb.getUserId());
 
-    }
+    }*/
 }
 

@@ -5,12 +5,12 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @Column(nullable = false, unique = true, length = 20)
     private String userName;
@@ -24,48 +24,47 @@ public class User {
     @Column(nullable = false, length = 1)
     private char gender;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+         /*   inverseJoinColumns = @JoinColumn(
+            name = "user_id", referencedColumnName = "id"))*/
+    private Collection<Role> roles;
 
-//    @OneToMany(mappedBy = "user")
-//    private List<MovieRaiting> raitingList;
-
-    public Long getUserId() {
-        return userId;
+    public User() {
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() { return userName; }
-
-    public void setUserName(String userName) {
+    public User(String userName, String email, String password, char gender, Collection<Role> roles) {
+        super();
         this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.gender = gender;
+        this.roles = roles;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public char getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
-        this.gender = gender;
+    public Collection<Role> getRoles() {
+        return roles;
     }
-
-
-
 }

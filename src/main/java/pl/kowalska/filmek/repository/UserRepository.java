@@ -6,10 +6,6 @@ import org.springframework.stereotype.Repository;
 import pl.kowalska.filmek.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
-    @Query("SELECT u from User u WHERE u.email=?1")
+public interface UserRepository extends JpaRepository<User, Long>{
     User findByEmail(String email);
-//    User findByConfirmationToken(String confirmationToken);
-
 }

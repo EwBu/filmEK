@@ -1,22 +1,20 @@
 package pl.kowalska.filmek.controller;
 
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import pl.kowalska.filmek.SearchMovies;
-import pl.kowalska.filmek.model.GenreEntity;
+
 import pl.kowalska.filmek.model.MovieEntity;
 import pl.kowalska.filmek.model.User;
 import pl.kowalska.filmek.moviePojo.*;
 
-import pl.kowalska.filmek.repository.GenreRepository;
+
 import pl.kowalska.filmek.repository.MovieRepository;
 import pl.kowalska.filmek.repository.UserRepository;
-import pl.kowalska.filmek.services.GenreService;
+
 import pl.kowalska.filmek.services.MovieService;
 
 import java.util.*;
@@ -32,6 +30,11 @@ public class AppController {
 
     @Autowired
     private MovieService movieService;
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 
     @GetMapping("/main")
 
@@ -67,20 +70,20 @@ public class AppController {
         return "filtered_movies";
     }
 
-    @GetMapping("/register")
-    public String viewRegisterForm(Model model){
-        model.addAttribute("user", new User());
-        return "register";
-    }
+//    @GetMapping("/register")
+//    public String viewRegisterForm(Model model){
+//        model.addAttribute("user", new User());
+//        return "register";
+//    }
 
-    @PostMapping("/process_register")
-    public String processRegister(User user){
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodedPass = encoder.encode(user.getPassword());
-        user.setPassword(encodedPass);
-        userRepo.save(user);
-        return "register_success";
-    }
+//    @PostMapping("/process_register")
+//    public String processRegister(User user){
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//        String encodedPass = encoder.encode(user.getPassword());
+//        user.setPassword(encodedPass);
+//        userRepo.save(user);
+//        return "register_success";
+//    }
 
     @GetMapping("/list_users")
     public String viewUsersList(Model model){
