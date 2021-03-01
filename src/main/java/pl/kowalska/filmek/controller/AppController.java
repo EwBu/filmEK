@@ -1,5 +1,6 @@
 package pl.kowalska.filmek.controller;
 
+import com.sun.xml.bind.v2.util.QNameMap;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,6 +34,10 @@ public class AppController {
     @Autowired
     private MovieService movieService;
 
+    @Autowired
+    private GenreRepository genreRepository;
+
+
     @GetMapping("/main")
 
     public String viewHomePage(@RequestParam(value = "search", required = false) String q,  Model model){
@@ -59,9 +64,12 @@ public class AppController {
     }
 
     @RequestMapping(value="/filter_movies", method = {RequestMethod.POST, RequestMethod.GET} )
-    public String filterMovies(String genre, Model model){
-        System.out.println(genre);
-        List<MovieEntity> moviesByQuery= movieService.findMoviesByQuery(genre);
+    public String filterMovies(String genre, Model model, Double voteMin, Double voteMax, Double popularityMin, Double popularityMax){
+        voteMin = voteMin == null? 0.0: voteMin;
+        voteMax = voteMax == null? 10.0: voteMax;
+        popularityMin = popularityMin == null? 0.0: popularityMin;
+        popularityMax = popularityMax == null?Double.MAX_VALUE: popularityMax;
+        List<MovieEntity> moviesByQuery= movieService.findMoviesByQuery(genre, voteMin, voteMax, popularityMin, popularityMax);
         model.addAttribute("listMovies", moviesByQuery);
 
         return "filtered_movies";
@@ -96,5 +104,21 @@ public class AppController {
 //        model.addAttribute("title", movieTitle);
 //        return "index";
 //    }
+
+    @GetMapping("/load_movies")
+    public void loadMovies(){
+        RestTemplate restTemplate = new RestTemplate();
+        MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key=e529d754811a8187c547ac59aa92495d&language=pl&page=1", MoviesList.class);
+        List<Result> results = moviesList.getResults();
+        results.forEach(movie -> {
+            List<GenreEntity> genresForCurrentMovie = new ArrayList<>();
+            movie.getGenreIds().forEach(genre ->genresForCurrentMovie.add(genreRepository.getOne(Long.valueOf(genre))));
+            MovieEntity movieEntity = new MovieEntity(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getOverview(), movie.getPopularity(), movie.getReleaseDate(), movie.getVoteAverage(), movie.getVoteCount(), genresForCurrentMovie);// Trzeba przerobić tabele movies zeby przyjmowała to co potrzebujemy, trzeba tez przerobic encje
+            if(movieEntity.getOverview() != "") {
+                movieRepo.save(movieEntity);
+            }
+
+        } );
+    }
 
 }

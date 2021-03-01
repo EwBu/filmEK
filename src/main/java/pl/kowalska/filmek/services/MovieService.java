@@ -14,5 +14,5 @@ public interface MovieService {
 
     List<MovieEntity> selectMoviesByRaiting(Double min, Double max);
 
-    List<MovieEntity> findMoviesByQuery(String genre);
+    List<MovieEntity> findMoviesByQuery(String genre, Double voteMin, Double voteMax, Double popularityMin, Double popularityMax);
 }

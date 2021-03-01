@@ -41,16 +41,16 @@ class MovieServiceImplTest {
        genre = genreRepository.findByName("Animacja");
     }
 
-    @Test
-    void findMovieByGenre(){
-        List<MovieEntity> queryMovies = movieRepo.findMoviesByGenre(genre);
-        queryMovies.forEach(System.out::println);
-    }
+//    @Test
+//    void findMovieByGenre(){
+//        List<MovieEntity> queryMovies = movieRepo.findMoviesByGenre(genre, voteMin);
+//        queryMovies.forEach(System.out::println);
+//    }
 
     @Test
     void loadMovieToDB(){
         RestTemplate restTemplate = new RestTemplate();
-        MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key=e529d754811a8187c547ac59aa92495d&language=pl&page=3", MoviesList.class);
+        MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key=e529d754811a8187c547ac59aa92495d&language=pl&page=1", MoviesList.class);
         List<Result> results = moviesList.getResults();
         results.forEach(movie -> {
             List<GenreEntity> genresForCurrentMovie = new ArrayList<>();
