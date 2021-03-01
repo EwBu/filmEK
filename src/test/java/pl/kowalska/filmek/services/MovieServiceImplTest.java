@@ -20,6 +20,10 @@ import pl.kowalska.filmek.moviePojo.Result;
 import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,31 +42,38 @@ class MovieServiceImplTest {
 
     @BeforeEach
     void findGenre(){
-       genre = genreRepository.findByName("Animacja");
+        genre = genreRepository.findByName("Animacja");
     }
 
 //    @Test
 //    void findMovieByGenre(){
-//        List<MovieEntity> queryMovies = movieRepo.findMoviesByGenre(genre, voteMin);
+//        List<MovieEntity> queryMovies = movieRepo.findMoviesByGenre(genre);
 //        queryMovies.forEach(System.out::println);
 //    }
 
+    @Transactional
     @Test
     void loadMovieToDB(){
         RestTemplate restTemplate = new RestTemplate();
-        MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key=e529d754811a8187c547ac59aa92495d&language=pl&page=1", MoviesList.class);
+        MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key=e529d754811a8187c547ac59aa92495d&language=pl&page=3", MoviesList.class);
         List<Result> results = moviesList.getResults();
+        DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         results.forEach(movie -> {
             List<GenreEntity> genresForCurrentMovie = new ArrayList<>();
             movie.getGenreIds().forEach(genre ->genresForCurrentMovie.add(genreRepository.getOne(Long.valueOf(genre))));
-            MovieEntity movieEntity = new MovieEntity(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getOverview(), movie.getPopularity(), movie.getReleaseDate(), movie.getVoteAverage(), movie.getVoteCount(), genresForCurrentMovie);// Trzeba przerobić tabele movies zeby przyjmowała to co potrzebujemy, trzeba tez przerobic encje
+            MovieEntity movieEntity = new MovieEntity(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getOverview(), movie.getPopularity(), convertToDate(DATEFORMATTER,movie), movie.getVoteAverage(), movie.getVoteCount(), genresForCurrentMovie);
             if(movieEntity.getOverview() != "") {
-                movieRepo.save(movieEntity);
+                movieRepo.saveAndFlush(movieEntity);
             }
 
         } );
     }
 
+    private LocalDate convertToDate(DateTimeFormatter DATEFORMATTER, Result movie){
+        return LocalDate.parse(movie.getReleaseDate(), DATEFORMATTER);
+    }
+
+    @Transactional
     @Test
     public void loadGenresToDb(){
         RestTemplate restTemplate = new RestTemplate();
@@ -71,7 +82,7 @@ class MovieServiceImplTest {
 
         genres.forEach(genre -> {
             GenreEntity genreEntity = new GenreEntity(Long.valueOf(genre.getId()),genre.getName());
-            genreRepository.save(genreEntity);
+            genreRepository.saveAndFlush(genreEntity);
         } );
     }
 

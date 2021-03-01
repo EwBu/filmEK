@@ -1,6 +1,7 @@
-
 package pl.kowalska.filmek.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -35,7 +36,7 @@ public class MovieEntity {
 
     private double popularity;
 
-    private String releaseDate;
+    private LocalDate releaseDate;
 
 //    @Column(nullable = false)
 //    private long runtime;
@@ -55,8 +56,8 @@ public class MovieEntity {
 //    private List<MovieRaiting> raitings;
 
 
-    public MovieEntity() {
-    }
+
+
 
     public MovieEntity(Long id,
                        String posterPath,
@@ -65,7 +66,7 @@ public class MovieEntity {
                        String originalLanguage,
                        String overview,
                        double popularity,
-                       String releaseDate,
+                       LocalDate releaseDate,
                        double voteAverage,
                        long voteCount,
                        List<GenreEntity> genres) {
@@ -81,6 +82,10 @@ public class MovieEntity {
         this.voteAverage = voteAverage;
         this.voteCount = voteCount;
         this.genres = genres;
+    }
+
+    public MovieEntity() {
+
     }
 
     public Long getId() {
@@ -139,15 +144,15 @@ public class MovieEntity {
         this.popularity = popularity;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-//    public long getRuntime() {
+    //    public long getRuntime() {
 //        return runtime;
 //    }
 //
