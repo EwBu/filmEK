@@ -42,14 +42,14 @@ class MovieServiceImplTest {
 
     @BeforeEach
     void findGenre(){
-       genre = genreRepository.findByName("Animacja");
+        genre = genreRepository.findByName("Animacja");
     }
 
-    @Test
-    void findMovieByGenre(){
-        List<MovieEntity> queryMovies = movieRepo.findMoviesByGenre(genre);
-        queryMovies.forEach(System.out::println);
-    }
+//    @Test
+//    void findMovieByGenre(){
+//        List<MovieEntity> queryMovies = movieRepo.findMoviesByGenre(genre);
+//        queryMovies.forEach(System.out::println);
+//    }
 
     @Transactional
     @Test

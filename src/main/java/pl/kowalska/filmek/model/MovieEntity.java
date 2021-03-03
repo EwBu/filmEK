@@ -1,4 +1,3 @@
-
 package pl.kowalska.filmek.model;
 
 import java.time.LocalDate;

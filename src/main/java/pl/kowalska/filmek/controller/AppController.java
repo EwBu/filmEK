@@ -1,5 +1,9 @@
 package pl.kowalska.filmek.controller;
 
+
+import com.sun.xml.bind.v2.util.QNameMap;
+import org.dom4j.rule.Mode;
+
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -7,11 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import pl.kowalska.filmek.model.GenreEntity;
 import pl.kowalska.filmek.model.MovieEntity;
 import pl.kowalska.filmek.model.User;
 import pl.kowalska.filmek.moviePojo.*;
 
 
+import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 import pl.kowalska.filmek.repository.UserRepository;
 
@@ -31,13 +37,14 @@ public class AppController {
     @Autowired
     private MovieService movieService;
 
+
     @GetMapping("/login")
     public String login(){
         return "login";
     }
 
-    @GetMapping("/main")
 
+    @GetMapping("/main")
     public String viewHomePage(@RequestParam(value = "search", required = false) String q,  Model model){
         List<MovieEntity> listMovieEntities = movieRepo.findAll();
         model.addAttribute("listMovies", listMovieEntities);
@@ -62,9 +69,12 @@ public class AppController {
     }
 
     @RequestMapping(value="/filter_movies", method = {RequestMethod.POST, RequestMethod.GET} )
-    public String filterMovies(String genre, Model model){
-        System.out.println(genre);
-        List<MovieEntity> moviesByQuery= movieService.findMoviesByQuery(genre);
+    public String filterMovies(String genre, Model model, Double voteMin, Double voteMax, Double popularityMin, Double popularityMax){
+        voteMin = voteMin == null? 0.0: voteMin;
+        voteMax = voteMax == null? 10.0: voteMax;
+        popularityMin = popularityMin == null? 0.0: popularityMin;
+        popularityMax = popularityMax == null?Double.MAX_VALUE: popularityMax;
+        List<MovieEntity> moviesByQuery= movieService.findMoviesByQuery(genre, voteMin, voteMax, popularityMin, popularityMax);
         model.addAttribute("listMovies", moviesByQuery);
 
         return "filtered_movies";
@@ -99,5 +109,6 @@ public class AppController {
 //        model.addAttribute("title", movieTitle);
 //        return "index";
 //    }
+
 
 }

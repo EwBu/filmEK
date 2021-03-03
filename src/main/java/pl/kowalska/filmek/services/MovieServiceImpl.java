@@ -48,9 +48,9 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public List<MovieEntity> findMoviesByQuery(String genre) {
+    public List<MovieEntity> findMoviesByQuery(String genre, Double voteMin, Double voteMax, Double popularityMin, Double popularityMax) {
         GenreEntity genreEntity = genreRepo.findByName(genre);
-        List<MovieEntity> moviesByQuery = movieRepo.findMoviesByGenre(genreEntity);
+        List<MovieEntity> moviesByQuery = movieRepo.findMoviesByGenre(genreEntity, voteMin, voteMax, popularityMin, popularityMax);
         return moviesByQuery;
     }
 }
