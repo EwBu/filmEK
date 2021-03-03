@@ -7,13 +7,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.kowalska.filmek.dto.UserRegistrationDto;
+import pl.kowalska.filmek.dto.UserDto;
 import pl.kowalska.filmek.model.Role;
 import pl.kowalska.filmek.model.User;
 import pl.kowalska.filmek.repository.UserRepository;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,12 +31,22 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User save(UserRegistrationDto registrationDto) {
+    public User save(UserDto registrationDto) {
         User user = new User(registrationDto.getUserName(),
                 registrationDto.getEmail(),
                 passwordEncoder.encode(registrationDto.getPassword()),registrationDto.getGender(), Arrays.asList(new Role("ROLE_USER")));
 
         return userRepository.save(user);
+    }
+
+    @Override
+    public User loadUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override

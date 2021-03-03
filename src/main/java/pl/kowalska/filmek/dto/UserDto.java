@@ -1,15 +1,15 @@
 package pl.kowalska.filmek.dto;
 
-public class UserRegistrationDto {
+public class UserDto {
      private String userName;
      private String email;
      private String password;
      private char gender;
 
-    public UserRegistrationDto() {
+    public UserDto() {
     }
 
-    public UserRegistrationDto(String userName, String email, String password, char gender) {
+    public UserDto(String userName, String email, String password, char gender) {
         super();
         this.userName = userName;
         this.email = email;

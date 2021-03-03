@@ -1,41 +1,43 @@
 package pl.kowalska.filmek.controller;
 
 
-import com.sun.xml.bind.v2.util.QNameMap;
-import org.dom4j.rule.Mode;
-
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import pl.kowalska.filmek.model.GenreEntity;
+import pl.kowalska.filmek.dto.UserDto;
 import pl.kowalska.filmek.model.MovieEntity;
 import pl.kowalska.filmek.model.User;
 import pl.kowalska.filmek.moviePojo.*;
 
 
-import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 import pl.kowalska.filmek.repository.UserRepository;
 
 import pl.kowalska.filmek.services.MovieService;
+import pl.kowalska.filmek.services.UserService;
 
 import java.util.*;
 
 @Controller
 public class AppController {
 
-    @Autowired
-    private UserRepository userRepo;
+    private final UserService userService;
+    private final MovieRepository movieRepo;
+    private final MovieService movieService;
+    private UserDto userDto;
 
     @Autowired
-    private MovieRepository movieRepo;
-
-    @Autowired
-    private MovieService movieService;
+    public AppController(UserService userService, MovieRepository movieRepo, MovieService movieService) {
+        this.userService = userService;
+        this.movieRepo = movieRepo;
+        this.movieService = movieService;
+    }
 
 
     @GetMapping("/login")
@@ -43,11 +45,21 @@ public class AppController {
         return "login";
     }
 
+    @PostMapping ("/successLogin")
+    public String successLogin(){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.loadUserByEmail(email);
+        userDto = new UserDto(user.getUserName(),user.getEmail(),user.getPassword(), user.getGender());
+        return "redirect:/main";
+    }
+
+
 
     @GetMapping("/main")
     public String viewHomePage(@RequestParam(value = "search", required = false) String q,  Model model){
         List<MovieEntity> listMovieEntities = movieRepo.findAll();
         model.addAttribute("listMovies", listMovieEntities);
+        model.addAttribute("loggedUser", userDto);
 
         if (q!=null){
             return String.format("redirect:/?search=%s",q);
@@ -97,7 +109,7 @@ public class AppController {
 
     @GetMapping("/list_users")
     public String viewUsersList(Model model){
-        List<User> listUsers = userRepo.findAll();
+        List<User> listUsers = userService.findAll();
         model.addAttribute("listUsers", listUsers);
         return "users";
     }

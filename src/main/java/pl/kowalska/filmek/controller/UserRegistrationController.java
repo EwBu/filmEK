@@ -1,13 +1,11 @@
 package pl.kowalska.filmek.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.kowalska.filmek.dto.UserRegistrationDto;
-import pl.kowalska.filmek.model.User;
+import pl.kowalska.filmek.dto.UserDto;
 import pl.kowalska.filmek.services.UserService;
 
 @Controller
@@ -21,8 +19,8 @@ public class UserRegistrationController {
     }
 
     @ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto(){
-        return new UserRegistrationDto();
+    public UserDto userRegistrationDto(){
+        return new UserDto();
     }
 
     @GetMapping
@@ -31,7 +29,7 @@ public class UserRegistrationController {
     }
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto){
+    public String registerUserAccount(@ModelAttribute("user") UserDto registrationDto){
         userService.save(registrationDto);
         return "redirect:/registration?success";
     }
