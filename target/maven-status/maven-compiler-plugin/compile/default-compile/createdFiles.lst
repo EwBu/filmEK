@@ -1,5 +1,4 @@
 pl\kowalska\filmek\services\MovieServiceImpl.class
-pl\kowalska\filmek\dto\UserRegistrationDto.class
 pl\kowalska\filmek\model\MovieEntity.class
 pl\kowalska\filmek\model\MovieRaiting.class
 pl\kowalska\filmek\services\MovieService.class
