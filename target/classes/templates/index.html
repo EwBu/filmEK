@@ -7,47 +7,50 @@
     <title>Movie application</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/movies.css" type="text/css">
+
+
 </head>
-<body onload="connect()" >
+<body onload="connect()">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" th:href="@{'/main'}">filmEK</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <!--<li class="nav-item active">-->
-                <!--<a class="nav-link" th:href="@{'/'}">Strona główna <span class="sr-only">(current)</span></a>-->
+            <!--<a class="nav-link" th:href="@{'/'}">Strona główna <span class="sr-only">(current)</span></a>-->
             <!--</li>-->
             <li class="nav-item" sec:authorize="isAuthenticated()">
                 <a class="nav-link" th:href="@{/logout}">Wyloguj</a>
             </li>
 
-            <li class="nav-item"  sec:authorize="isAnonymous()">
+            <li class="nav-item" sec:authorize="isAnonymous()">
                 <a class="nav-link" th:href="@{/register}">Utwórz konto</a>
             </li>
 
-            <li class="nav-item"  sec:authorize="isAnonymous()" >
-                <a class="nav-link"th:href="@{/login}">Zaloguj się</a>
+            <li class="nav-item" sec:authorize="isAnonymous()">
+                <a class="nav-link" th:href="@{/login}">Zaloguj się</a>
             </li>
             <li class="nav-item" sec:authorize="isAuthenticated()">
                 <a class="nav-link" th:href="@{/list_users}">Lista użytkowników</a>
             </li>
             <!--<li class="nav-item dropdown">-->
-                <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                    <!--Dropdown-->
-                <!--</a>-->
-                <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-                    <!--<a class="dropdown-item" href="#">Action</a>-->
-                    <!--<a class="dropdown-item" href="#">Another action</a>-->
-                    <!--<div class="dropdown-divider"></div>-->
-                    <!--<a class="dropdown-item" href="#">Something else here</a>-->
-                <!--</div>-->
+            <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--Dropdown-->
+            <!--</a>-->
+            <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+            <!--<a class="dropdown-item" href="#">Action</a>-->
+            <!--<a class="dropdown-item" href="#">Another action</a>-->
+            <!--<div class="dropdown-divider"></div>-->
+            <!--<a class="dropdown-item" href="#">Something else here</a>-->
+            <!--</div>-->
             <!--</li>-->
             <!--<li class="nav-item">-->
-                <!--<a class="nav-link disabled" href="#">Disabled</a>-->
+            <!--<a class="nav-link disabled" href="#">Disabled</a>-->
             <!--</li>th:field="*{title}"-->
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -59,8 +62,8 @@
                     <a class="nav-link" href="#">Najwyżej oceniane</a>
                 </li>
             </ul>
-             <!--&gt;input class="form-control mr-sm-2" type="text"-->
-            <form action="#" th:action="@{/}" th:object="${search}"  placeholder="Search" aria-label="Search" >
+            <!--&gt;input class="form-control mr-sm-2" type="text"-->
+            <form action="#" th:action="@{/}" th:object="${search}" placeholder="Search" aria-label="Search">
                 <input name="search" id="search" type="text" class="search-query form-control"/>
                 <span class="input-group-btn">
                     <button class="btn btn-light" type="submit">Szukaj filmu</button>
@@ -73,75 +76,77 @@
 <div class="container-fluid">
     <form th:action="@{/filter_movies}" method="post">
         <div class="row filter-row">
-        <select class="form-control form-control-sm col-2" id="genre" name="genre">
-            <option selected value="">Wybierz gatunek</option>
-            <option value="przygodowy">Przygodowy</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="animacja">Animacja</option>
-            <option value="dramat">Dramat</option>
-            <option value="horror">Horror</option>
-            <option value="akcja">Akcja</option>
-            <option value="komedia">Komedia</option>
-            <option value="historyczny">Historyczny</option>
-            <option value="western">Western</option>
-            <option value="thriller">Thriller</option>
-            <option value="kryminał">Kryminał</option>
-            <option value="dokumentalny">Dokumentalny</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="tajemnica">Tajemnica</option>
-            <option value="muzyczny">Muzyczny</option>
-            <option value="romans">Romans</option>
-            <option value="familijny">Familijny</option>
-            <option value="wojenny">Wojenny</option>
-        </select>
-        Ocena: Od
+            <select class="form-control form-control-sm col-2" id="genre" name="genre">
+                <option selected value="">Wybierz gatunek</option>
+                <option value="przygodowy">Przygodowy</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="animacja">Animacja</option>
+                <option value="dramat">Dramat</option>
+                <option value="horror">Horror</option>
+                <option value="akcja">Akcja</option>
+                <option value="komedia">Komedia</option>
+                <option value="historyczny">Historyczny</option>
+                <option value="western">Western</option>
+                <option value="thriller">Thriller</option>
+                <option value="kryminał">Kryminał</option>
+                <option value="dokumentalny">Dokumentalny</option>
+                <option value="sci-fi">Sci-Fi</option>
+                <option value="tajemnica">Tajemnica</option>
+                <option value="muzyczny">Muzyczny</option>
+                <option value="romans">Romans</option>
+                <option value="familijny">Familijny</option>
+                <option value="wojenny">Wojenny</option>
+            </select>
+            Ocena: Od
             <input class="form-control col-1" id="voteMin" name="voteMin"/>
             do
             <input class="form-control col-1" id="voteMax" name="voteMax"/>
-        Popularność: Od
+            Popularność: Od
             <input class="form-control col-1" id="popularityMin" name="popularityMin"/>
             do
             <input class="form-control col-1" id="popularityMax" name="popularityMax"/>
-        <button class="btn btn-light" type="submit">Szukaj filmów</button>
+            <button class="btn btn-light" type="submit">Szukaj filmów</button>
         </div>
     </form>
 </div>
 <div class="container-fluid">
-    <div class="row" >
+    <div class="row">
 
         <!--<div th:if="${not #lists.isEmpty(filterMovies)}">-->
-            <!--<div class="table-responsive" >-->
-                <!--<table class="table">-->
-                    <!--<tr>-->
-                        <!--<th></th> <th>Tytuł filmu</th>	<th colspan="2">Średnia ocena</th>-->
-                    <!--</tr>-->
-                    <!--<tbody>-->
-                    <!--<tr th:each="movie : ${filterMovies}">-->
-                        <!--&lt;!&ndash;<td><a th:href="@{'/movie/' + ${search.movieId}}" th:text="${search.movieId}"></a></td>&ndash;&gt;-->
-                        <!--<td><img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}"-->
-                                 <!--height="160" width="110"/></td>-->
-                        <!--<td width="80%"><h3><a th:href="@{'/movie/movie_details/' + ${movie.id}}"-->
-                                               <!--th:text="${movie.title + ' (' + movie.releaseDate + ')'}" style="color: black"> </a>-->
-                        <!--</h3>-->
-                            <!--<h5><label th:text="${movie.originalTitle}"></label></h5>-->
-                        <!--</td>-->
+        <!--<div class="table-responsive" >-->
+        <!--<table class="table">-->
+        <!--<tr>-->
+        <!--<th></th> <th>Tytuł filmu</th>	<th colspan="2">Średnia ocena</th>-->
+        <!--</tr>-->
+        <!--<tbody>-->
+        <!--<tr th:each="movie : ${filterMovies}">-->
+        <!--&lt;!&ndash;<td><a th:href="@{'/movie/' + ${search.movieId}}" th:text="${search.movieId}"></a></td>&ndash;&gt;-->
+        <!--<td><img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}"-->
+        <!--height="160" width="110"/></td>-->
+        <!--<td width="80%"><h3><a th:href="@{'/movie/movie_details/' + ${movie.id}}"-->
+        <!--th:text="${movie.title + ' (' + movie.releaseDate + ')'}" style="color: black"> </a>-->
+        <!--</h3>-->
+        <!--<h5><label th:text="${movie.originalTitle}"></label></h5>-->
+        <!--</td>-->
 
-                        <!--<td width="7%"><br><h2><label th:text="${movie.voteAverage}"></label></h2></td>-->
-                        <!--<td><br>-->
-                            <!--<h3><img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"-->
-                                     <!--width="30" height="30"></h3></td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                <!--</table>-->
-            <!--</div>-->
+        <!--<td width="7%"><br><h2><label th:text="${movie.voteAverage}"></label></h2></td>-->
+        <!--<td><br>-->
+        <!--<h3><img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"-->
+        <!--width="30" height="30"></h3></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</div>-->
 
         <!--</div>-->
-<!--        <div th:if="${not #lists.isEmpty(search)}">-->
+        <!--        <div th:if="${not #lists.isEmpty(search)}">-->
         <div th:if="${search!=null}">
-            <div class="table-responsive" >
+            <div class="table-responsive">
                 <table class="table">
                     <tr>
-                        <th></th> <th>Tytuł filmu</th>	<th colspan="2">Średnia ocena</th>
+                        <th></th>
+                        <th>Tytuł filmu</th>
+                        <th colspan="2">Średnia ocena</th>
                     </tr>
                     <tbody>
                     <tr th:each="search : ${search}">
@@ -149,15 +154,18 @@
                         <td><img th:src="${'https://image.tmdb.org/t/p/w500' + search.posterPath}"
                                  height="160" width="110"/></td>
                         <td width="80%"><h3><a th:href="@{'/movie/movie_details/' + ${search.id}}"
-                                               th:text="${search.title + ' (' + search.releaseDate + ')'}" style="color: black"> </a>
+                                               th:text="${search.title + ' (' + search.releaseDate + ')'}"
+                                               style="color: black"> </a>
                         </h3>
                             <h5><label th:text="${search.originalTitle}"></label></h5>
                         </td>
 
-                        <td width="7%"><br><h2><label th:text="${search.voteAverage}"></label></h2></td>
+                        <td width="7%"><br>
+                            <h2><label th:text="${search.voteAverage}"></label></h2></td>
                         <td><br>
-                            <h3><img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
-                                     width="30" height="30"></h3></td>
+                            <h3><img
+                                    src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                                    width="30" height="30"></h3></td>
                     </tr>
                     </tbody>
                 </table>
@@ -165,22 +173,24 @@
 
         </div>
         <!--<div th:unless="${#lists.isEmpty(search)}">-->
-            <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">
-                <div class="card">
-                    <div class="box-poster">
-                         <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}" class="card-img-top img-poster">
+        <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">
+            <div class="card">
+                <div class="box-poster">
+                    <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}"
+                         class="card-img-top img-poster">
 
-                         <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
-                                 class="star-poster"></h2>
-                         <span th:text="${movie.voteAverage}" class="vote-poster" ></span>
-                    </div>
+                    <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                         class="star-poster"></h2>
+                    <span th:text="${movie.voteAverage}" class="vote-poster"></span>
+                </div>
 
-                    <div class="card-body">
-                        <h6 th:text="${movie.title}" class="card-title">Title</h6>
-                        <a th:href="@{/movie/{movieId} (movieId=${movie.id})}" class="btn btn-light button-poster">O Filmie</a>
-                    </div>
+                <div class="card-body">
+                    <h6 th:text="${movie.title}" class="card-title">Title</h6>
+                    <a th:href="@{/movie/{movieId} (movieId=${movie.id})}" class="btn btn-light button-poster">O
+                        Filmie</a>
                 </div>
             </div>
+        </div>
         <!--</div>-->
     </div>
 </div>
@@ -188,11 +198,8 @@
 
 </div>
 <div sec:authorize="isAuthenticated()">
-    <label>User:</label>
-<!--    <label id="user" sec:authentication="name"/><br>-->
     <p hidden><label id="user" th:text="${loggedUser.getUserName()}"/><br></p>
-
-    <label>You message:</label>
+    <label>treść</label>
     <input id="messageToSend" type="text"/><br>
 
     <button onclick="sendMessage()">Send</button>
@@ -200,16 +207,6 @@
 </div>
 <script src="controller.js"></script>
 <script src="stomp.js"></script>
-            <!--<form th:action="@{/search_movie}" method="post"-->
-                  <!--style="max-width: 600px; margin: 0 auto;">-->
-                <!--<div>-->
-                    <!--<input type="text" class="form-control" th:field="*{title}" required-->
-                           <!--minlength="3" maxlength="40"/>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<button type="submit" class="btn btn-primary" >Szukaj filmu</button>-->
-                <!--</div>-->
 
-            <!--</form>-->
 </body>
 </html>
