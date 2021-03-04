@@ -10,7 +10,8 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(nullable = false, unique = true, length = 20)
     private String userName;
@@ -27,7 +28,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"))
          /*   inverseJoinColumns = @JoinColumn(
             name = "user_id", referencedColumnName = "id"))*/
     private Collection<Role> roles;
@@ -44,8 +45,8 @@ public class User {
         this.roles = roles;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
     public String getUserName() {
