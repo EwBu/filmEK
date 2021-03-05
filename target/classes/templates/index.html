@@ -105,6 +105,10 @@
             <input class="form-control col-1" id="popularityMin" name="popularityMin"/>
             do
             <input class="form-control col-1" id="popularityMax" name="popularityMax"/>
+            Data produkcji: od
+            <input type="number" min="1800" max="2099" step="1" placeholder="YYYY" id="yearMin" name="yearMin"/>
+            do
+            <input type="number" min="1800" max="2099" step="1" placeholder="YYYY" id="yearMax" name="yearMax"/>
             <button class="btn btn-light" type="submit">Szukaj filmów</button>
         </div>
     </form>
@@ -173,7 +177,7 @@
 
         </div>
         <!--<div th:unless="${#lists.isEmpty(search)}">-->
-        <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">
+        <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie, iStat: ${listMovies.content}">
             <div class="card">
                 <div class="box-poster">
                     <img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}"
@@ -191,12 +195,75 @@
                 </div>
             </div>
         </div>
+
+        <!--<div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">-->
+            <!--<div class="card">-->
+                <!--<div class="box-poster">-->
+                    <!--<img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}"-->
+                         <!--class="card-img-top img-poster">-->
+
+                    <!--<img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"-->
+                         <!--class="star-poster"></h2>-->
+                    <!--<span th:text="${movie.voteAverage}" class="vote-poster"></span>-->
+                <!--</div>-->
+
+                <!--<div class="card-body">-->
+                    <!--<h6 th:text="${movie.title}" class="card-title">Title</h6>-->
+                    <!--<a th:href="@{/movie/{movieId} (movieId=${movie.id})}" class="btn btn-light button-poster">O-->
+                        <!--Filmie</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         <!--</div>-->
     </div>
 </div>
-<div class="container-fluid">
-
-</div>
+<footer class="container-fluid">
+    <div class="row">
+        <!--<div th:if="${listMovies.totalPages > 0}" class="pagination"-->
+             <!--th:each="pageNumber : ${pageNumbers}">-->
+            <!--<a th:href="@{/main(size=${listMovies.size}, page=${pageNumber})}"-->
+               <!--th:text="${pageNumber}"-->
+               <!--th:class="${pageNumber==listMovies.number + 1} ? active"></a>-->
+        <!--</div>-->
+        <!--<div class="col-sm-7">-->
+            <!-- Pagination Bar -->
+        <nav aria-label="Page navigation example">
+            <!--<div th:fragment='paginationbar'>-->
+            <ul class="pagination justify-content-center">
+                        <li class="page-item" th:class="${page.firstPage}?'disabled':''">
+                            <span th:if='${page.firstPage}'>← Pierwsza</span>
+                            <a th:if='${not page.firstPage}' th:href='@{${page.url}(page=0,size=${page.size})}'>←
+                                Pierwsza</a>
+                        </li>
+                        <li class="page-item" th:class="${page.hasPreviousPage}? '' : 'disabled'">
+                            <span th:if='${not page.hasPreviousPage}'>«</span>
+                            <a th:if='${page.hasPreviousPage}'
+                               th:href='@{${page.url}(page=${page.number-2},size=${page.size})}'
+                               title='Go to previous page'>«</a>
+                        </li>
+                        <li class="page-item" th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
+                            <span th:if='${item.current}' th:text='${item.number}'>1</span>
+                            <a th:if='${not item.current}'
+                               th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span
+                                    th:text='${item.number}'>1</span></a>
+                        </li>
+                        <li class="page-item" th:class="${page.hasNextPage}? '' : 'disabled'">
+                            <span th:if='${not page.hasNextPage}'>»</span>
+                            <a th:if='${page.hasNextPage}'
+                               th:href='@{${page.url}(page=${page.number},size=${page.size})}'
+                               title='Go to next page'>»</a>
+                        </li>
+                        <li class="page-item" th:class="${page.lastPage}? 'disabled' : ''">
+                            <span th:if='${page.lastPage}'>Ostatnia →</span>
+                            <a th:if='${not page.lastPage}'
+                               th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>Ostatnia →</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 <div sec:authorize="isAuthenticated()">
     <p hidden><label id="user" th:text="${loggedUser.getUserName()}"/><br></p>
     <label>treść</label>

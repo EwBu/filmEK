@@ -3,6 +3,9 @@ package pl.kowalska.filmek.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,8 @@ import pl.kowalska.filmek.services.MovieService;
 import pl.kowalska.filmek.services.UserService;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 public class AppController {
@@ -56,10 +61,19 @@ public class AppController {
 
 
     @GetMapping("/main")
-    public String viewHomePage(@RequestParam(value = "search", required = false) String q,  Model model){
+    public String viewHomePage(
+            @RequestParam(value = "search", required = false) String q,
+            Model model,
+            Pageable pageable){
+
+        Page<MovieEntity> moviesPage = movieService.findAll(pageable);
+        PageWrapper<MovieEntity> pageNumbers = new PageWrapper<MovieEntity>(moviesPage, "/main");
         List<MovieEntity> listMovieEntities = movieRepo.findAll();
-        model.addAttribute("listMovies", listMovieEntities);
+
+        model.addAttribute("listMovies", moviesPage);
         model.addAttribute("loggedUser", userDto);
+
+            model.addAttribute("page", pageNumbers);
 
         if (q!=null){
             return String.format("redirect:/?search=%s",q);
@@ -81,12 +95,14 @@ public class AppController {
     }
 
     @RequestMapping(value="/filter_movies", method = {RequestMethod.POST, RequestMethod.GET} )
-    public String filterMovies(String genre, Model model, Double voteMin, Double voteMax, Double popularityMin, Double popularityMax){
+    public String filterMovies(String genre, Model model, Double voteMin, Double voteMax, Double popularityMin, Double popularityMax, Integer yearMin, Integer yearMax){
         voteMin = voteMin == null? 0.0: voteMin;
         voteMax = voteMax == null? 10.0: voteMax;
         popularityMin = popularityMin == null? 0.0: popularityMin;
-        popularityMax = popularityMax == null?Double.MAX_VALUE: popularityMax;
-        List<MovieEntity> moviesByQuery= movieService.findMoviesByQuery(genre, voteMin, voteMax, popularityMin, popularityMax);
+        popularityMax = popularityMax == null? Double.MAX_VALUE: popularityMax;
+        yearMin = yearMin == null? 1800: yearMin;
+        yearMax = yearMax == null? 2099: yearMax;
+        List<MovieEntity> moviesByQuery= movieService.findMoviesByQuery(genre, voteMin, voteMax, popularityMin, popularityMax, yearMin, yearMax);
         model.addAttribute("listMovies", moviesByQuery);
 
         return "filtered_movies";
