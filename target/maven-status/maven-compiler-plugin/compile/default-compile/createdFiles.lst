@@ -32,4 +32,5 @@ pl\kowalska\filmek\FilmEkApplication.class
 pl\kowalska\filmek\moviePojo\MovieObjectWithoutAnnotations.class
 pl\kowalska\filmek\moviePojo\ProductionCompany.class
 pl\kowalska\filmek\SearchMovies.class
+pl\kowalska\filmek\services\EmailSenderService.class
 pl\kowalska\filmek\controller\UserRegistrationController.class
