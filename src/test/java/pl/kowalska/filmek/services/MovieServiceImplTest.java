@@ -49,18 +49,25 @@ class MovieServiceImplTest {
     @Test
     void loadMovieToDB(){
         RestTemplate restTemplate = new RestTemplate();
-        MoviesList moviesList= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key=e529d754811a8187c547ac59aa92495d&language=pl&page=3", MoviesList.class);
-        List<Result> results = moviesList.getResults();
-        DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        results.forEach(movie -> {
-            List<GenreEntity> genresForCurrentMovie = new ArrayList<>();
-            movie.getGenreIds().forEach(genre ->genresForCurrentMovie.add(genreRepository.getOne(Long.valueOf(genre))));
-            MovieEntity movieEntity = new MovieEntity(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getOverview(), movie.getPopularity(), convertToDate(DATEFORMATTER,movie), movie.getVoteAverage(), movie.getVoteCount(), genresForCurrentMovie);
-            if(movieEntity.getOverview() != "") {
-                movieRepo.saveAndFlush(movieEntity);
-            }
+        for(int i=1; i<=50; i++) {
+            MoviesList moviesList = restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key=e529d754811a8187c547ac59aa92495d&language=pl&page=" + i, MoviesList.class);
+            List<Result> results = moviesList.getResults();
+            DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            results.forEach(movie -> {
+                if(movie.getReleaseDate() == "" || movie.getReleaseDate() == null){
+                    System.out.println(movie.getId()+"/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
+                    return;
+                }
+                    List<GenreEntity> genresForCurrentMovie = new ArrayList<>();
+                    movie.getGenreIds().forEach(genre -> genresForCurrentMovie.add(genreRepository.getOne(Long.valueOf(genre))));
+                    MovieEntity movieEntity = new MovieEntity(movie.getId(), movie.getPosterPath(), movie.getTitle(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getOverview(), movie.getPopularity(), convertToDate(DATEFORMATTER, movie), movie.getVoteAverage(), movie.getVoteCount(), genresForCurrentMovie);
+                    if (movieEntity.getOverview() != "") {
 
-        } );
+                        movieRepo.saveAndFlush(movieEntity);
+                    }
+
+            });
+        }
     }
 
     private LocalDate convertToDate(DateTimeFormatter DATEFORMATTER, Result movie){
