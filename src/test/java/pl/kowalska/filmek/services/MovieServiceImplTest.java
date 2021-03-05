@@ -45,12 +45,6 @@ class MovieServiceImplTest {
         genre = genreRepository.findByName("Animacja");
     }
 
-//    @Test
-//    void findMovieByGenre(){
-//        List<MovieEntity> queryMovies = movieRepo.findMoviesByGenre(genre);
-//        queryMovies.forEach(System.out::println);
-//    }
-
     @Transactional
     @Test
     void loadMovieToDB(){
