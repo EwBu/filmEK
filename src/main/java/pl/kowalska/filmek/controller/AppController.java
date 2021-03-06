@@ -45,19 +45,10 @@ public class AppController {
         this.movieService = movieService;
     }
 
-
     @GetMapping("/login")
     public String login(){
         return "login";
     }
-
-    @PostMapping("/login/process")
-    public String process(){
-        System.out.println("process");
-        return "login";
-    }
-
-
 
     @PostMapping ("/successLogin")
     public String successLogin(){

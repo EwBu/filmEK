@@ -1,4 +1,4 @@
-package pl.kowalska.filmek.chat;
+package pl.kowalska.filmek.config;
 
 
 import org.springframework.context.annotation.Configuration;

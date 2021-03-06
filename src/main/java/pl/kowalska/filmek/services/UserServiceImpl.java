@@ -1,6 +1,9 @@
 package pl.kowalska.filmek.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,12 +11,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.kowalska.filmek.dto.UserDto;
+import pl.kowalska.filmek.model.ConfirmationToken;
 import pl.kowalska.filmek.model.Role;
 import pl.kowalska.filmek.model.User;
+import pl.kowalska.filmek.repository.ConfirmationTokenRepository;
 import pl.kowalska.filmek.repository.RoleRepository;
 import pl.kowalska.filmek.repository.UserRepository;
 
-import java.util.Arrays;
+import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -24,14 +31,21 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final ConfirmationTokenRepository confirmationTokenRepository;
+    @Value("${spring.mail.username}")
+    String mailFrom;
+
+    @Resource
+    private JavaMailSender javaMailSender;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, ConfirmationTokenRepository confirmationTokenRepository) {
         super();
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.confirmationTokenRepository = confirmationTokenRepository;
     }
 
     @Override
@@ -43,10 +57,6 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    @Override
-    public void update(User user) {
-        userRepository.save(user);
-    }
 
     @Override
     public User findUserByEmail(String email) {
@@ -61,6 +71,37 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public void handleConfirmationMailSending(UserDto userRegistrationDto) {
+        save(userRegistrationDto);
+        User user = findUserByUsername(userRegistrationDto.getUserName());
+
+        ConfirmationToken confirmationToken = new ConfirmationToken(user);
+
+        confirmationTokenRepository.save(confirmationToken);
+
+        MimeMessage mailMessage = javaMailSender.createMimeMessage();
+        try {
+            mailMessage.setSubject("Dokończ rejestrację!", "UTF-8");
+            MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true, "UTF-8");
+            helper.setTo(user.getEmail());
+            helper.setFrom("serwis.filmek@gmail.com");
+            helper.setText("Aby potwierdzić swoje konto przejdź kliknij przycisk: "
+                    +"<br><a href=\""+String.format("http://localhost:8075/confirm-account?token=%s\"",confirmationToken.getConfirmationToken())+"><button>"+
+                    "AKTYWUJ KONTO"+"</button></a>",true);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        javaMailSender.send(mailMessage);
+    }
+
+    @Override
+    public void updateUser(ConfirmationToken token) {
+        User user = findUserByEmail(token.getUser().getEmail());
+        user.setConfirmed(true);
+        userRepository.save(user);
     }
 
     @Override
