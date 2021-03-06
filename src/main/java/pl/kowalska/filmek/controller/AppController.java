@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -50,11 +51,23 @@ public class AppController {
         return "login";
     }
 
+    @PostMapping("/login/process")
+    public String process(){
+        System.out.println("process");
+        return "login";
+    }
+
+
+
     @PostMapping ("/successLogin")
     public String successLogin(){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userService.loadUserByEmail(email);
-        userDto = new UserDto(user.getUserName(),user.getEmail(),user.getPassword(), user.getGender());
+        User user = userService.findUserByEmail(email);
+        if (!user.isConfirmed()){
+           SecurityContextHolder.getContext().setAuthentication(null);
+           return "accountNotVerified";
+        }
+        userDto = new UserDto(user.getUserName(),user.getEmail(),user.getPassword(), user.getGender(),user.isConfirmed());
         return "redirect:/main";
     }
 

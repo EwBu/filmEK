@@ -20,7 +20,7 @@
             <!--<li class="nav-item active">-->
                 <!--<a class="nav-link" th:href="@{'/'}">Strona główna <span class="sr-only">(current)</span></a>-->
             <!--</li>-->
-            <li class="nav-item" sec:authorize="isAnonymous()">
+            <li class="nav-item" sec:authorize="isAnonymous()" sec:authentication="i">
                 <a class="nav-link" th:href="@{/logout}">Wyloguj</a>
             </li>
 

@@ -11,6 +11,15 @@
     <div th:if="${param.success}">
         <div class="alert alert-info">Rejestracja przebiegła pomyślnie!</div>
     </div>
+    <div th:if="${param.theSameEmail}">
+        <div class="alert alert-warning">Użytkownik o podanym E-mailu już istnieje</div>
+    </div>
+    <div th:if="${param.theSameUsername}">
+        <div class="alert alert-warning">Użytkownik o podanej nazwie już istnieje</div>
+    </div>
+    <div th:if="${param.verifyAccount}">
+        <div class="alert alert-warning">Mail weryfikacyjny został wysłany na twoją skrzynkę. <br>Skorzystaj z linku aktywacyjnego aby rozpocząć korzystanie z portalu.</div>
+    </div>
     <div>
         <h1>Utwórz konto</h1>
     </div>
@@ -48,7 +57,7 @@
                 </div>
             </div>
             <div>
-                <button type="submit" class="btn btn-primary" >Uwtórz konto</button>
+                <button type="submit" class="btn btn-primary" >Utwórz konto</button>
             </div>
         </div>
     </form>

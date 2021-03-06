@@ -47,52 +47,52 @@ class UsersAndRolesLoader {
                 "Kamil@wp.pl",
                 passwordEncoder.encode("filmy"),
                 'M',
-                admin);
+                admin,true);
         User user2 = new User("Kinomaniak",
                 "Robert87@gmail.com",
                 passwordEncoder.encode("cinemaCity2021"),
                 'M',
-                user);
+                user,true);
         User user3 = new User("Karolina",
                 "Karolina@gmail.com",
                 passwordEncoder.encode("dirtyDancing"),
                 'K',
-                user);
+                user,true);
         User user4 = new User("Malinka",
                 "IzabelaMarczak@gmail.com",
                 passwordEncoder.encode("jasImalgosia"),
                 'M',
-                user);
+                user,true);
         User user5 = new User("Zenek",
                 "ZenonMartyniuk@gmail.com",
                 passwordEncoder.encode("przezTweFilmyPelnometrazowe"),
                 'M',
-                user);
+                user,true);
         User user6 = new User("KrytykFilmowy",
                 "MichalOpasek@gmail.com",
                 passwordEncoder.encode("FullHD4K"),
                 'M',
-                user);
+                user,true);
         User user7 = new User("KaMyK",
                 "Mateusz_B@gmail.com",
                 passwordEncoder.encode("Standard8mm"),
                 'M',
-                user);
+                user,true);
         User user8 = new User("Stokrotka",
                 "Kamila96@gmail.com",
                 passwordEncoder.encode("filmyKrotkometrazowe"),
                 'K',
-                user);
+                user,true);
         User user9 = new User("Snajper",
                 "RobertWydra@gmail.com",
                 passwordEncoder.encode("CzeskiFilm"),
                 'M',
-                user);
+                user,true);
         User user10 = new User("Maurycy",
                 "SuperUser@gmail.com",
                 passwordEncoder.encode("!Qwerty123?"),
                 'M',
-                user);
+                user,true);
 
         Arrays.asList(user1,user2,user3,user4,user5,user6,user7,user8,user9,user10)
                 .forEach(kinomaniak -> userRepository.saveAndFlush(kinomaniak));

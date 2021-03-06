@@ -5,16 +5,17 @@ public class UserDto {
      private String email;
      private String password;
      private char gender;
+     private boolean comfirmed;
 
     public UserDto() {
     }
 
-    public UserDto(String userName, String email, String password, char gender) {
-        super();
+    public UserDto(String userName, String email, String password, char gender, boolean comfirmed) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.gender = gender;
+        this.comfirmed = comfirmed;
     }
 
     public String getUserName() {
@@ -47,5 +48,13 @@ public class UserDto {
 
     public void setGender(char gender) {
         this.gender = gender;
+    }
+
+    public boolean isComfirmed() {
+        return comfirmed;
+    }
+
+    public void setComfirmed(boolean comfirmed) {
+        this.comfirmed = comfirmed;
     }
 }

@@ -1,55 +1,8 @@
-<!--
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Logowanie</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-</head>
-<body>
-    <div class="container text-center">
-        <div th:if="${param.error}">
-            <div class="alert alert-danger">Podano złe dane logowania.</div>
-        </div>
-        <div th:if="${param.logout}">
-            <div class="alert alert-info">Wylogowano pomyślnie.</div>
-        </div>
-        <div>
-            <h1>Zaloguj się</h1>
-        </div>
-        <form th:action="@{/login}" method="post">
-            <div class="m-3 ">
-                <div class="form-group row">
-                    <label class="col-form-label col-4">E-mail:</label>
-                    <div class="col-8">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Wpisz adres email" autofocus="autofocus"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-form-label col-4">Hasło:</label>
-                    <div class="col-8">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Podaj Hasło"/>
-                    </div>
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-primary" name="zaloguj" id="zaloguj" value="zaloguj">Zaloguj się</button>
-                </div>
-            </div>
-        </form>
-        <div class="form-group">
-            <span>Nowy użytkownik? <a href="/" th:href="@{/registration}">Zarejestruj się</a> </span>
-        </div>
-    </div>
-</body>
-</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Registration and Login App</title>
-
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -72,7 +25,7 @@
 
                 <!-- logout message -->
                 <div th:if="${param.logout}">
-                    <div class="alert alert-info">Zostałeś Wylogowany</div>
+                    <div class="alert alert-info">Zostałeś Pomyślnie wylogowany</div>
                 </div>
 
                 <div class = "form-group">
@@ -82,7 +35,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Password</label>: <input type="password"
+                    <label for="password">Hasło</label>: <input type="password"
                                                                    id="password" name="password" class="form-control"
                                                                    placeholder="Podaj Hasło" />
                 </div>
@@ -92,7 +45,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
                             <input type="submit" name="login-submit" id="login-submit"
-                                   class="form-control btn btn-primary" value="Log In" />
+                                   class="form-control btn btn-primary" value="Zaloguj się" />
                         </div>
                     </div>
                 </div>

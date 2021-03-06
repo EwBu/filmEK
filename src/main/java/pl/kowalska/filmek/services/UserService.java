@@ -8,9 +8,13 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService {
 
-    User save(UserDto registrationDto);
+    void save(UserDto registrationDto);
 
-    User loadUserByEmail(String email);
+    void update(User user);
+
+    User findUserByEmail(String email);
+
+    User findUserByUsername(String username);
 
     List<User> findAll();
 }

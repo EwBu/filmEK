@@ -25,6 +25,9 @@ public class User {
     @Column(nullable = false, length = 1)
     private char gender;
 
+    private boolean isConfirmed;
+
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -36,12 +39,14 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String email, String password, char gender, Collection<Role> roles) {
+
+    public User(String userName, String email, String password, char gender, Collection<Role> roles, boolean isConfirmed) {
         super();
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.gender = gender;
+        this.isConfirmed = isConfirmed;
         this.roles = roles;
     }
 
@@ -67,5 +72,13 @@ public class User {
 
     public Collection<Role> getRoles() {
         return roles;
+    }
+
+    public boolean isConfirmed() {
+        return isConfirmed;
+    }
+
+    public void setConfirmed(boolean confirmed) {
+        isConfirmed = confirmed;
     }
 }
