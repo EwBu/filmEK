@@ -50,7 +50,7 @@ public class UserRegistrationController {
             return "redirect:/registration?theSameUsername";
         }
         else {
-            userService.handleConfirmationMailSending(userRegistrationDto());
+            userService.handleConfirmationMailSending(registrationDto);
             return "redirect:/registration?verifyAccount";
         }
     }
@@ -59,6 +59,7 @@ public class UserRegistrationController {
     @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView confirmUserAccount(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)
     {
+
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
         if(token != null)
         {
