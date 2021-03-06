@@ -102,6 +102,7 @@ public class UserServiceImpl implements UserService {
         User user = findUserByEmail(token.getUser().getEmail());
         user.setConfirmed(true);
         userRepository.save(user);
+        confirmationTokenRepository.delete(token);
     }
 
     @Override
