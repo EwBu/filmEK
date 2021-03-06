@@ -17,7 +17,6 @@ public class MailConfig {
                                          @Value("${spring.mail.username}") String mailName,
                                          @Value("${spring.mail.password}") String mailCred) {
         Properties props = new Properties();
-//        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable","true");
         props.put("mail.smtp.starttls.required ","true");

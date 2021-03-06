@@ -62,8 +62,6 @@ public class AppController {
         return "redirect:/main";
     }
 
-
-
     @GetMapping("/main")
     public String viewHomePage(
             @RequestParam(value = "search", required = false) String q,
@@ -112,35 +110,12 @@ public class AppController {
         return "filtered_movies";
     }
 
-//    @GetMapping("/register")
-//    public String viewRegisterForm(Model model){
-//        model.addAttribute("user", new User());
-//        return "register";
-//    }
-
-//    @PostMapping("/process_register")
-//    public String processRegister(User user){
-//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//        String encodedPass = encoder.encode(user.getPassword());
-//        user.setPassword(encodedPass);
-//        userRepo.save(user);
-//        return "register_success";
-//    }
-
     @GetMapping("/list_users")
     public String viewUsersList(Model model){
         List<User> listUsers = userService.findAll();
         model.addAttribute("listUsers", listUsers);
         return "users";
     }
-
-
-//    @GetMapping("/")
-//    public String viewSerchedMovies(Model model){
-//        String movieTitle = null;
-//        model.addAttribute("title", movieTitle);
-//        return "index";
-//    }
 
 
 }
