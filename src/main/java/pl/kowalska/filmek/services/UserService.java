@@ -20,4 +20,5 @@ public interface UserService extends UserDetailsService {
     void handleConfirmationMailSending(UserDto userRegistrationDto);
 
     void updateUser(ConfirmationToken token);
+
 }

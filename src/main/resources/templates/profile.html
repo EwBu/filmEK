@@ -77,15 +77,11 @@
         <div class="row">
 
             <div class="col-md-6 ">
-                <tr th:each="user : ${user}">
+                <!--<tr th:each="user : ${user}">-->
 
-                    <label class="text-center w-125"><h3><b>Edytuj profil</b></h3>
-                    </label>
+                    <label class="text-center w-125"><h3><b>Edytuj profil</b></h3></label>
                     <br>
-                    <form class="form-horizontal" role="form" th:object="${user}" th:action="@{'/editUser'}"
-                          method="post">
-
-
+                    <form class="form-horizontal" role="form" th:object="${user}" th:action="@{'/profile/editUser'}" method="post">
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Login:</label>
                             <div class="col-lg-8">
@@ -94,14 +90,11 @@
                                 </label>
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" th:value="${user.email}">
+                                <input class="form-control" type="text" th:value="${user.email}" id="emailChange">
                             </div>
-
                         </div>
                         <!--<div th:if="${badMail}" th:text="${badMail}" class="errorMessage"/>-->
                         <div class="form-group">
@@ -115,14 +108,14 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Hasło:</label>
                             <div class="col-md-8">
-                                <input class="form-control" type="password" value="11111122333">
+                                <input class="form-control" type="password" value="11111122333" id="password">
                                 <!--todo dodać hashowanie hasła i zmianę-->
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Powtórz hasło:</label>
                             <div class="col-md-8">
-                                <input class="form-control" type="password" value="11111122333">
+                                <input class="form-control" type="password" value="11111122333" id="confirmpass">
                             </div>
                         </div>
                         <!--<div th:if="${wrongPassword}" th:text="${wrongPassword}" class="errorMessage"/>-->

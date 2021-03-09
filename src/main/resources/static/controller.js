@@ -12,7 +12,7 @@ function showMessage(value, user, userColor) {
 }
 
 function connect() {
-    client = Stomp.client('ws://localhost:8075/chat');
+    client = Stomp.client('ws://localhost:8080/chat');
     color = getRandomColor();
     client.connect({}, function (frame) {
         client.subscribe("/topic/messages", function(message){
