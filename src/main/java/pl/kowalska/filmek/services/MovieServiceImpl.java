@@ -78,13 +78,14 @@ public class MovieServiceImpl implements MovieService{
         List<MovieEntity> moviesByQuery;
         LocalDate minYear = LocalDate.of(yearMin, 01,01);
         LocalDate maxYear = LocalDate.of(yearMax, 12,31);
-        if(genre != null) {
+        if(genre == null || genre =="") {
+            moviesByQuery = movieRepo.findMoviesByQueryWithoutGenre(voteMin, voteMax, popularityMin, popularityMax, minYear, maxYear);
+        }else {
             GenreEntity genreEntity = genreRepo.findByName(genre);
             moviesByQuery = movieRepo.findMoviesByQueryWithGenre(genreEntity, voteMin, voteMax, popularityMin, popularityMax, minYear, maxYear);
-        }else {
-            moviesByQuery = movieRepo.findMoviesByQueryWithoutGenre(voteMin, voteMax, popularityMin, popularityMax, minYear, maxYear);
+
         }
-            return moviesByQuery;
+        return moviesByQuery;
     }
 
 }
