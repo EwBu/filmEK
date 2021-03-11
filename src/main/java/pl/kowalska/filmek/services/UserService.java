@@ -19,6 +19,9 @@ public interface UserService extends UserDetailsService {
 
     void handleConfirmationMailSending(UserDto userRegistrationDto);
 
-    void updateUser(ConfirmationToken token);
+    void updateUserActivationState(ConfirmationToken token);
+
+    void updateUser(User user);
+
 
 }

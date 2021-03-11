@@ -20,3 +20,10 @@
     padding: 5px;
 }
 
+.container {
+    display: grid;
+}
+
+.content, .overlay {
+    grid-area: 1 / 1;
+}

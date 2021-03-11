@@ -98,12 +98,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(ConfirmationToken token) {
+    public void updateUserActivationState(ConfirmationToken token) {
         User user = findUserByEmail(token.getUser().getEmail());
         user.setConfirmed(true);
         userRepository.save(user);
         confirmationTokenRepository.delete(token);
     }
+
+    @Override
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
+
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

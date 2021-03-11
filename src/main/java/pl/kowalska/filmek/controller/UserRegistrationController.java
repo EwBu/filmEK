@@ -63,7 +63,7 @@ public class UserRegistrationController {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
         if(token != null)
         {
-            userService.updateUser(token);
+            userService.updateUserActivationState(token);
             modelAndView.setViewName("accountVerified");
         }
         else

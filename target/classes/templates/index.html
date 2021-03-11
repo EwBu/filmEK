@@ -5,12 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie application</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+<!--    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>-->
     <link rel="stylesheet" href="css/movies.css" type="text/css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+<!--    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+
+    <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 
 </head>
 <body onload="connect()">
@@ -77,93 +79,7 @@
         </form>
     </div>
 </nav>
-<div class="container">
-    <div class="row">
-        <div class="col-md-5">
-            <div class="panel panel-primary">
-                <div class="panel-heading" id="accordion">
-                    <span class="glyphicon glyphicon-comment"></span> Chat
-                    <div class="btn-group pull-right">
-                        <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                            <span class="glyphicon glyphicon-chevron-down"></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="panel-collapse collapse" id="collapseOne">
-                    <div class="panel-body">
-                        <ul class="chat">
-                            <li class="left clearfix"><span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                        </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                        dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="right clearfix"><span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
-                        </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                        dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="left clearfix"><span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                        </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                        dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="right clearfix"><span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
-                        </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                        dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="input-group">
-                            <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                            <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat">
-                                Send</button>
-                        </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="container-fluid">
     <form th:action="@{/filter_movies}" method="post">
         <div class="row filter-row">
@@ -204,6 +120,7 @@
         </div>
     </form>
 </div>
+
 <div class="container-fluid">
     <div class="row">
 
@@ -258,6 +175,9 @@
                         <td width="7%"><br>
                             <h2><label th:text="${search.voteAverage}"></label></h2></td>
                         <td><br>
+
+
+
                             <h3><img
                                     src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
                                     width="30" height="30"></h3></td>
@@ -286,86 +206,156 @@
                 </div>
             </div>
         </div>
-
-        <!--<div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">-->
-        <!--<div class="card">-->
-        <!--<div class="box-poster">-->
-        <!--<img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}"-->
-        <!--class="card-img-top img-poster">-->
-
-        <!--<img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"-->
-        <!--class="star-poster"></h2>-->
-        <!--<span th:text="${movie.voteAverage}" class="vote-poster"></span>-->
-        <!--</div>-->
-
-        <!--<div class="card-body">-->
-        <!--<h6 th:text="${movie.title}" class="card-title">Title</h6>-->
-        <!--<a th:href="@{/movie/{movieId} (movieId=${movie.id})}" class="btn btn-light button-poster">O-->
-        <!--Filmie</a>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
     </div>
 </div>
 <footer class="fixed-bottom footer">
-<div class="row">
-<!--<div th:if="${listMovies.totalPages > 0}" class="pagination"-->
-<!--th:each="pageNumber : ${pageNumbers}">-->
-<!--<a th:href="@{/main(size=${listMovies.size}, page=${pageNumber})}"-->
-<!--th:text="${pageNumber}"-->
-<!--th:class="${pageNumber==listMovies.number + 1} ? active"></a>-->
-<!--</div>-->
-<!--<div class="col-sm-7">-->
-<!-- Pagination Bar -->
-<!--<nav aria-label="Page navigation example">-->
-<nav class="justify-content-center">
-<div th:fragment='paginationbar'>
-<ul class="pagination">
-<li class="page-item" th:class="${page.firstPage}?'disabled':''">
-<span th:if='${page.firstPage}' class="page-link">← Pierwsza</span>
-<a th:if='${not page.firstPage}' th:href='@{${page.url}(page=0,size=${page.size})}' class="page-link">←
-Pierwsza</a>
-</li>
-<li class="page-item" th:class="${page.hasPreviousPage}? '' : 'disabled'">
-<span th:if='${not page.hasPreviousPage}' class="page-link">«</span>
-<a th:if='${page.hasPreviousPage}'
-th:href='@{${page.url}(page=${page.number-2},size=${page.size})}'
-title='Go to previous page' class="page-link">«</a>
-</li>
-<li class="page-item" th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
-<span th:if='${item.current}' th:text='${item.number}' class="page-link">1</span>
-<a th:if='${not item.current}'
-th:href='@{${page.url}(page=${item.number-1},size=${page.size})}' class="page-link"><span
-th:text='${item.number}'>1</span></a>
-</li>
-<li class="page-item" th:class="${page.hasNextPage}? '' : 'disabled'">
-<span th:if='${not page.hasNextPage}'>»</span>
-<a th:if='${page.hasNextPage}'
-th:href='@{${page.url}(page=${page.number},size=${page.size})}'
-title='Go to next page' class="page-link">»</a>
-</li>
-<li class="page-item" th:class="${page.lastPage}? 'disabled' : ''">
-<span th:if='${page.lastPage}'>Ostatnia →</span>
-<a th:if='${not page.lastPage}'
-th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}' class="page-link">Ostatnia →</a>
-</li>
-</ul>
-</div>
+    <div class="container">
+    <div class="content">
+        <nav class="justify-content-center">
+            <div th:fragment='paginationbar'>
+                <ul class="pagination">
+                    <li class="page-item" th:class="${page.firstPage}?'disabled':''">
+                        <span th:if='${page.firstPage}' class="page-link">← Pierwsza</span>
+                        <a th:if='${not page.firstPage}' th:href='@{${page.url}(page=0,size=${page.size})}'
+                           class="page-link">←
+                            Pierwsza</a>
+                    </li>
+                    <li class="page-item" th:class="${page.hasPreviousPage}? '' : 'disabled'">
+                        <span th:if='${not page.hasPreviousPage}' class="page-link">«</span>
+                        <a th:if='${page.hasPreviousPage}'
+                           th:href='@{${page.url}(page=${page.number-2},size=${page.size})}'
+                           title='Go to previous page' class="page-link">«</a>
+                    </li>
+                    <li class="page-item" th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
+                        <span th:if='${item.current}' th:text='${item.number}' class="page-link">1</span>
+                        <a th:if='${not item.current}'
+                           th:href='@{${page.url}(page=${item.number-1},size=${page.size})}' class="page-link"><span
+                                th:text='${item.number}'>1</span></a>
+                    </li>
+                    <li class="page-item" th:class="${page.hasNextPage}? '' : 'disabled'">
+                        <span th:if='${not page.hasNextPage}'>»</span>
+                        <a th:if='${page.hasNextPage}'
+                           th:href='@{${page.url}(page=${page.number},size=${page.size})}'
+                           title='Go to next page' class="page-link">»</a>
+                    </li>
+                    <li class="page-item" th:class="${page.lastPage}? 'disabled' : ''">
+                        <span th:if='${page.lastPage}'>Ostatnia →</span>
+                        <a th:if='${not page.lastPage}'
+                           th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}' class="page-link">Ostatnia
+                            →</a>
+                    </li>
+                </ul>
+            </div>
 
 
-</nav>
+        </nav>
 
-</div>
+    </div>
+        <div class="position-absolute">
+            <link rel="stylesheet"  href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" id="bootstrap-css">
+
+            <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="accordion">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseOne">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="panel-collapse collapse" id="collapseOne">
+                    <div class="panel-body">
+                        <ul class="chat">
+                            <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>
+                        </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">Jack Sparrow</strong>
+                                        <small class="pull-right text-muted">
+                                            <span class="glyphicon glyphicon-time"></span>12 mins ago
+                                        </small>
+                                    </div>
+                                    <p id="response"/>
+                                </div>
+                            </li>
+                            <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle"/>
+                        </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins
+                                            ago
+                                        </small>
+                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                    </div>
+<!--                                    <p id="response"/>-->
+                                </div>
+                            </li>
+                            <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>
+                        </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">Jack Sparrow</strong>
+                                        <small class="pull-right text-muted">
+                                            <span class="glyphicon glyphicon-time"></span>14 mins ago
+                                        </small>
+                                    </div>
+<!--                                    <p id="response"/>-->
+                                </div>
+                            </li>
+                            <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle"/>
+                        </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins
+                                            ago
+                                        </small>
+                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                    </div>
+<!--                                    <p id="response"/>-->
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="messageToSend" type="text" class="form-control input-sm"
+                                   placeholder="Type your message here..."/>
+
+                            <span class="input-group-btn">
+                            <button onclick="sendMessage()">
+                                   <!-- class="btn btn-warning btn-sm"
+                                    id="btn-chat"-->
+
+                                Send</button>
+
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    <div class="overlay">
+
+    </div>
+    </div>
 </footer>
-<div sec:authorize="isAuthenticated()">
-    <p hidden><label id="user" th:text="${loggedUser.getUserName()}"/><br></p>
-    <label>treść</label>
-    <input id="messageToSend" type="text"/><br>
+<!--<div sec:authorize="isAuthenticated()">-->
+<!--<div class="container">-->
+<!--&lt;!&ndash;    <p hidden><label id="user" th:text="${loggedUser.getUserName()}"/><br></p>&ndash;&gt;-->
+<!--&lt;!&ndash;    <label>treść</label>&ndash;&gt;-->
+<!--    <input id="messageToSend" type="text"/><br>-->
 
-    <button onclick="sendMessage()">Send</button>
-    <p id="reponse"></p>
-</div>
+<!--    <button onclick="sendMessage()">Send</button>-->
+<!--    <p id="reponse"></p>-->
+<!--</div>-->
 <script src="controller.js"></script>
 <script src="stomp.js"></script>
 
