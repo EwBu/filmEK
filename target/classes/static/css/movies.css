@@ -1,3 +1,4 @@
+
 .box-poster{
     position: relative;
 }
@@ -27,3 +28,82 @@
 .content, .overlay {
     grid-area: 1 / 1;
 }
+.open-button {
+    background-color: #A6ACAF;
+    color: white;
+    /*padding: 16px 20px;*/
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    width: 400px;
+    height: 100%;
+
+}
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+.chat-container {
+    width: 400px;
+    padding: 10px;
+    background-color: white;
+}
+.text-box-chat{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    resize: none;
+    min-height: 20px !important;
+}
+.pagination{
+    margin-left: 20rem;
+    margin-bottom: 0;
+}
+.pagination a{
+    color: dimgrey;
+}
+.pagination span{
+    color: dimgrey;
+}
+.pagination a:active {
+    color: dimgrey;
+}
+.pagination a:hover {
+    color: dimgrey;
+}
+.pagination a:focus {
+    color: dimgrey;
+}
+.pagination span:hover {
+    color: dimgrey;
+}
+.footer{
+    background: #f8f9fa;
+    max-height: 100px;
+    position: relative;
+}
+.chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.panel-body
+{
+    overflow-y: scroll;
+    height: 250px;
+    word-wrap: break-word;
+}
+ body{
+     margin-bottom: 100px;
+ }
+

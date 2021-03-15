@@ -1,18 +1,22 @@
 var client = null;
 var color;
 
+window.onload=function() {
+    connect();
+}
+
 function showMessage(value, user, userColor) {
-    var newResponse = document.createElement('p');
+    let newResponse = document.createElement('p');
     newResponse.style.color = userColor;
     newResponse.appendChild(document.createTextNode(user));
     newResponse.appendChild(document.createTextNode(": "));
     newResponse.appendChild(document.createTextNode(value));
-    var respone = document.getElementById('reponse');
-    respone.appendChild(newResponse);
+    let response = document.getElementById('response');
+    response.appendChild(newResponse);
 }
 
 function connect() {
-    client = Stomp.client('ws://localhost:8075/chat');
+    client = Stomp.client('ws://localhost:8080/chat');
     color = getRandomColor();
     client.connect({}, function (frame) {
         client.subscribe("/topic/messages", function(message){
@@ -26,6 +30,7 @@ function sendMessage() {
     var user = document.getElementById('user').textContent;
     client.send("/app/chat", {}, JSON.stringify({'value': messageToSend, 'user': user, 'userColor': color}) );
     document.getElementById('messageToSend').value = "";
+    // document.getElementById("myForm").style.display = "block";
 }
 
 function getRandomColor() {

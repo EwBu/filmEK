@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
             helper.setTo(user.getEmail());
             helper.setFrom("serwis.filmek@gmail.com");
             helper.setText("Aby potwierdzić swoje konto kliknij przycisk poniżej: "
-                    +"<br><a href=\""+String.format("http://localhost:8075/confirm-account?token=%s\"",confirmationToken.getConfirmationToken())+"><button>"+
+                    +"<br><a href=\""+String.format("http://localhost:8080/confirm-account?token=%s\"",confirmationToken.getConfirmationToken())+"><button>"+
                     "AKTYWUJ KONTO"+"</button></a>",true);
         } catch (MessagingException e) {
             e.printStackTrace();

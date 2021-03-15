@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="PL">
 
 <head>
     <meta charset="UTF-8">
     <title>Movie application</title>
-<!--    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>-->
+        <!--<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>-->
     <link rel="stylesheet" href="css/movies.css" type="text/css">
-    <link rel="stylesheet"  href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" id="bootstrap-css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+
+    <!--<link rel="stylesheet"  href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" id="bootstrap-css">-->
 
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!--    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+    <!--<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>-->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" id="pane"/>
 
     <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 
+    <script type="text/javascript" src="./controller.js"></script>
+    <script type="text/javascript" src="./stomp.js"></script>
+    <script>
+
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+
+    </script>
+
 </head>
-<body onload="connect()">
+<body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" th:href="@{'/main'}">filmEK</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <!--<li class="nav-item active">-->
-            <!--<a class="nav-link" th:href="@{'/'}">Strona główna <span class="sr-only">(current)</span></a>-->
-            <!--</li>-->
             <li class="nav-item" sec:authorize="isAuthenticated()">
                 <a class="nav-link" th:href="@{/profile}">Profil</a>
             </li>
@@ -125,35 +134,7 @@
 
 <div class="container-fluid">
     <div class="row">
-
-        <!--<div th:if="${not #lists.isEmpty(filterMovies)}">-->
-        <!--<div class="table-responsive" >-->
-        <!--<table class="table">-->
-        <!--<tr>-->
-        <!--<th></th> <th>Tytuł filmu</th>	<th colspan="2">Średnia ocena</th>-->
-        <!--</tr>-->
-        <!--<tbody>-->
-        <!--<tr th:each="movie : ${filterMovies}">-->
-        <!--&lt;!&ndash;<td><a th:href="@{'/movie/' + ${search.movieId}}" th:text="${search.movieId}"></a></td>&ndash;&gt;-->
-        <!--<td><img th:src="${'https://image.tmdb.org/t/p/w500' + movie.posterPath}"-->
-        <!--height="160" width="110"/></td>-->
-        <!--<td width="80%"><h3><a th:href="@{'/movie/movie_details/' + ${movie.id}}"-->
-        <!--th:text="${movie.title + ' (' + movie.releaseDate + ')'}" style="color: black"> </a>-->
-        <!--</h3>-->
-        <!--<h5><label th:text="${movie.originalTitle}"></label></h5>-->
-        <!--</td>-->
-
-        <!--<td width="7%"><br><h2><label th:text="${movie.voteAverage}"></label></h2></td>-->
-        <!--<td><br>-->
-        <!--<h3><img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"-->
-        <!--width="30" height="30"></h3></td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-        <!--</table>-->
-        <!--</div>-->
-
-        <!--</div>-->
-        <!--        <div th:if="${not #lists.isEmpty(search)}">-->
+                <!--        <div th:if="${not #lists.isEmpty(search)}">-->
         <div th:if="${search!=null}">
             <div class="table-responsive">
                 <table class="table">
@@ -213,7 +194,7 @@
 <footer class="fixed-bottom footer">
     <div class="container">
     <div class="content">
-        <nav class="justify-content-center">
+        <!--<nav class="justify-content-center">-->
             <div th:fragment='paginationbar'>
                 <ul class="pagination">
                     <li class="page-item" th:class="${page.firstPage}?'disabled':''">
@@ -235,128 +216,137 @@
                                 th:text='${item.number}'>1</span></a>
                     </li>
                     <li class="page-item" th:class="${page.hasNextPage}? '' : 'disabled'">
-                        <span th:if='${not page.hasNextPage}'>»</span>
+                        <span th:if='${not page.hasNextPage}' class="page-link">»</span>
                         <a th:if='${page.hasNextPage}'
                            th:href='@{${page.url}(page=${page.number},size=${page.size})}'
                            title='Go to next page' class="page-link">»</a>
                     </li>
                     <li class="page-item" th:class="${page.lastPage}? 'disabled' : ''">
-                        <span th:if='${page.lastPage}'>Ostatnia →</span>
+                        <span th:if='${page.lastPage}' class="page-link">Ostatnia →</span>
                         <a th:if='${not page.lastPage}'
                            th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}' class="page-link">Ostatnia
                             →</a>
                     </li>
                 </ul>
             </div>
-
-
-        </nav>
-
-    </div>
-        <div class="position-absolute">
-        <div class="col-md-5">
-            <div class="panel panel-primary">
-                <div class="panel-heading" id="accordion">
-                    <span class="glyphicon glyphicon-comment"></span> Chat
-                    <div class="btn-group pull-right">
-                        <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion"
-                           href="#collapseOne">
-                            <span class="glyphicon glyphicon-chevron-down"></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="panel-collapse collapse" id="collapseOne">
-                    <div class="panel-body">
-                        <ul class="chat">
-                            <li class="left clearfix"><span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>
-                        </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font">Jack Sparrow</strong>
-                                        <small class="pull-right text-muted">
-                                            <span class="glyphicon glyphicon-time"></span>12 mins ago
-                                        </small>
-                                    </div>
-                                    <p id="response"/>
-                                </div>
-                            </li>
-                            <li class="right clearfix"><span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle"/>
-                        </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins
-                                            ago
-                                        </small>
-                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                    </div>
-<!--                                    <p id="response"/>-->
-                                </div>
-                            </li>
-                            <li class="left clearfix"><span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>
-                        </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font">Jack Sparrow</strong>
-                                        <small class="pull-right text-muted">
-                                            <span class="glyphicon glyphicon-time"></span>14 mins ago
-                                        </small>
-                                    </div>
-<!--                                    <p id="response"/>-->
-                                </div>
-                            </li>
-                            <li class="right clearfix"><span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle"/>
-                        </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins
-                                            ago
-                                        </small>
-                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                    </div>
-<!--                                    <p id="response"/>-->
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="panel-footer">
+        <!--</nav>-->
+            <div class="chat-box-footer" sec:authorize="isAuthenticated()">
+            <button class="open-button" onclick="openForm()">Chat</button>
+            <div class="chat-popup" id="myForm">
+                <!--<form class="form-container">-->
+                    <div class="chat-container">
+                        <div class="panel-body">
+                            <ul class="chat">
+                                <p hidden><label id="user" th:text="${loggedUser.getUserName()}"/><br></p>
+                                <p id="response"></p>
+                            </ul>
+                        </div>
                         <div class="input-group">
-                            <input id="messageToSend" type="text" class="form-control input-sm"
-                                   placeholder="Type your message here..."/>
-
-                            <span class="input-group-btn">
-                            <button onclick="sendMessage()">
-                                   <!-- class="btn btn-warning btn-sm"
-                                    id="btn-chat"-->
-
-                                Send</button>
-
-                        </span>
+                            <textarea class="text-box-chat" id="messageToSend" type="text" placeholder="Wpisz wiadomość..."></textarea>
+                            <button class="btn btn-light" onclick="sendMessage()">Send</button>
+                            <button class="btn btn-light cancel" onclick="closeForm()">Close</button>
+                        <!--<p id="response"></p>-->
                         </div>
                     </div>
-                </div>
+                <!--</form>-->
+            </div>
+
             </div>
         </div>
-        </div>
-    <div class="overlay">
-
-    </div>
     </div>
 </footer>
-<!--<div sec:authorize="isAuthenticated()">-->
-<!--<div class="container">-->
-<!--&lt;!&ndash;    <p hidden><label id="user" th:text="${loggedUser.getUserName()}"/><br></p>&ndash;&gt;-->
-<!--&lt;!&ndash;    <label>treść</label>&ndash;&gt;-->
-<!--    <input id="messageToSend" type="text"/><br>-->
-
-<!--    <button onclick="sendMessage()">Send</button>-->
-<!--    <p id="reponse"></p>-->
-<!--</div>-->
-<script src="controller.js"></script>
-<script src="stomp.js"></script>
 
 </body>
 </html>
+
+
+<!--</div>-->
+<!--<div class="position-absolute">-->
+<!--<div class="col-md-5">-->
+<!--<div class="panel panel-primary">-->
+<!--<div class="panel-heading" id="accordion">-->
+<!--<span class="glyphicon glyphicon-comment"></span> Chat-->
+<!--<div class="btn-group pull-right">-->
+<!--<a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion"-->
+<!--href="#collapseOne">-->
+<!--<span class="glyphicon glyphicon-chevron-down"></span>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="panel-collapse collapse" id="collapseOne">-->
+<!--<div class="panel-body">-->
+<!--<ul class="chat">-->
+<!--<li class="left clearfix"><span class="chat-img pull-left">-->
+<!--<img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>-->
+<!--</span>-->
+<!--<div class="chat-body clearfix">-->
+<!--<div class="header">-->
+<!--<strong class="primary-font">Jack Sparrow</strong>-->
+<!--<small class="pull-right text-muted">-->
+<!--<span class="glyphicon glyphicon-time"></span>12 mins ago-->
+<!--</small>-->
+<!--</div>-->
+<!--<p id="response"/>-->
+<!--</div>-->
+<!--</li>-->
+<!--<li class="right clearfix"><span class="chat-img pull-right">-->
+<!--<img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle"/>-->
+<!--</span>-->
+<!--<div class="chat-body clearfix">-->
+<!--<div class="header">-->
+<!--<small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins-->
+<!--ago-->
+<!--</small>-->
+<!--<strong class="pull-right primary-font">Bhaumik Patel</strong>-->
+<!--</div>-->
+<!--&lt;!&ndash;                                    <p id="response"/>&ndash;&gt;-->
+<!--</div>-->
+<!--</li>-->
+<!--<li class="left clearfix"><span class="chat-img pull-left">-->
+<!--<img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle"/>-->
+<!--</span>-->
+<!--<div class="chat-body clearfix">-->
+<!--<div class="header">-->
+<!--<strong class="primary-font">Jack Sparrow</strong>-->
+<!--<small class="pull-right text-muted">-->
+<!--<span class="glyphicon glyphicon-time"></span>14 mins ago-->
+<!--</small>-->
+<!--</div>-->
+<!--&lt;!&ndash;                                    <p id="response"/>&ndash;&gt;-->
+<!--</div>-->
+<!--</li>-->
+<!--<li class="right clearfix"><span class="chat-img pull-right">-->
+<!--<img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle"/>-->
+<!--</span>-->
+<!--<div class="chat-body clearfix">-->
+<!--<div class="header">-->
+<!--<small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins-->
+<!--ago-->
+<!--</small>-->
+<!--<strong class="pull-right primary-font">Bhaumik Patel</strong>-->
+<!--</div>-->
+<!--&lt;!&ndash;                                    <p id="response"/>&ndash;&gt;-->
+<!--</div>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--<div class="panel-footer">-->
+<!--<div class="input-group">-->
+<!--<input id="messageToSend" type="text" class="form-control input-sm"-->
+<!--placeholder="Type your message here..."/>-->
+
+<!--<span class="input-group-btn">-->
+<!--<button onclick="sendMessage()">-->
+<!--&lt;!&ndash; class="btn btn-warning btn-sm"-->
+<!--id="btn-chat"&ndash;&gt;-->
+
+<!--Send</button>-->
+
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="overlay">-->
