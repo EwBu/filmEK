@@ -110,20 +110,22 @@
                     </div>
                  </div>
 
-                <div sec:authorize="isAuthenticated()">
+<!--                <div sec:authorize="isAuthenticated()">-->
                     <form method="post" th:action="@{/movie/edit/{movieId}}">
                         <h3 class="text-center">Twoja ocena
                             <div class="rating">
-                                <span class="raiting-button" value="1" id="userRaiting" name="userRaiting">☆</span>
-                                <span class="raiting-button" value="2" id="userRaiting" name="userRaiting">☆</span>
-                                <span class="raiting-button" value="3" id="userRaiting" name="userRaiting">☆</span>
-                                <span class="raiting-button" value="4" id="userRaiting" name="userRaiting">☆</span>
-                                <span class="raiting-button" value="5" id="userRaiting" name="userRaiting">☆</span>
-                                <span class="raiting-button" value="6" id="userRaiting" name="userRaiting">☆</span>
-                                <span class="raiting-button" value="7" id="userRaiting" name="userRaiting">☆</span>
-                                <span class="raiting-button" value="8" id="userRaiting" name="userRaiting">☆</span>
-                                <span class="raiting-button" value="9" id="userRaiting" name="userRaiting">☆</span>
-                                <span class="raiting-button" value="10" id="userRaiting" name="userRaiting">☆</span>
+                                <input hidden type="radio" id="RadioBtn"/>
+                                <label class="raiting-button" value="1"  name="userRaiting" for="RadioBtn">☆</label>
+                                <label class="raiting-button" value="2" id="userRaiting" name="userRaiting">☆</label>
+                                <label class="raiting-button" value="3" id="userRaiting" name="userRaiting">☆</label>
+                                <label class="raiting-button" value="4" id="userRaiting" name="userRaiting">☆</label>
+                                <label class="raiting-button" value="5" id="userRaiting" name="userRaiting">☆</label>
+                                <label class="raiting-button" value="6" id="userRaiting" name="userRaiting">☆</label>
+                                <label class="raiting-button" value="7" id="userRaiting" name="userRaiting">☆</label>
+                                <label class="raiting-button" value="8" id="userRaiting" name="userRaiting">☆</label>
+                                <label class="raiting-button" value="9" id="userRaiting" name="userRaiting">☆</label>
+                                <input hidden type="radio" id="RadioBtn2"/>
+                                <label class="raiting-button" value="10" id="userRaiting" for="RadioBtn2" name="userRaiting">☆</label>
                             </div>
                         </h3>
                         <div class="box-button">
@@ -153,3 +155,15 @@
 </section>
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script>
+    $(function(){
+        $('input[type="radio"]').click(function(){
+            if ($(this).is(':checked'))
+            {
+                alert($(this).val());
+            }
+        });
+    });
+</script>

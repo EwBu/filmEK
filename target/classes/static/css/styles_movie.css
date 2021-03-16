@@ -1,15 +1,19 @@
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
 @media screen and (max-width: 768px) {
-    .rating > span {
+    .rating > label {
         width: 0.8em;
     }
 }
 @media only screen and (min-width: 769px) and (max-width: 1024px)  {
-    .rating > span {
+    .rating > label {
         width: 0.7em;
     }
 }
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
     color: #ffc200;
     content: "\2605";
     position: absolute;

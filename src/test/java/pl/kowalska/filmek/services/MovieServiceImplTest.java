@@ -47,6 +47,19 @@ class MovieServiceImplTest {
 
     @Transactional
     @Test
+    public void loadGenresToDb(){
+        RestTemplate restTemplate = new RestTemplate();
+        ListOfGenres genresList= restTemplate.getForObject("https://api.themoviedb.org/3/genre/movie/list?api_key=e529d754811a8187c547ac59aa92495d&language=pl", ListOfGenres.class);
+        List<Genre> genres = genresList.getGenres();
+
+        genres.forEach(genre -> {
+            GenreEntity genreEntity = new GenreEntity(Long.valueOf(genre.getId()),genre.getName());
+            genreRepository.saveAndFlush(genreEntity);
+        } );
+    }
+
+    @Transactional
+    @Test
     void loadMovieToDB(){
         RestTemplate restTemplate = new RestTemplate();
         for(int i=1; i<=50; i++) {
@@ -72,19 +85,6 @@ class MovieServiceImplTest {
 
     private LocalDate convertToDate(DateTimeFormatter DATEFORMATTER, Result movie){
         return LocalDate.parse(movie.getReleaseDate(), DATEFORMATTER);
-    }
-
-    @Transactional
-    @Test
-    public void loadGenresToDb(){
-        RestTemplate restTemplate = new RestTemplate();
-        ListOfGenres genresList= restTemplate.getForObject("https://api.themoviedb.org/3/genre/movie/list?api_key=e529d754811a8187c547ac59aa92495d&language=pl", ListOfGenres.class);
-        List<Genre> genres = genresList.getGenres();
-
-        genres.forEach(genre -> {
-            GenreEntity genreEntity = new GenreEntity(Long.valueOf(genre.getId()),genre.getName());
-            genreRepository.saveAndFlush(genreEntity);
-        } );
     }
 
 
