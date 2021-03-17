@@ -6,12 +6,15 @@ import pl.kowalska.filmek.model.ConfirmationToken;
 import pl.kowalska.filmek.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
 
     void save(UserDto registrationDto);
 
     User findUserByEmail(String email);
+
+    User findUserById(Long userId);
 
     User findUserByUsername(String username);
 
@@ -21,7 +24,7 @@ public interface UserService extends UserDetailsService {
 
     void updateUserActivationState(ConfirmationToken token);
 
-    void updateUser(User user);
+    void updateUser(UserDto userdto);
 
 
 }

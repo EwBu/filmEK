@@ -9,12 +9,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import pl.kowalska.filmek.dto.UserDto;
 import pl.kowalska.filmek.model.User;
 import pl.kowalska.filmek.services.UserService;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/profile")
+@SessionAttributes("user")
 public class ProfileController {
 
 
@@ -24,18 +28,14 @@ public class ProfileController {
         this.userService = userService;
     }
 
-//    @ModelAttribute("user")
-//    public UserDto userDto(){
-//        return new UserDto();
-//    }
+    private UserDto userDto;
 
-    UserDto userDto;
     @RequestMapping("")
     public String showUser(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         User userByEmail = userService.findUserByEmail(username);
-        userDto = new UserDto(userByEmail.getUserName(), userByEmail.getEmail(),"qwertyuiop",'M',true );
+        userDto = new UserDto(userByEmail.getUserId(), userByEmail.getUserName(), userByEmail.getEmail(),"dirtyDancing",userByEmail.getGender(),userByEmail.isConfirmed());
 
         model.addAttribute("user", userDto);
         return "profile";
@@ -43,24 +43,23 @@ public class ProfileController {
 
 
     @PostMapping(value = "/editUser")
-    public String editUser(UserDto userDto, String confirmpass, BindingResult bindingResult, String emailChange, Model model) {
-         if (userService.findUserByEmail(emailChange) != null) {
-            model.addAttribute("badEmail", "Podany adres email jest już w użyciu");
-            return "profile";
+    public String editUser(@ModelAttribute("user") UserDto userDto, String confirmpass, BindingResult bindingResult, Model model) {
+
+        if(!userDto.getPassword().equals(confirmpass)){
+            model.addAttribute("err", "Podane hasła różnią się");
+        }else if(userDto.getEmail() == null || userDto.getEmail() == ""){
+            model.addAttribute("err", "Niepoprawny adres email");
+        }else if(userDto.getUserName() == null || userDto.getUserName() == "") {
+            model.addAttribute("err", "Niepoprawna nazwa użytkownika");
+        }else{
+            userService.updateUser(userDto);
+
+            model.addAttribute("success", "Zmiana danych przebiegła pomyślnie");
+            System.out.println("przeszło");
+
+            return "redirect:/main";
+
         }
-//         else if (userDto.getPassword().equals(confirmpass) == false) {
-//            model.addAttribute("wrongPassword", "Podane hasła różnią się");
-//            return "profile";
-//        }
-
-
-        User user = userService.findUserByEmail(userDto.getEmail());
-
-        model.addAttribute("success", "Rejestracja przebiegła pomyślnie , mozesz sie zalogowac");
-        System.out.println("przeszło");
-        userService.updateUser(user);
-
-        return "redirect:/main";
-
+        return "profile";
     }
 }

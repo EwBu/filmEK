@@ -24,6 +24,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,6 +62,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findUserById(Long userId){
+        return userRepository.findByUserId(userId);
     }
 
     @Override
@@ -106,7 +112,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(UserDto userDto) {
+        User user = this.findUserById(userDto.getUserId());
+
+        user.setUserName(userDto.getUserName());
+        user.setEmail(userDto.getEmail());
+        if(userDto.getPassword() != "") user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        System.out.println(user.getPassword());
         userRepository.save(user);
     }
 

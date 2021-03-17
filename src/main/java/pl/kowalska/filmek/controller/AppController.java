@@ -58,7 +58,7 @@ public class AppController {
            SecurityContextHolder.getContext().setAuthentication(null);
            return "accountNotVerified";
         }
-        userDto = new UserDto(user.getUserName(),user.getEmail(),user.getPassword(), user.getGender(),user.isConfirmed());
+        userDto = new UserDto(user.getUserId(), user.getUserName(),user.getEmail(),user.getPassword(), user.getGender(),user.isConfirmed());
         return "redirect:/main";
     }
 

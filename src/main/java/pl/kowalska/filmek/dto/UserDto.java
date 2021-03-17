@@ -1,6 +1,7 @@
 package pl.kowalska.filmek.dto;
 
 public class UserDto {
+    private Long userId;
      private String userName;
      private String email;
      private String password;
@@ -10,12 +11,21 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(String userName, String email, String password, char gender, boolean comfirmed) {
+    public UserDto(Long userId, String userName, String email, String password, char gender, boolean comfirmed) {
+        this.userId = userId;
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.gender = gender;
         this.comfirmed = comfirmed;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
