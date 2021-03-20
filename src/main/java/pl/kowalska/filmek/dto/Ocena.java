@@ -1,6 +1,6 @@
-package pl.kowalska.filmek.controller;
+package pl.kowalska.filmek.dto;
 
-class Ocena{
+public class Ocena{
     private Integer ocena;
 
     public Ocena() {

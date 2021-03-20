@@ -6,21 +6,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import pl.kowalska.filmek.SearchMovies;
-import pl.kowalska.filmek.model.GenreEntity;
+import pl.kowalska.filmek.dto.Ocena;
 import pl.kowalska.filmek.model.MovieEntity;
-import pl.kowalska.filmek.moviePojo.Genre;
 import pl.kowalska.filmek.moviePojo.MovieObject;
-import pl.kowalska.filmek.repository.GenreRepository;
-import pl.kowalska.filmek.repository.MovieRepository;
-import pl.kowalska.filmek.repository.UserRepository;
-import pl.kowalska.filmek.services.GenreService;
 import pl.kowalska.filmek.services.MovieService;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 //@RequestMapping(value = "/movie")
@@ -58,13 +47,7 @@ public class MovieController {
     }
 
     @PostMapping("/edit/{movieId}")
-    public String show(Model model, @PathVariable Integer movieId, Ocena ocena){
-//        MovieObject movieWithDetails = movieService.findSingleMovieInTmdb(id.toString());
-//        if (movieWithDetails!=null){
-//            model.addAttribute("film", movieWithDetails);
-//            return "movie_detail";
-//        }
-        System.out.println("elo");
+    public String AddRatingToMovie(Model model, @PathVariable Long movieId, Ocena ocena){
         return "redirect:/main";
     }
 
