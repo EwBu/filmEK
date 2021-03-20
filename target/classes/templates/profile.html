@@ -81,25 +81,20 @@
 
                     <label class="text-center w-125"><h3><b>Edytuj profil</b></h3></label>
                     <br>
-                <fieldset th:if="${#fields.hasErrors('${user.*}')}" class="text-warning">
-                    <legend>Some errors appeared !</legend>
-                    <ul>
-                        <li th:each="err : ${#fields.errors('user.*')}" th:text="${err}"></li>
-                    </ul>
-                </fieldset>
                     <form class="form-horizontal" role="form" th:object="${user}" th:action="@{'/profile/editUser'}" method="post">
                         <input type="hidden" th:field="*{userId}">
                         <input type="hidden" th:field="*{gender}">
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Login:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" th:field="*{userName}" id="nameChange">
+                                <input class="form-control" type="text" th:field="*{userName}" id="nameChange" required
+                                       minlength="3" maxlength="20">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" th:field="*{email}" id="emailChange">
+                                <input class="form-control" type="text" th:field="*{email}" id="emailChange" required>
                             </div>
                         </div>
                         <!--<div th:if="${badMail}" th:text="${badMail}" class="errorMessage"/>-->
@@ -115,7 +110,7 @@
                                 <input class="form-control" type="password" id="confirmpass" name="confirmpass">
                             </div>
                         </div>
-                        <div th:if="${err}" th:text="${err}" class="errorMessage"/>
+                        <div th:if="${err}" th:text="${err}" class="errorMessage" style="color: darkred"/>
                         <!--<div th:if="${wrongPassword}" th:text="${wrongPassword}" class="errorMessage"/>-->
                         <div class="form-group">
                             <label class="col-md-3 control-label"></label>
