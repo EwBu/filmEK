@@ -43,14 +43,14 @@ class UsersAndRolesLoader {
         List<Role> user= allRoles.stream().filter(role -> role.getName().equalsIgnoreCase("user")).collect(Collectors.toList());
 
 
-        User user1 = new User("Kamil95",
-                "Kamil@wp.pl",
-                passwordEncoder.encode("filmy"),
+        User user1 = new User("Admin",
+                "admin@gmail.com",
+                passwordEncoder.encode("admin"),
                 'M',
                 admin,true);
         User user2 = new User("Kinomaniak",
-                "Robert87@gmail.com",
-                passwordEncoder.encode("cinemaCity2021"),
+                "user1@gmail.com",
+                passwordEncoder.encode("user1"),
                 'M',
                 user,true);
         User user3 = new User("Karolina",
@@ -95,7 +95,7 @@ class UsersAndRolesLoader {
                 user,true);
 
         Arrays.asList(user1,user2,user3,user4,user5,user6,user7,user8,user9,user10)
-                .forEach(kinomaniak -> userRepository.saveAndFlush(kinomaniak));
+                .forEach(moviesappdb -> userRepository.saveAndFlush(moviesappdb));
 
     }
 

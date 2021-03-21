@@ -122,6 +122,13 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public void deleteUser(Long userId) {
+        User user = findUserById(userId);
+        user.getRoles().removeAll(user.getRoles());
+        userRepository.deleteByUserId(userId);
+
+    }
 
 
     @Override

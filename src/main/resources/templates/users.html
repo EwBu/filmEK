@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="PL">
 <head>
     <meta charset="UTF-8">
     <title>Movie application</title>
@@ -14,18 +15,28 @@
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th>ID</th>
-                        <th>E-mail</th>
+                        <th sec:authorize="hasAuthority('ADMIN')">E-mail</th>
                         <th>Nazwa użytkownika</th>
-                        <th>Płeć</th>
+                        <th>Ocenione filmy</th>
+                        <th sec:authorize="hasAuthority('ADMIN')">Operacje</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="user: ${listUsers}">
-                        <td th:text="${user.userId}">ID</td>
-                        <td th:text="${user.email}">Email</td>
+                        <td th:text="${user.email}" sec:authorize="hasAuthority('ADMIN')">Email</td>
                         <td th:text="${user.userName}">Nazwa użytkownika</td>
-                        <td th:text="${user.gender}">Płeć</td>
+                        <td>
+                            <!--<form th:action="@{/raitingMovies/${user.userName}}" th:object="${user}" method="post">-->
+                                <!--<input type="hidden" name="userId" th:value="${user.userId}">-->
+                                <button type="submit">Zobacz oceny</button>
+                            <!--</form>-->
+                        </td>
+                        <td sec:authorize="hasAuthority('ADMIN')">
+                            <form th:action="@{delete}" method="post">
+                                <input type="hidden" name="userId" th:value="${user.userId}" />
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
             </table>
