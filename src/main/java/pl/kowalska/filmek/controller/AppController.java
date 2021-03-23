@@ -87,12 +87,12 @@ public class AppController {
     public String search(@RequestParam(value = "search", required = false) String q, Model model) {
 
         RestTemplate restTemplate = new RestTemplate();
-//        MoviesList moviesList = restTemplate.getForObject("https://api.themoviedb.org/3/search/movie?api_key=e529d754811a8187c547ac59aa92495d&language=pl&query=" + q, MoviesList.class);
-//        if (q != null) {
-//            List<Result> searchResults = moviesList.getResults();
-//            model.addAttribute("search", searchResults);
-//            return "index";
-//        }
+        MoviesList moviesList = restTemplate.getForObject("https://api.themoviedb.org/3/search/movie?api_key=e529d754811a8187c547ac59aa92495d&language=pl&query=" + q, MoviesList.class);
+        if (q != null) {
+            List<Result> searchResults = moviesList.getResults();
+            model.addAttribute("search", searchResults);
+            return "index";
+        }
         return "redirect:/main";
     }
 
