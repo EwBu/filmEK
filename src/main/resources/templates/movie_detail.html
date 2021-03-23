@@ -58,21 +58,33 @@
                  </div>
 
 <!--                <div sec:authorize="isAuthenticated()">-->
-                    <form method="post" th:action="@{/movie/edit/{movieId}}">
+                    <form method="post" th:object="${ocena}" th:action="@{/edit/{movieId}(movieId=${film.id})}" >
+<!--                    <form method="post" th:object="${ocena}" th:action="@{/edit/{ocenka}(ocenka=*{getOcena()})}" >-->
+<!--                    <form th:object="${ocena}" method="get" th:action="@{/movie/edit/{ocena}(ocena=${String.valueOf(${ocena.ocena})})}" >-->
                         <h3 class="text-center">Twoja ocena
                             <div class="rating">
-                                <input hidden type="radio" id="RadioBtn"/>
-                                <label class="raiting-button" value="1"  name="userRaiting" for="RadioBtn">☆</label>
-                                <label class="raiting-button" value="2" id="userRaiting" name="userRaiting">☆</label>
-                                <label class="raiting-button" value="3" id="userRaiting" name="userRaiting">☆</label>
-                                <label class="raiting-button" value="4" id="userRaiting" name="userRaiting">☆</label>
-                                <label class="raiting-button" value="5" id="userRaiting" name="userRaiting">☆</label>
-                                <label class="raiting-button" value="6" id="userRaiting" name="userRaiting">☆</label>
-                                <label class="raiting-button" value="7" id="userRaiting" name="userRaiting">☆</label>
-                                <label class="raiting-button" value="8" id="userRaiting" name="userRaiting">☆</label>
-                                <label class="raiting-button" value="9" id="userRaiting" name="userRaiting">☆</label>
-                                <input hidden type="radio" id="RadioBtn2"/>
-                                <label class="raiting-button" value="10" id="userRaiting" for="RadioBtn2" name="userRaiting">☆</label>
+                                <input hidden type="radio" id="RadioBtn10" value="10" th:field="*{ocena}" />
+                                <label class="raiting-button" value="10"  name="userRaiting" for="RadioBtn10">☆</label>
+                                <input hidden type="radio" id="RadioBtn9" value="9" th:field="*{ocena}"/>
+                                <label class="raiting-button" value="9"  name="userRaiting" for="RadioBtn9">☆</label>
+                                <input hidden type="radio" id="RadioBtn8" value="8" th:field="*{ocena}"/>
+                                <label class="raiting-button" value="8"  name="userRaiting" for="RadioBtn8">☆</label>
+                                <input hidden type="radio" id="RadioBtn7" value="7" th:field="*{ocena}"/>
+                                <label class="raiting-button" value="7"  name="userRaiting" for="RadioBtn7">☆</label>
+                                <input hidden type="radio" id="RadioBtn6"  value="6" th:field="${ocena.ocena}"/>
+                                <label class="raiting-button" value="6"  name="userRaiting" for="RadioBtn6">☆</label>
+                                <input hidden type="radio" id="RadioBtn5" value="5" th:field="${ocena.ocena}"/>
+                                <label class="raiting-button" value="5"  name="userRaiting" for="RadioBtn5">☆</label>
+                                <input hidden type="radio" id="RadioBtn4" value="4" th:field="${ocena.ocena}"/>
+                                <label class="raiting-button" value="4"  name="userRaiting" for="RadioBtn4">☆</label>
+                                <input hidden type="radio" id="RadioBtn3" value="3" th:field="${ocena.ocena}"/>
+                                <label class="raiting-button" value="3"  name="userRaiting" for="RadioBtn3">☆</label>
+                                <input hidden type="radio" id="RadioBtn2" value="2" th:field="${ocena.ocena}"/>
+                                <label class="raiting-button" value="2"  name="userRaiting" for="RadioBtn2">☆</label>
+                                <input hidden type="radio" id="RadioBtn1" value="1" th:field="${ocena.ocena}"/>
+                                <label class="raiting-button" value="1"  name="userRaiting" for="RadioBtn1">☆</label>
+                                <input type="submit" value="Submit">
+
                             </div>
                         </h3>
                         <div class="box-button">
@@ -114,3 +126,13 @@
         });
     });
 </script>
+
+<!--<script type='text/javascript'>-->
+
+<!--    $(document).ready(function() {-->
+<!--        $('input[type="radio"]').click(function(){-->
+<!--            $('form').submit();-->
+<!--        });-->
+<!--    });-->
+
+<!--</script>-->
