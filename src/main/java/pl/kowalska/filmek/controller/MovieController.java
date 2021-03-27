@@ -6,10 +6,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.kowalska.filmek.dto.Ocena;
+import pl.kowalska.filmek.dto.Raiting;
 import pl.kowalska.filmek.model.MovieEntity;
+import pl.kowalska.filmek.model.MovieRaiting;
+import pl.kowalska.filmek.model.MovieRaitingKey;
+import pl.kowalska.filmek.model.User;
 import pl.kowalska.filmek.moviePojo.MovieObject;
+import pl.kowalska.filmek.repository.UserRepository;
+import pl.kowalska.filmek.services.MovieRaitingService;
 import pl.kowalska.filmek.services.MovieService;
+import pl.kowalska.filmek.services.UserService;
 
 @Controller
 //@RequestMapping(value = "/movie")
@@ -18,6 +24,11 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private MovieRaitingService movieRaitingService;
 
     @GetMapping("/movie/{movieId}")
     public String viewMovieDetail(Model model, @PathVariable Long movieId){
@@ -29,7 +40,7 @@ public class MovieController {
         MovieEntity selectedMovie = movieService.findSingleMovieInDatabase(movieId);
         if (selectedMovie!=null){
             model.addAttribute("film", selectedMovie);
-            model.addAttribute("ocena",new Ocena());
+            model.addAttribute("ocena",new Raiting());
             return "movie_detail";
         }
         return "redirect:/main";
@@ -47,8 +58,16 @@ public class MovieController {
     }
 
     @PostMapping("/edit/{movieId}")
-    public String AddRatingToMovie(Model model, @PathVariable Long movieId, Ocena ocena){
+    public String AddRatingToMovie(Model model, @PathVariable Long movieId, Raiting raiting){
+        //        User userFromDb = userRepository.findByEmail("admin@wp.pl");
+//
+        MovieEntity singleMovieInDatabase = movieService.findSingleMovieInDatabase(movieId);
+        User user = userService.retrieveUserFromSecurityContext();
+        MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(user.getUserId(),singleMovieInDatabase.getId()), raiting.getOcena(), true);
+        movieRaitingService.save(movieRaiting);
         return "redirect:/main";
     }
+
+
 
 }

@@ -1,9 +1,9 @@
 package pl.kowalska.filmek.dto;
 
-public class Ocena{
+public class Raiting {
     private Integer ocena;
 
-    public Ocena() {
+    public Raiting() {
     }
 
 
