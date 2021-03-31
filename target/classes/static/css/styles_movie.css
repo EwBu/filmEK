@@ -2,18 +2,22 @@
     unicode-bidi: bidi-override;
     direction: rtl;
 }
+.raiting-button {
+    border: none;
+    background: rgba(0,0,0,0.0);
+}
 @media screen and (max-width: 768px) {
-    .rating > label {
+    .rating > button {
         width: 0.8em;
     }
 }
 @media only screen and (min-width: 769px) and (max-width: 1024px)  {
-    .rating > label {
-        width: 0.7em;
+    .rating > button {
+        width: 0.6em;
     }
 }
-.rating > label:hover:before,
-.rating > label:hover ~ label:before {
+.rating > button:hover:before,
+.rating > button:hover ~ button:before {
     color: #ffc200;
     content: "\2605";
     position: absolute;

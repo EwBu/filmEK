@@ -63,7 +63,7 @@
                         <h3 class="text-center">Twoja ocena
 
                             <div th:if="${currentRaiting==null}" class="rating">
-                                <button class="raiting-button" type="submit" name="ocena" id="RadioBtn10" value="10" th:field="*{ocena}">☆</button>
+                                <button th:each="i : ${#numbers.sequence(10,1)}" class="raiting-button" type="submit" name="ocena" id="RadioBtn10" th:value="${i}" th:field="*{ocena}">☆</button>
 <!--                                <label class="raiting-button" value="10"  name="userRaiting" for="RadioBtn10">☆</label>-->
 <!--                                <input hidden type="radio" id="RadioBtn9" value="9" th:field="*{ocena}"/>-->
 <!--                                <label class="raiting-button" value="9"  name="userRaiting" for="RadioBtn9">☆</label>-->
