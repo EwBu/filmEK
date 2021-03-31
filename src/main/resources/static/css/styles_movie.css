@@ -4,6 +4,7 @@
 }
 .raiting-button {
     border: none;
+    padding: 1px 3px;
     background: rgba(0,0,0,0.0);
 }
 @media screen and (max-width: 768px) {
@@ -21,6 +22,8 @@
     color: #ffc200;
     content: "\2605";
     position: absolute;
+    background: rgba(0,0,0,0.0);
+    border: none;
 }
 .box-title{
     margin-top: 23px;

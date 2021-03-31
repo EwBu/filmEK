@@ -1,2 +1,5 @@
 .idea/
 application.properties
+data.sql
+roles.sql
+schema.sql
