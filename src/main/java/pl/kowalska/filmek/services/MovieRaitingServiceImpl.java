@@ -3,6 +3,7 @@ package pl.kowalska.filmek.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.kowalska.filmek.model.MovieRaiting;
+import pl.kowalska.filmek.model.MovieRaitingKey;
 import pl.kowalska.filmek.repository.MovieRatingRepository;
 
 @Service
@@ -15,5 +16,10 @@ public class MovieRaitingServiceImpl implements MovieRaitingService{
     @Override
     public void save(MovieRaiting movieRaiting) {
         movieRatingRepository.save(movieRaiting);
+    }
+
+    @Override
+    public MovieRaiting findByMovieId(MovieRaitingKey movieRaitingKey) {
+        return movieRatingRepository.findByCompositeKey(movieRaitingKey);
     }
 }

@@ -10,9 +10,5 @@ public class FilmEkApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FilmEkApplication.class, args);
-
-
     }
-
-
 }

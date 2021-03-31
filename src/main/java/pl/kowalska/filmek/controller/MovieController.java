@@ -36,13 +36,19 @@ public class MovieController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
 
-
         MovieEntity selectedMovie = movieService.findSingleMovieInDatabase(movieId);
         if (selectedMovie!=null){
+            User user = userService.retrieveUserFromSecurityContext();
+            MovieEntity singleMovieInDatabase = movieService.findSingleMovieInDatabase(movieId);
+            MovieRaiting movieRaiting = movieRaitingService.findByMovieId(new MovieRaitingKey(user.getUserId(), singleMovieInDatabase.getId()));
+            model.addAttribute("currentRaiting", movieRaiting);
             model.addAttribute("film", selectedMovie);
             model.addAttribute("ocena",new Raiting());
             return "movie_detail";
         }
+
+
+
         return "redirect:/main";
     }
 
@@ -58,13 +64,24 @@ public class MovieController {
     }
 
     @PostMapping("/edit/{movieId}")
-    public String AddRatingToMovie(Model model, @PathVariable Long movieId, Raiting raiting){
+    public String AddRatingToMovie(@PathVariable Long movieId, Raiting raiting){
         //        User userFromDb = userRepository.findByEmail("admin@wp.pl");
 //
         MovieEntity singleMovieInDatabase = movieService.findSingleMovieInDatabase(movieId);
         User user = userService.retrieveUserFromSecurityContext();
         MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(user.getUserId(),singleMovieInDatabase.getId()), raiting.getOcena(), true);
         movieRaitingService.save(movieRaiting);
+        return "redirect:/main";
+    }
+
+ @GetMapping("/edit/{movieId}/{ocena}")
+    public String AddRatingToMovie2(@PathVariable Long movieId, @PathVariable Integer ocena){
+        //        User userFromDb = userRepository.findByEmail("admin@wp.pl");
+//
+        MovieEntity singleMovieInDatabase = movieService.findSingleMovieInDatabase(movieId);
+        User user = userService.retrieveUserFromSecurityContext();
+//        MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(user.getUserId(),singleMovieInDatabase.getId()), raiting.getOcena(), true);
+//        movieRaitingService.save(movieRaiting);
         return "redirect:/main";
     }
 

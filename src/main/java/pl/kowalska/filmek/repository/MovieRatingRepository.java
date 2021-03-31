@@ -15,4 +15,7 @@ public interface MovieRatingRepository extends JpaRepository<MovieRaiting, Movie
 
     @Query("from MovieRaiting mr where mr.raitingId.userId=?1")
     List<MovieRaiting> findAllRatingByFollowingUser(Long userId);
+
+    @Query("from MovieRaiting where raitingId=?1")
+    MovieRaiting findByCompositeKey(MovieRaitingKey movieRaitingKey);
 }
