@@ -17,6 +17,8 @@ import pl.kowalska.filmek.services.MovieRaitingService;
 import pl.kowalska.filmek.services.MovieService;
 import pl.kowalska.filmek.services.UserService;
 
+import java.util.Optional;
+
 @Controller
 //@RequestMapping(value = "/movie")
 public class MovieController {
@@ -38,17 +40,12 @@ public class MovieController {
 
         MovieEntity selectedMovie = movieService.findSingleMovieInDatabase(movieId);
         if (selectedMovie!=null){
-            User user = userService.retrieveUserFromSecurityContext();
-            MovieEntity singleMovieInDatabase = movieService.findSingleMovieInDatabase(movieId);
-            MovieRaiting movieRaiting = movieRaitingService.findByMovieId(new MovieRaitingKey(user.getUserId(), singleMovieInDatabase.getId()));
-            model.addAttribute("currentRaiting", movieRaiting);
+            Optional<MovieRaiting> movieRatedByLoginUser = movieRaitingService.findRating(movieId);
+            movieRatedByLoginUser.ifPresent(rating -> model.addAttribute("currentRaiting", rating));
             model.addAttribute("film", selectedMovie);
             model.addAttribute("ocena",new Raiting());
             return "movie_detail";
         }
-
-
-
         return "redirect:/main";
     }
 
@@ -63,28 +60,18 @@ public class MovieController {
         return "redirect:/main";
     }
 
-    @PostMapping("/edit/{movieId}")
-    public String AddRatingToMovie(@PathVariable Long movieId, Raiting raiting){
+
+    @GetMapping("/edit/{movieId}")
+    public String AddRatingToMovie(@PathVariable Long movieId, @RequestParam Integer ocena){
         //        User userFromDb = userRepository.findByEmail("admin@wp.pl");
 //
         MovieEntity singleMovieInDatabase = movieService.findSingleMovieInDatabase(movieId);
-        User user = userService.retrieveUserFromSecurityContext();
-        MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(user.getUserId(),singleMovieInDatabase.getId()), raiting.getOcena(), true);
-        movieRaitingService.save(movieRaiting);
+        Optional<User> user = userService.retrieveUserFromSecurityContext();
+        user.ifPresent(usr -> {
+            MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(usr.getUserId(),singleMovieInDatabase.getId()), ocena, true);
+            movieRaitingService.save(movieRaiting);
+        });
         return "redirect:/main";
     }
-
- @GetMapping("/edit/{movieId}/{ocena}")
-    public String AddRatingToMovie2(@PathVariable Long movieId, @PathVariable Integer ocena){
-        //        User userFromDb = userRepository.findByEmail("admin@wp.pl");
-//
-        MovieEntity singleMovieInDatabase = movieService.findSingleMovieInDatabase(movieId);
-        User user = userService.retrieveUserFromSecurityContext();
-//        MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(user.getUserId(),singleMovieInDatabase.getId()), raiting.getOcena(), true);
-//        movieRaitingService.save(movieRaiting);
-        return "redirect:/main";
-    }
-
-
 
 }

@@ -148,9 +148,9 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User retrieveUserFromSecurityContext() {
+    public Optional<User> retrieveUserFromSecurityContext() {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-        return findUserByEmail(userEmail);
+        return Optional.ofNullable(findUserByEmail(userEmail));
     }
 
 

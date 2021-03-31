@@ -20,7 +20,7 @@ public interface UserService extends UserDetailsService {
 
     List<User> findAll();
 
-    User retrieveUserFromSecurityContext();
+    Optional<User> retrieveUserFromSecurityContext();
 
     void handleConfirmationMailSending(UserDto userRegistrationDto);
 
