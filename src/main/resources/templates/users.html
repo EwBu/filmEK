@@ -27,10 +27,10 @@
                         <td th:text="${user.email}" sec:authorize="hasAuthority('ADMIN')">Email</td>
                         <td th:text="${user.userName}">Nazwa użytkownika</td>
                         <td>
-                            <!--<form th:action="@{/raitingMovies/${user.userName}}" th:object="${user}" method="post">-->
+                            <form th:action="@{/rated_movies/{userName}(userName=${user.getUserName()})}" method="post">
                                 <!--<input type="hidden" name="userId" th:value="${user.userId}">-->
                                 <button type="submit">Zobacz oceny</button>
-                            <!--</form>-->
+                            </form>
                         </td>
                         <td sec:authorize="hasAuthority('ADMIN')">
                             <form th:action="@{delete}" method="post">

@@ -18,6 +18,7 @@ import pl.kowalska.filmek.moviePojo.MoviesList;
 import pl.kowalska.filmek.moviePojo.Result;
 import pl.kowalska.filmek.services.MovieRaitingService;
 import pl.kowalska.filmek.services.MovieService;
+import pl.kowalska.filmek.services.RatedMoviesByUserService;
 import pl.kowalska.filmek.services.UserService;
 
 import java.util.ArrayList;
@@ -38,6 +39,9 @@ public class MovieController {
 
     @Autowired
     private MovieRaitingService movieRaitingService;
+
+    @Autowired
+    private RatedMoviesByUserService ratedMoviesByUserService;
 
     @RequestMapping(value ="/search_movies", method = {RequestMethod.POST, RequestMethod.GET})
     public String search(String search, Model model) {
@@ -104,25 +108,18 @@ public class MovieController {
 
         Optional<User> user = userService.retrieveUserFromSecurityContext();
 
-        List<MovieRaiting> listRatings = movieRaitingService.findRatedByUser(user.get().getUserId());
-//        listMovies.stream().map(movie -> )
-//        listRatings.stream().map(rating -> rating.getRaitingId().getId())
-        List<MovieEntity> listMovies = new ArrayList<>();
-        listRatings.forEach(movie -> listMovies.add(movieService.findSingleMovieInDatabase(movie.getRaitingId().getId())));
-        System.out.println(listMovies);
-
-        List<RatedMoviesByUser> moviesRatedByUser = listRatings.stream().map(rating -> {
-            MovieEntity ratedMovie = listMovies.stream().
-                    filter(movie -> movie.getId() == rating.getRaitingId()
-                            .getId())
-                    .findFirst().get();
-            return new RatedMoviesByUser(ratedMovie, rating);
-        }).collect(Collectors.toList());
-        //iter
-
-
+        List<RatedMoviesByUser> moviesRatedByUser = ratedMoviesByUserService.findMoviesAndRatingsByUser(user.get().getUserId());
         model.addAttribute("moviesRatedByUser", moviesRatedByUser);
 
+        return "rated_movies";
+    }
+
+    @RequestMapping(value = "/rated_movies/{userName}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String showRatedMoviesByUser(@PathVariable String userName, Model model){
+
+        User userByUsername = userService.findUserByUsername(userName);
+        List<RatedMoviesByUser> moviesRatedByUser = ratedMoviesByUserService.findMoviesAndRatingsByUser(userByUsername.getUserId());
+        model.addAttribute("moviesRatedByUser", moviesRatedByUser);
         return "rated_movies";
     }
 
