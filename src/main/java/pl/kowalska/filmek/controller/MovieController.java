@@ -84,17 +84,24 @@ public class MovieController {
             MovieObject selectedMovie = movieService.findSingleMovieInTmdb(String.valueOf(movieId));
             model.addAttribute("film", selectedMovie);
         }
+        try {
         Optional<MovieRaiting> movieRatedByLoginUser = movieRaitingService.findRating(movieId);
         movieRatedByLoginUser.ifPresent(rating -> model.addAttribute("currentRaiting", rating));
+        } catch (NoSuchElementException n) {
+            model.addAttribute("currentRaiting", null);
+        }
         model.addAttribute("ocena", new Rating());
         return "movie_detail";
     }
 
     @GetMapping("/edit/{movieId}")
     public String addRatingToMovie(@PathVariable Long movieId, @RequestParam Integer ocena) {
-        //        User userFromDb = userRepository.findByEmail("admin@wp.pl");
-//
+
+        if(!movieService.checkMovieInDb(movieId)){
+            movieService.saveMovieToDb(movieId);
+        }
         MovieEntity singleMovieInDatabase = movieService.findSingleMovieInDatabase(movieId);
+
         Optional<User> user = userService.retrieveUserFromSecurityContext();
         user.ifPresent(usr -> {
             MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(usr.getUserId(), singleMovieInDatabase.getId()), ocena, true);

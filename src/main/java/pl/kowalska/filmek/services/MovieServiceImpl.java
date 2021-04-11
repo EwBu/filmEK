@@ -12,11 +12,13 @@ import pl.kowalska.filmek.SearchMovies;
 import pl.kowalska.filmek.model.GenreEntity;
 import pl.kowalska.filmek.model.MovieEntity;
 import pl.kowalska.filmek.moviePojo.MovieObject;
+import pl.kowalska.filmek.moviePojo.Result;
 import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -86,6 +88,31 @@ public class MovieServiceImpl implements MovieService{
 
         }
         return moviesByQuery;
+    }
+
+    @Override
+    public Void saveMovieToDb(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        MovieObject movieObject = restTemplate.getForObject("https://api.themoviedb.org/3/movie/"+ id +"?api_key=e529d754811a8187c547ac59aa92495d", MovieObject.class);
+        DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        List<GenreEntity> genresForMovie = new ArrayList<>();
+        movieObject.getGenres().forEach(genre -> genresForMovie.add(genreRepo.getOne(Long.valueOf(genre.getId()))));
+        MovieEntity movieEntity = new MovieEntity(movieObject.getId(), movieObject.getPosterPath(), movieObject.getTitle(), movieObject.getOriginalTitle(), movieObject.getOriginalLanguage(), movieObject.getOverview(), movieObject.getPopularity(), convertToDate(DATEFORMATTER, movieObject), movieObject.getVoteAverage(), movieObject.getVoteCount(), genresForMovie);
+
+
+        movieRepo.save(movieEntity);
+
+        return null;
+    }
+
+    private LocalDate convertToDate(DateTimeFormatter DATEFORMATTER, MovieObject movie){
+        return LocalDate.parse(movie.getReleaseDate(), DATEFORMATTER);
+    }
+
+    public Boolean checkMovieInDb(Long id){
+        return movieRepo.existsById(id);
     }
 
 }

@@ -21,4 +21,7 @@ public interface MovieService {
 
     List<MovieEntity> findMoviesByQuery(String genre, Double voteMin, Double voteMax, Double popularityMin, Double popularityMax, Integer yearMin, Integer yearMax);
 
+    Void saveMovieToDb(Long id);
+
+    Boolean checkMovieInDb(Long id);
 }

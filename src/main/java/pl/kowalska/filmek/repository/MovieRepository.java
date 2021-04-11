@@ -20,5 +20,4 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
     @Query("Select me from MovieEntity me where me.voteAverage between ?1 and ?2 AND me.popularity between ?3 and ?4 AND me.releaseDate between ?5 and ?6 order by me.voteAverage DESC")
     List<MovieEntity> findMoviesByQueryWithoutGenre(Double voteMin, Double voteMax, Double popularityMin, Double popularityMax, LocalDate yearMin, LocalDate yearMax);
 
-
 }
