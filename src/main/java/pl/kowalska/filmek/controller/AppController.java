@@ -64,51 +64,38 @@ public class AppController {
 
     @GetMapping("/main")
     public String viewHomePage(
-            @RequestParam(value = "search", required = false) String q,
+//            @RequestParam(value = "search", required = false) String q,
             Model model,
             Pageable pageable) {
 
         Page<MovieEntity> moviesPage = movieService.findAll(pageable);
         PageWrapper<MovieEntity> pageNumbers = new PageWrapper<MovieEntity>(moviesPage, "/main");
-        List<MovieEntity> listMovieEntities = movieRepo.findAll();
+//        List<MovieEntity> listMovieEntities = movieRepo.findAll();
 
         model.addAttribute("listMovies", moviesPage);
         model.addAttribute("loggedUser", userDto);
 
         model.addAttribute("page", pageNumbers);
-
-        if (q != null) {
-            return String.format("redirect:/?search=%s", q);
-        }
+//
+//        if (q != null) {
+//            return String.format("redirect:/?search=%s", q);
         return "index";
+
     }
 
-    @GetMapping("/")
-    public String search(@RequestParam(value = "search", required = false) String q, Model model) {
+//    @GetMapping("/")
+//    public String search(@RequestParam(value = "search", required = false) String q, Model model) {
+//
+//        RestTemplate restTemplate = new RestTemplate();
+//        MoviesList moviesList = restTemplate.getForObject("https://api.themoviedb.org/3/search/movie?api_key=e529d754811a8187c547ac59aa92495d&language=pl&query=" + q, MoviesList.class);
+//        if (q != null) {
+//            List<Result> searchResults = moviesList.getResults();
+//            model.addAttribute("search", searchResults);
+//            return "index";
+//        }
+//        return "redirect:/main";
+//    }
 
-        RestTemplate restTemplate = new RestTemplate();
-        MoviesList moviesList = restTemplate.getForObject("https://api.themoviedb.org/3/search/movie?api_key=e529d754811a8187c547ac59aa92495d&language=pl&query=" + q, MoviesList.class);
-        if (q != null) {
-            List<Result> searchResults = moviesList.getResults();
-            model.addAttribute("search", searchResults);
-            return "index";
-        }
-        return "redirect:/main";
-    }
-
-    @RequestMapping(value = "/filter_movies", method = {RequestMethod.POST, RequestMethod.GET})
-    public String filterMovies(String genre, Model model, Double voteMin, Double voteMax, Double popularityMin, Double popularityMax, Integer yearMin, Integer yearMax) {
-        voteMin = voteMin == null ? 0.0 : voteMin;
-        voteMax = voteMax == null ? 10.0 : voteMax;
-        popularityMin = popularityMin == null ? 0.0 : popularityMin;
-        popularityMax = popularityMax == null ? Double.MAX_VALUE : popularityMax;
-        yearMin = yearMin == null ? 1800 : yearMin;
-        yearMax = yearMax == null ? 2099 : yearMax;
-        List<MovieEntity> moviesByQuery = movieService.findMoviesByQuery(genre, voteMin, voteMax, popularityMin, popularityMax, yearMin, yearMax);
-        model.addAttribute("listMovies", moviesByQuery);
-
-        return "filtered_movies";
-    }
 
     @GetMapping("/list_users")
     public String viewUsersList(Model model) {

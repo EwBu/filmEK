@@ -29,85 +29,46 @@
 
 <nav th:replace="fragments :: navigation_bar"></nav>
 
-<div class="container-fluid">
-    <form th:action="@{/filter_movies}" method="post">
-        <div class="row filter-row">
-            <select class="form-control form-control-sm col-2" id="genre" name="genre">
-                <option selected value="">Wybierz gatunek</option>
-                <option value="przygodowy">Przygodowy</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="animacja">Animacja</option>
-                <option value="dramat">Dramat</option>
-                <option value="horror">Horror</option>
-                <option value="akcja">Akcja</option>
-                <option value="komedia">Komedia</option>
-                <option value="historyczny">Historyczny</option>
-                <option value="western">Western</option>
-                <option value="thriller">Thriller</option>
-                <option value="kryminał">Kryminał</option>
-                <option value="dokumentalny">Dokumentalny</option>
-                <option value="sci-fi">Sci-Fi</option>
-                <option value="tajemnica">Tajemnica</option>
-                <option value="muzyczny">Muzyczny</option>
-                <option value="romans">Romans</option>
-                <option value="familijny">Familijny</option>
-                <option value="wojenny">Wojenny</option>
-            </select>
-            Ocena: Od
-            <input class="form-control col-1" id="voteMin" name="voteMin"/>
-            do
-            <input class="form-control col-1" id="voteMax" name="voteMax"/>
-            Popularność: Od
-            <input class="form-control col-1" id="popularityMin" name="popularityMin"/>
-            do
-            <input class="form-control col-1" id="popularityMax" name="popularityMax"/>
-            Data produkcji: od
-            <input type="number" min="1800" max="2099" step="1" placeholder="YYYY" id="yearMin" name="yearMin"/>
-            do
-            <input type="number" min="1800" max="2099" step="1" placeholder="YYYY" id="yearMax" name="yearMax"/>
-            <button class="btn btn-light" type="submit">Szukaj filmów</button>
-        </div>
-    </form>
-</div>
+<div th:replace="fragments :: filter_bar"></div>
 
 <div class="container-fluid">
     <div class="row">
                 <!--        <div th:if="${not #lists.isEmpty(search)}">-->
-        <div th:if="${search!=null}">
-            <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th></th>
-                        <th>Tytuł filmu</th>
-                        <th colspan="2">Średnia ocena</th>
-                    </tr>
-                    <tbody>
-                    <tr th:each="search : ${search}">
-                        <!--<td><a th:href="@{'/movie/' + ${search.movieId}}" th:text="${search.movieId}"></a></td>-->
-                        <td><img th:src="${'https://image.tmdb.org/t/p/w500' + search.posterPath}"
-                                 height="160" width="110"/></td>
-                        <td width="80%"><h3><a th:href="@{'/movie/movie_details/' + ${search.id}}"
-                                               th:text="${search.title + ' (' + search.releaseDate + ')'}"
-                                               style="color: black"> </a>
-                        </h3>
-                            <h5><label th:text="${search.originalTitle}"></label></h5>
-                        </td>
+        <!--<div th:if="${search!=null}">-->
+            <!--<div class="table-responsive">-->
+                <!--<table class="table">-->
+                    <!--<tr>-->
+                        <!--<th></th>-->
+                        <!--<th>Tytuł filmu</th>-->
+                        <!--<th colspan="2">Średnia ocena</th>-->
+                    <!--</tr>-->
+                    <!--<tbody>-->
+                    <!--<tr th:each="search : ${search}">-->
+                        <!--&lt;!&ndash;<td><a th:href="@{'/movie/' + ${search.movieId}}" th:text="${search.movieId}"></a></td>&ndash;&gt;-->
+                        <!--<td><img th:src="${'https://image.tmdb.org/t/p/w500' + search.posterPath}"-->
+                                 <!--height="160" width="110"/></td>-->
+                        <!--<td width="80%"><h3><a th:href="@{'/movie/' + ${search.id}}"-->
+                                               <!--th:text="${search.title + ' (' + search.releaseDate + ')'}"-->
+                                               <!--style="color: black"> </a>-->
+                        <!--</h3>-->
+                            <!--<h5><label th:text="${search.originalTitle}"></label></h5>-->
+                        <!--</td>-->
 
-                        <td width="7%"><br>
-                            <h2><label th:text="${search.voteAverage}"></label></h2></td>
-                        <td><br>
+                        <!--<td width="7%"><br>-->
+                            <!--<h2><label th:text="${search.voteAverage}"></label></h2></td>-->
+                        <!--<td><br>-->
 
 
 
-                            <h3><img
-                                    src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
-                                    width="30" height="30"></h3></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                            <!--<h3><img-->
+                                    <!--src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"-->
+                                    <!--width="30" height="30"></h3></td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
 
-        </div>
+        <!--</div>-->
         <!--<div th:unless="${#lists.isEmpty(search)}">-->
         <div class="card-group col-lg-2 col-md-3 col-sm-4" th:each="movie: ${listMovies}">
             <div class="card">

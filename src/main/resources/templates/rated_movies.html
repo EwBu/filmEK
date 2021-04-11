@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie application</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/movies.css" type="text/css">
+</head>
+<body>
+
+    <nav th:replace="fragments :: navigation_bar"></nav>
+
+    <div class="container">
+        <div class="row" >
+            <div class="table-responsive" >
+                <table class="table">
+                    <tr>
+                        <th></th> <th>Tytuł filmu</th>	<th colspan="2">Średnia ocena</th><th colspan="2">Twoja ocena</th>
+                    </tr>
+                    <tbody>
+                    <tr th:each="movieRatedByUser : ${moviesRatedByUser}">
+                        <td><img th:src="${'https://image.tmdb.org/t/p/w500' + movieRatedByUser.movie.posterPath}"
+                                 height="160" width="110"/></td>
+                        <td width="80%"><h3><a th:href="@{'/movie/' + ${movieRatedByUser.movie.id}}"
+                                               th:text="${movieRatedByUser.movie.title + ' (' + movieRatedByUser.movie.releaseDate + ')'}" style="color: black"> </a>
+                        </h3>
+                            <h5><label th:text="${movieRatedByUser.movie.originalTitle}"></label></h5>
+                        </td>
+
+                        <td width="7%"><br><h2><label th:text="${movieRatedByUser.movie.voteAverage}"></label></h2></td>
+                        <td><br>
+                            <h3><img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                                     width="30" height="30"></h3></td>
+                        <td width="7%"><br><h2><label th:text="${movieRatedByUser.rating.rating}"></label></h2></td>
+                        <td><br>
+                            <h3><img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+                                     width="30" height="30"></h3></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -8,6 +8,7 @@ import pl.kowalska.filmek.model.MovieRaitingKey;
 import pl.kowalska.filmek.model.User;
 import pl.kowalska.filmek.repository.MovieRatingRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,5 +40,11 @@ public class MovieRaitingServiceImpl implements MovieRaitingService{
         User user = optionalUser.get();
         MovieEntity singleMovieInDatabase = movieService.findSingleMovieInDatabase(movieId);
         return Optional.ofNullable(findByMovieId(new MovieRaitingKey(user.getUserId(), singleMovieInDatabase.getId())));
+    }
+
+    @Override
+    public List<MovieRaiting> findRatedByUser (Long userId){
+        List<MovieRaiting> ratedMovies = movieRatingRepository.findAllRatingByFollowingUser(userId);
+        return ratedMovies;
     }
 }

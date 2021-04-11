@@ -38,6 +38,9 @@ public class MovieEntity {
 
     private LocalDate releaseDate;
 
+    @Transient
+    private int userRating;
+
 //    @Column(nullable = false)
 //    private long runtime;
 
@@ -182,6 +185,14 @@ public class MovieEntity {
 
     public void setGenres(List<GenreEntity> genres) {
         this.genres = genres;
+    }
+
+    public int getUserRating() {
+        return userRating;
+    }
+
+    public void setUserRating(int userRating) {
+        this.userRating = userRating;
     }
 
     @Override
