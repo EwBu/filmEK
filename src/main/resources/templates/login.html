@@ -2,59 +2,58 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="ISO-8859-1">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Formularz logowania</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 <body>
+<nav th:replace="fragments :: navigation_bar"></nav>
 
-<div class = "container">
-    <div class = "row">
-        <div class = "col-md-6 col-md-offset-3">
+<div class="container text-center">
+    <!--<div class = "row">-->
+        <!--<div class = "col-md-6 col-md-offset-3">-->
+    <form th:action="@{/login}" method="post" style="max-width: 600px; margin: 0 auto;">
+        <h1> Zaloguj się </h1>
+        <!-- error message -->
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">Podano złe dane użytkownika.</div>
+        </div>
 
-            <h1> Logowanie </h1>
-            <form th:action="@{/login}" method="post">
+        <!-- logout message -->
+        <div th:if="${param.logout}">
+            <div class="alert alert-info">Zostałeś Pomyślnie wylogowany</div>
+        </div>
+        <div class="m-3 ">
+            <div class ="form-group row">
+                <label for ="username" class="col-form-label col-3"> E-mail: </label>
+                <input type="email" class="form-control col-8" id="username" name="username"
+                       placeholder="Podaj E-mail" autofocus="autofocus">
+            </div>
 
-                <!-- error message -->
-                <div th:if="${param.error}">
-                    <div class="alert alert-danger">Podano złe dane użytkownika.</div>
-                </div>
+            <div class="form-group row">
+                <label for="password" class="col-form-label col-3">Hasło:</label>
+                <input type="password" id="password" name="password" class="form-control col-8" placeholder="Podaj Hasło" />
+            </div>
 
-                <!-- logout message -->
-                <div th:if="${param.logout}">
-                    <div class="alert alert-info">Zostałeś Pomyślnie wylogowany</div>
-                </div>
+            <button type="submit" class="btn btn-light" >Zaloguj się</button>
+        </div>
 
-                <div class = "form-group">
-                    <label for ="username"> E-mail </label> :
-                    <input type="email" class = "form-control" id ="username" name = "username"
-                           placeholder="Podaj E-mail" autofocus="autofocus">
-                </div>
+        <!--<div class="form-group">-->
+            <!--<div class="row">-->
+                <!--&lt;!&ndash;<div class="col-sm-6 col-sm-offset-3">&ndash;&gt;-->
+                    <!--<input type="submit" name="login-submit" id="login-submit"-->
+                           <!--class="form-control btn btn-light" value="Zaloguj się" />-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
 
-                <div class="form-group">
-                    <label for="password">Hasło</label>: <input type="password"
-                                                                   id="password" name="password" class="form-control"
-                                                                   placeholder="Podaj Hasło" />
-                </div>
-
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <input type="submit" name="login-submit" id="login-submit"
-                                   class="form-control btn btn-primary" value="Zaloguj się" />
-                        </div>
-                    </div>
-                </div>
-            </form>
+    </form>
             <div class="form-group">
-						<span>Nowy użytkownik? <a href="/" th:href="@{/registration}">Zarejestruj się</a></span>
+						<span>Nie posiadasz konta? <a href="/" th:href="@{/registration}">Zarejestruj się</a></span>
             </div>
         </div>
-    </div>
+    <!--</div>-->
 </div>
 </body>
 </html>

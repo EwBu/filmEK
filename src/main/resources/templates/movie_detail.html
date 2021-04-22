@@ -56,29 +56,57 @@
                             width="30" height="30">
                     </div>
                  </div>
-<!--                <div sec:authorize="isAuthenticated()">-->
-                    <form method="get" th:object="${ocena}" th:action="@{/edit/{movieId}{ocena}(movieId=${film.id}, ocena=*{ocena})}" >
-<!--                    <form method="post" th:object="${ocena}" th:action="@{/edit/{ocenka}(ocenka=*{getOcena()})}" >-->
-<!--                    <form th:object="${ocena}" method="get" th:action="@{/movie/edit/{ocena}(ocena=${String.valueOf(${ocena.ocena})})}" >-->
+                <!--<div sec:authorize="isAuthenticated()">-->
+                    <!--<form method="get" th:object="${ocena}" th:action="@{/edit/{movieId}{ocena}(movieId=${film.id}, ocena=*{ocena})}" >-->
+<!--&lt;!&ndash;                    <form method="post" th:object="${ocena}" th:action="@{/edit/{ocenka}(ocenka=*{getOcena()})}" >&ndash;&gt;-->
+<!--&lt;!&ndash;                    <form th:object="${ocena}" method="get" th:action="@{/movie/edit/{ocena}(ocena=${String.valueOf(${ocena.ocena})})}" >&ndash;&gt;-->
+                        <!--<h3 class="text-center">Twoja ocena-->
+
+                            <!--<div th:if="${currentRaiting==null}" class="rating">-->
+                                <!--<button th:each="i : ${#numbers.sequence(10,1)}" class="raiting-button" type="submit" name="ocena" id="RadioBtn10" th:value="${i}" th:field="*{ocena}">☆</button>-->
+
+                            <!--</div>-->
+                            <!--<div th:unless="${currentRaiting==null}">-->
+<!--&lt;!&ndash;                                <div  th:each="i : ${#numbers.sequence(1,currentRaiting.rating)}">&ndash;&gt;-->
+                                    <!--<img th:each="i : ${#numbers.sequence(1,currentRaiting.rating)}" class="rate-star" src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"-->
+                                         <!--width="30" height="30">-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+                            <!--</div>-->
+
+                        <!--</h3>-->
+                        <!--<div class="row">-->
+                            <!--<label class="switch" for="checkbox">-->
+                            <!--<input type="checkbox" id="checkbox"  name="checkbox" onchange="document.getElementById('checkbox').submit()"/>-->
+                            <!--<div class="slider round"></div>-->
+                            <!--</label>-->
+                            <!--<label>Chcę zobaczyć</label>-->
+                        <!--</div>-->
+                <div sec:authorize="isAuthenticated()">
+                    <form id="rating-form" method="post" th:object="${ratingDto}" th:action="@{'/movie/edit'}">
+                        <input type="hidden" th:field="*{userId}">
+                        <input type="hidden" th:field="*{id}">
                         <h3 class="text-center">Twoja ocena
 
-                            <div th:if="${currentRaiting==null}" class="rating">
-                                <button th:each="i : ${#numbers.sequence(10,1)}" class="raiting-button" type="submit" name="ocena" id="RadioBtn10" th:value="${i}" th:field="*{ocena}">☆</button>
-
+                            <div th:if="${ratingDto.rating==null or ratingDto.rating==0}" class="rating">
+                                <button th:each="i : ${#numbers.sequence(10,1)}" class="raiting-button" type="submit" name="rating" id="RadioBtn10" th:value="${i}" th:field="*{rating}">☆</button>
                             </div>
-                            <div th:unless="${currentRaiting==null}">
-<!--                                <div  th:each="i : ${#numbers.sequence(1,currentRaiting.rating)}">-->
-                                    <img th:each="i : ${#numbers.sequence(1,currentRaiting.rating)}" class="rate-star" src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
-                                         width="30" height="30">
-<!--                                </div>-->
+                            <div th:unless="${ratingDto.rating==null or ratingDto.rating==0}">
+                                <img th:each="i : ${#numbers.sequence(1,ratingDto.rating)}" class="rate-star" src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png" width="20" height="20">
+                                <input type="hidden" th:field="*{rating}">
+                                <button class="btn btn-light" type="submit" name="action" value="changeRating">Oceń ponownie</button>
                             </div>
-
                         </h3>
-                        <div class="box-button">
-                            <span class="input-group-btn">
-                                <button class="btn btn-light" name="toSee">Chcę zobaczyć</button>
-                            </span>
+                        <div class="to-watch-container">
+                            <div class="row">
+                                <label class="switch" for="checkbox">
+                                    <input type="checkbox" id="checkbox"  name="toWatch" onchange="document.getElementById('rating-form').submit()"  th:checked="*{toWatch}"/>
+                                    <div class="slider round"></div>
+                                    <!--? 'checked'-->
+                                </label>
+                                <label class="to-watch-label">Chcę zobaczyć</label>
+                            </div>
                         </div>
+
                     </form>
                 </div>
             </div>

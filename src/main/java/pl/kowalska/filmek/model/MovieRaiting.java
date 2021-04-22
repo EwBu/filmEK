@@ -20,15 +20,15 @@ public class MovieRaiting {
 
     private int rating;
 
-    private boolean toWach;
+    private boolean toWatch;
 
     public MovieRaiting() {
     }
 
-    public MovieRaiting(MovieRaitingKey raitingId, int rating, boolean toWach) {
+    public MovieRaiting(MovieRaitingKey raitingId, int rating, boolean toWatch) {
         this.raitingId = raitingId;
         this.rating = rating;
-        this.toWach = toWach;
+        this.toWatch = toWatch;
     }
 
     public MovieRaitingKey getRaitingId() {
@@ -48,11 +48,11 @@ public class MovieRaiting {
         this.rating = rating;
     }
 
-    public boolean isToWach() {
-        return toWach;
+    public boolean isToWatch() {
+        return toWatch;
     }
 
-    public void setToWach(boolean toWach) {
-        this.toWach = toWach;
+    public void setToWatch(boolean toWatch) {
+        this.toWatch = toWatch;
     }
 }

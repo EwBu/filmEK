@@ -1,14 +1,12 @@
 package pl.kowalska.filmek.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import pl.kowalska.filmek.dto.RatedMoviesByUser;
-import pl.kowalska.filmek.dto.Rating;
+import pl.kowalska.filmek.dto.RatingDto;
 import pl.kowalska.filmek.model.MovieEntity;
 import pl.kowalska.filmek.model.MovieRaiting;
 import pl.kowalska.filmek.model.MovieRaitingKey;
@@ -21,14 +19,12 @@ import pl.kowalska.filmek.services.MovieService;
 import pl.kowalska.filmek.services.RatedMoviesByUserService;
 import pl.kowalska.filmek.services.UserService;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
-//@RequestMapping(value = "/movie")
 public class MovieController {
 
     @Autowired
@@ -73,8 +69,7 @@ public class MovieController {
     @GetMapping("/movie/{movieId}")
     public String viewMovieDetail(Model model, @PathVariable Long movieId) {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String name = authentication.getName();
+        RatingDto ratingDto = new RatingDto();
 
         try {
             MovieEntity selectedMovie = movieService.findSingleMovieInDatabase(movieId);
@@ -85,18 +80,28 @@ public class MovieController {
             model.addAttribute("film", selectedMovie);
         }
         try {
-        Optional<MovieRaiting> movieRatedByLoginUser = movieRaitingService.findRating(movieId);
-        movieRatedByLoginUser.ifPresent(rating -> model.addAttribute("currentRaiting", rating));
-        } catch (NoSuchElementException n) {
-            model.addAttribute("currentRaiting", null);
+            Optional<MovieRaiting> movieRatedByLoginUser = movieRaitingService.findRating(movieId);
+            if (!movieRatedByLoginUser.isEmpty()) {
+                movieRatedByLoginUser.ifPresent(rating -> {
+                    RatingDto ratingDto1 = new RatingDto(rating.getRaitingId().getId(), rating.getRaitingId().getUserId(), rating.getRating(), rating.isToWatch());
+                    model.addAttribute("ratingDto", ratingDto1);
+                });
+            } else {
+                ratingDto.setId(movieId);
+                model.addAttribute("ratingDto", ratingDto);
+            }
+        }catch (NoSuchElementException n) {
+            ratingDto.setId(movieId);
+            model.addAttribute("ratingDto", ratingDto);
         }
-        model.addAttribute("ocena", new Rating());
         return "movie_detail";
     }
 
-    @GetMapping("/edit/{movieId}")
-    public String addRatingToMovie(@PathVariable Long movieId, @RequestParam Integer ocena) {
+    @PostMapping("/movie/edit")
+    public String addRatingToMovie(@ModelAttribute RatingDto rating,
+                                   @RequestParam(value="action", required=false) String action) {
 
+        Long movieId = rating.getId();
         if(!movieService.checkMovieInDb(movieId)){
             movieService.saveMovieToDb(movieId);
         }
@@ -104,7 +109,8 @@ public class MovieController {
 
         Optional<User> user = userService.retrieveUserFromSecurityContext();
         user.ifPresent(usr -> {
-            MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(usr.getUserId(), singleMovieInDatabase.getId()), ocena, true);
+            if(action!=null){if (action.equals("changeRating"))rating.setRating(0);}  // && rating.getToWatch().equals(0)){movieRaitingService.
+            MovieRaiting movieRaiting = new MovieRaiting(new MovieRaitingKey(usr.getUserId(), singleMovieInDatabase.getId()), rating.getRating(), rating.getToWatch());
             movieRaitingService.save(movieRaiting);
         });
         return String.format("redirect:/movie/%d",movieId);
@@ -115,7 +121,7 @@ public class MovieController {
 
         Optional<User> user = userService.retrieveUserFromSecurityContext();
 
-        List<RatedMoviesByUser> moviesRatedByUser = ratedMoviesByUserService.findMoviesAndRatingsByUser(user.get().getUserId());
+        List<RatedMoviesByUser> moviesRatedByUser = ratedMoviesByUserService.findRatedMovies(user.get().getUserId());
         model.addAttribute("moviesRatedByUser", moviesRatedByUser);
 
         return "rated_movies";
@@ -125,9 +131,20 @@ public class MovieController {
     public String showRatedMoviesByUser(@PathVariable String userName, Model model){
 
         User userByUsername = userService.findUserByUsername(userName);
-        List<RatedMoviesByUser> moviesRatedByUser = ratedMoviesByUserService.findMoviesAndRatingsByUser(userByUsername.getUserId());
+        List<RatedMoviesByUser> moviesRatedByUser = ratedMoviesByUserService.findRatedMovies(userByUsername.getUserId());
         model.addAttribute("moviesRatedByUser", moviesRatedByUser);
         return "rated_movies";
+    }
+
+    @GetMapping("/toWatch_movies")
+    public String showToWatchMovies(Model model) {
+
+        Optional<User> user = userService.retrieveUserFromSecurityContext();
+
+        List<RatedMoviesByUser> moviesToWatch = ratedMoviesByUserService.findtoWatchMovies(user.get().getUserId());
+        model.addAttribute("moviesToWatch", moviesToWatch);
+
+        return "toWatch_movies";
     }
 
 }

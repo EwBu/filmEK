@@ -8,11 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import pl.kowalska.filmek.SearchMovies;
 import pl.kowalska.filmek.model.GenreEntity;
 import pl.kowalska.filmek.model.MovieEntity;
 import pl.kowalska.filmek.moviePojo.MovieObject;
-import pl.kowalska.filmek.moviePojo.Result;
 import pl.kowalska.filmek.repository.GenreRepository;
 import pl.kowalska.filmek.repository.MovieRepository;
 
@@ -35,7 +33,7 @@ public class MovieServiceImpl implements MovieService{
 
 
     final RestTemplate restTemplate = new RestTemplate();
-    @Value("${api.key}")
+    @Value("${apikey}")
     private String key;
 
     public Page<MovieEntity> findPaginatedMovies(Pageable pageable){

@@ -64,7 +64,6 @@ public class AppController {
 
     @GetMapping("/main")
     public String viewHomePage(
-//            @RequestParam(value = "search", required = false) String q,
             Model model,
             Pageable pageable) {
 
@@ -83,18 +82,10 @@ public class AppController {
 
     }
 
-//    @GetMapping("/")
-//    public String search(@RequestParam(value = "search", required = false) String q, Model model) {
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        MoviesList moviesList = restTemplate.getForObject("https://api.themoviedb.org/3/search/movie?api_key=e529d754811a8187c547ac59aa92495d&language=pl&query=" + q, MoviesList.class);
-//        if (q != null) {
-//            List<Result> searchResults = moviesList.getResults();
-//            model.addAttribute("search", searchResults);
-//            return "index";
-//        }
-//        return "redirect:/main";
-//    }
+    @GetMapping("/")
+    public String init() {
+        return "redirect:/main";
+    }
 
 
     @GetMapping("/list_users")

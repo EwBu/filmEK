@@ -15,7 +15,7 @@
             <div class="table-responsive" >
                 <table class="table">
                     <tr>
-                        <th></th> <th>Tytuł filmu</th>	<th colspan="2">Średnia ocena</th><th colspan="2">Twoja ocena</th>
+                        <th></th> <th>Tytuł filmu</th>	<th colspan="2">Średnia ocena</th><th colspan="3"></th><th colspan="2">Twoja ocena</th>
                     </tr>
                     <tbody>
                     <tr th:each="movieRatedByUser : ${moviesRatedByUser}">
@@ -31,6 +31,9 @@
                         <td><br>
                             <h3><img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
                                      width="30" height="30"></h3></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td width="7%"><br><h2><label th:text="${movieRatedByUser.rating.rating}"></label></h2></td>
                         <td><br>
                             <h3><img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"

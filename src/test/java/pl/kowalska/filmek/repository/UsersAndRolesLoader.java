@@ -49,8 +49,8 @@ class UsersAndRolesLoader {
                 'M',
                 admin,true);
         User user2 = new User("Kinomaniak",
-                "user1@gmail.com",
-                passwordEncoder.encode("user1"),
+                "user@gmail.com",
+                passwordEncoder.encode("user"),
                 'M',
                 user,true);
         User user3 = new User("Karolina",
